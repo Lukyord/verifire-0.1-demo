@@ -1,21 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import Hamgburger from "./components/Hamgburger";
 import NavLinks from "./components/NavLinks";
 
 export default function Header() {
-  const [hamburger, setHamburger] = useState(true);
-
   return (
     <div className="h-20 md:h-24 w-full bg-purple-700 flex items-center justify-between p-2 px-4 shadow-2xl">
-      <h1 className="text-white text-4xl sm:text-4xl lg:text-6xl font-bold my-auto">
+      <h1 className="text-white text-4xl md:text-6xl font-bold my-auto cursor-pointer">
         VeriFire
       </h1>
       <div>
-        <div className={`${hamburger ? "hidden" : ""}`}>
+        <div className="md:hidden">
+          <Hamgburger />
+        </div>
+        <div className="hidden md:block">
           <NavLinks />
         </div>
-        <div></div>
       </div>
     </div>
   );

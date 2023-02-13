@@ -1,4 +1,4 @@
-export const categories: NavLinkNotSignedIn[] = [
+export const navLinks: NavLinkNotSignedIn[] = [
   "Home/About",
   "Login",
   "Sign up",

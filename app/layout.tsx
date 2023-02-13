@@ -1,4 +1,4 @@
-import Header from "../src/Header";
+import Header from "../src/Header/Header";
 import "../styles/globals.css";
 
 export default function RootLayout({

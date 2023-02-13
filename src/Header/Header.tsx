@@ -1,6 +1,6 @@
 "use client";
 
-import Hamgburger from "./components/Hamgburger";
+import Hamgberger from "./components/Hamgberger";
 import NavLinks from "./components/NavLinks";
 
 export default function Header() {
@@ -11,7 +11,7 @@ export default function Header() {
       </h1>
       <div>
         <div className="md:hidden">
-          <Hamgburger />
+          <Hamgberger />
         </div>
         <div className="hidden md:block">
           <NavLinks />

@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
-import React from "react";
+import React, { useState } from "react";
 import { navLinks } from "../../constants";
 import useModalShownStore from "../../store/store";
 import NavLinkMobile from "../Header/components/NavLinkMobile";
@@ -16,23 +16,26 @@ export default function MobileNavBar() {
 
   return (
     <div
-      className={`absolute bg-slate-100 h-full w-screen
-      ${modalShown ? "visible" : "invisible"}
-      `}
+      className={`absolute z-20 bg-slate-100 h-full
+      ${modalShown ? "translate-x-36" : "translate-x-full"}
+      whitespace-nowrap left-0 transition-all ease-in duration-300 w-screen
+      flex flex-row`}
     >
-      <div className="flex flex-col">
-        <div className="w-full h-36 flex justify-end">
+      <div
+        className={`flex flex-col w-full ${
+          modalShown ? "visible" : "invisible"
+        } space-y-14 `}
+      >
+        <div className="h-36 flex ml-8">
           <ArrowRightCircleIcon
             onClick={handleClick}
-            className="w-20 h-20 cursor-pointer m-8 "
+            className="w-20 h-20 cursor-pointer mt-8"
             color="black"
           />
         </div>
-        <div className="flex flex-col space-y-14 pt-4">
-          {navLinks.map((navlink) => (
-            <NavLinkMobile key={navlink} navlink={navlink} />
-          ))}
-        </div>
+        {navLinks.map((navlink) => (
+          <NavLinkMobile key={navlink} navlink={navlink} />
+        ))}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import Header from "../src/Header/Header";
+import Overlay from "../src/MobileNavBar/components/Overlay";
 import MobileNavBar from "../src/MobileNavBar/MobileNavBar";
 import "../styles/globals.css";
 
@@ -11,7 +12,8 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <div className="h-screen w-screen flex flex-col">
+        <div className="relative h-screen w-screen flex flex-col">
+          <Overlay />
           <MobileNavBar />
           <Header />
           {children}

@@ -18,8 +18,8 @@ export default function MobileNavBar() {
     <div
       className={`absolute z-20 bg-slate-100 h-full
       ${modalShown ? "translate-x-36" : "translate-x-full"}
-      whitespace-nowrap left-0 transition-all ease-in duration-300 w-screen
-      flex flex-row`}
+      whitespace-nowrap ease-in duration-300 w-screen
+      `}
     >
       <div
         className={`flex flex-col w-full ${

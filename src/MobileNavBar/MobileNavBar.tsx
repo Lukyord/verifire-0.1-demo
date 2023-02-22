@@ -28,7 +28,7 @@ export default function MobileNavBar() {
             color="black"
           />
         </div>
-        <div className="flex flex-col pr-4">
+        <div className="flex flex-col space-y-14 pt-4">
           {navLinks.map((navlink) => (
             <NavLinkMobile key={navlink} navlink={navlink} />
           ))}

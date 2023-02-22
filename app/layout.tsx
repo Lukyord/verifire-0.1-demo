@@ -11,11 +11,11 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <div className="flex flex-row">
-          <Header />
+        <div className="relative">
           <MobileNavBar />
+          <Header />
+          {children}
         </div>
-        {children}
       </body>
     </html>
   );

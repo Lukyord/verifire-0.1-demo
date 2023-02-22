@@ -16,7 +16,7 @@ export default function Navlink({ navlink }: Props) {
   };
 
   return (
-    <button onClick={handleSubmit} className="text-white font-semibold">
+    <button onClick={handleSubmit} className="text-black font-semibold">
       {navlink}
     </button>
   );

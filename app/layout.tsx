@@ -12,7 +12,7 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <div className="relative h-screen w-screen flex flex-col">
+        <div className="relative h-screen w-screen flex flex-col bg-slate-100">
           {/* ==================== Navigation Bar ==================== */}
 
           <Overlay />

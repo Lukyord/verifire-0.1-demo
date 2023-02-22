@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { navLinks } from "../../constants";
 import Hamgberger from "./components/Hamgberger";
-import NavLinks from "./components/NavLinks";
+import Navlink from "./components/Navlink";
 
 export default function Header() {
   const router = useRouter();
@@ -20,7 +21,11 @@ export default function Header() {
           <Hamgberger />
         </div>
         <div className="hidden md:block">
-          <NavLinks />
+          <div className="flex flex-row items-center justify-between space-x-10 pr-8">
+            {navLinks.map((navlink) => (
+              <Navlink key={navlink} navlink={navlink} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

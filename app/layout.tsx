@@ -1,4 +1,5 @@
 import Header from "../src/Header/Header";
+import MobileNavBar from "../src/MobileNavBar/MobileNavBar";
 import "../styles/globals.css";
 
 export default function RootLayout({
@@ -10,7 +11,10 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <Header />
+        <div className="flex flex-row">
+          <Header />
+          <MobileNavBar />
+        </div>
         {children}
       </body>
     </html>

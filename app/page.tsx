@@ -2,8 +2,8 @@ import React from "react";
 
 export default function page() {
   return (
-    <div>
-      <p className="text-red-500 h-screen">This is the home page</p>
+    <div className="h-full w-full bg-slate-400">
+      <p className="text-red-500">This is the home page</p>
     </div>
   );
 }

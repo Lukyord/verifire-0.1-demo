@@ -11,7 +11,7 @@ export default function RootLayout({
     <html>
       <head />
       <body>
-        <div className="relative">
+        <div className="h-screen w-screen flex flex-col">
           <MobileNavBar />
           <Header />
           {children}

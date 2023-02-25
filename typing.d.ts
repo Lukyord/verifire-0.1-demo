@@ -11,3 +11,22 @@ type NavLinkSignedIn =
   | "Let's Meet"
   | "Profile"
   | "Contact Us";
+
+type SignUpData = {
+  username: string;
+  email: string;
+  password: string;
+  cpassword: string;
+};
+
+type LoginData = {
+  email: string;
+  password: string;
+};
+
+type FormErrors = {
+  username: string;
+  email: string;
+  password: string;
+  cpassword: string;
+};

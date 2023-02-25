@@ -7,7 +7,7 @@ type Props = {
 export default function Navlink({ navlink }: Props) {
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleClick = () => {
     if (navlink != "Home/About") {
       router.push(`/${navlink.toLowerCase().replace(/ /g, "_")}`);
     } else {
@@ -16,7 +16,7 @@ export default function Navlink({ navlink }: Props) {
   };
 
   return (
-    <button onClick={handleSubmit} className="text-white font-semibold">
+    <button onClick={handleClick} className="text-white font-semibold">
       {navlink}
     </button>
   );

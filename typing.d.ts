@@ -19,7 +19,7 @@ type SignUpData = {
   cpassword: string;
 };
 
-type LoginData = {
+type SignInData = {
   email: string;
   password: string;
 };

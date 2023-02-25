@@ -1,4 +1,4 @@
-export default function login_validate(values: LoginData) {
+export default function signInValidate(values: SignInData) {
   const errors: FormErrors = {
     username: "",
     email: "",
@@ -24,7 +24,7 @@ export default function login_validate(values: LoginData) {
   return errors;
 }
 
-export function registerValidate(values: SignUpData) {
+export function signUpValidate(values: SignUpData) {
   const errors: FormErrors = {
     username: "",
     email: "",

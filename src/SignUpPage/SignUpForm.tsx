@@ -1,15 +1,14 @@
 "use client";
-import React, { useState } from "react";
+
+import { useState } from "react";
 import {
   FingerPrintIcon,
   AtSymbolIcon,
   UserCircleIcon,
-  QuestionMarkCircleIcon,
 } from "@heroicons/react/24/solid";
 import styles from "../../styles/Form.module.css";
-import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { signUpValidate } from "../../lib/Validate";
+import { signUpValidationSchema } from "../../lib/ValidationSchema";
 
 export default function SignUpForm() {
   const [show, setShow] = useState({ password: false, cpassword: false });
@@ -21,13 +20,15 @@ export default function SignUpForm() {
   return (
     <Formik
       initialValues={{ username: "", email: "", password: "", cpassword: "" }}
-      validate={signUpValidate}
-      onSubmit={async (values) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        alert(JSON.stringify(values, null, 2));
+      validationSchema={signUpValidationSchema}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 500);
       }}
     >
-      {({ isSubmitting, errors, touched }) => (
+      {({ errors, touched }) => (
         <Form className="flex flex-col gap-5">
           <div
             className={`${styles.input_group} ${
@@ -87,7 +88,7 @@ export default function SignUpForm() {
             className={`${styles.input_group} ${
               errors.cpassword && touched.cpassword ? "border-rose-600" : ""
             } ${styles.popup_balloon}`}
-            data-tip="Password and Confirm Password must match"
+            data-tip="Passwords must match"
           >
             <Field
               name="cpassword"
@@ -105,11 +106,7 @@ export default function SignUpForm() {
           </div>
 
           <div className="input-button">
-            <button
-              type="submit"
-              className={`${styles.button}`}
-              disabled={isSubmitting || Object.keys(errors).length !== 0}
-            >
+            <button type="submit" className={`${styles.button}`}>
               Sign Up
             </button>
           </div>

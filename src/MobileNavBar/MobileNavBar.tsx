@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { navLinks } from "../../constants";
 import useModalShownStore from "../../store/store";
 import NavLinkMobile from "../Header/components/NavLinkMobile";
+import styles from "../../styles/MobileNavBar.module.css";
 
 export default function MobileNavBar() {
   const { setModalShown, modalShown } = useModalShownStore();
@@ -16,9 +17,9 @@ export default function MobileNavBar() {
 
   return (
     <div
-      className={`absolute z-20 bg-slate-100 h-full
-      ${modalShown ? "translate-x-36" : "translate-x-full"}
-      whitespace-nowrap ease-in duration-300 w-screen
+      className={`fixed z-20 bg-slate-100 h-full
+      ${modalShown ? styles.MobileNavBarShown : styles.MobileNavBarNotShown}
+      whitespace-nowrap ease-in duration-300 w-screen xs:hidden
       `}
     >
       <div

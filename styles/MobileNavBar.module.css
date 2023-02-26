@@ -1,0 +1,7 @@
+.MobileNavBarShown {
+  @apply translate-x-36 visible;
+}
+
+.MobileNavBarNotShown {
+  @apply translate-x-full invisible;
+}

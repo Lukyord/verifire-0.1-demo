@@ -5,9 +5,11 @@ import { FingerPrintIcon, AtSymbolIcon } from "@heroicons/react/24/solid";
 import styles from "../../styles/Form.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signInValidationSchema } from "../../lib/ValidationSchema";
+import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
   const [show, setShow] = useState(false);
+  const router = useRouter();
 
   async function onSubmit(values: SignInData) {
     console.log(values);
@@ -22,6 +24,7 @@ export default function SignInForm() {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 500);
+        router.push("/");
       }}
     >
       {({ isSubmitting, isValidating, errors, touched }) => (
@@ -60,7 +63,7 @@ export default function SignInForm() {
               <FingerPrintIcon className="w-8 h-8 cursor-pointer" />
             </span>
           </div>
-          <div className="input-button">
+          <div className="button">
             <button
               type="submit"
               className={`${styles.button}`}

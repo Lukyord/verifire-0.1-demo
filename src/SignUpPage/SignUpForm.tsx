@@ -9,9 +9,11 @@ import {
 import styles from "../../styles/Form.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signUpValidationSchema } from "../../lib/ValidationSchema";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
   const [show, setShow] = useState({ password: false, cpassword: false });
+  const router = useRouter();
 
   async function onSubmit(values: SignUpData) {
     console.log(values);
@@ -26,6 +28,7 @@ export default function SignUpForm() {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 500);
+        router.push("/");
       }}
     >
       {({ errors, touched }) => (
@@ -105,7 +108,7 @@ export default function SignUpForm() {
             </span>
           </div>
 
-          <div className="input-button">
+          <div className="button">
             <button type="submit" className={`${styles.button}`}>
               Sign Up
             </button>

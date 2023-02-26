@@ -5,14 +5,14 @@ import React from "react";
 export default function Footer() {
   const router = useRouter();
   return (
-    <div className="text-center text-gray-400 ">
+    <p className="text-center text-gray-400 ">
       Don't have an account?{" "}
-      <p
+      <span
         className="text-blue-700 cursor-pointer"
         onClick={() => router.push(`/login`)}
       >
         Sign Up Here
-      </p>
-    </div>
+      </span>
+    </p>
   );
 }

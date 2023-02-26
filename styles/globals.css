@@ -5,7 +5,8 @@
 @tailwind utilities;
 
 * > * {
-  font-family: "Poppins", sans-serif;
+  font-family: "Helvetica", sans-serif;
+  letter-spacing: 0.05em;
 }
 
 a {

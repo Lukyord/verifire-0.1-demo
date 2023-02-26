@@ -27,3 +27,14 @@ export const signInValidationSchema = Yup.object().shape({
     .max(20, "Password must be less than 20 characters")
     .required("Password is required"),
 });
+
+export const feedbackValidationSchema = Yup.object().shape({
+  topic: Yup.string()
+    .min(2, "Topic must be at least 2 characters")
+    .max(50, "Topic must be at most 50 characters")
+    .required("Topic is required"),
+  comment: Yup.string()
+    .min(10, "Description must be at least 10 characters")
+    .max(500, "Description must be at most 500 characters")
+    .required("comment is required"),
+});

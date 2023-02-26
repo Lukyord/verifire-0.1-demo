@@ -24,9 +24,7 @@ type SignInData = {
   password: string;
 };
 
-type FormErrors = {
-  username: string;
-  email: string;
-  password: string;
-  cpassword: string;
+type FeedbackData = {
+  topic: string;
+  comment: string;
 };

@@ -1,6 +1,5 @@
 import SignInFooter from "../../src/SignInPage/SignInFooter";
 import SignInForm from "../../src/SignInPage/SignInForm";
-import LoginTest from "../../src/SignInPage/LoginTest";
 
 export default function SignIn() {
   return (
@@ -8,7 +7,6 @@ export default function SignIn() {
       <title>VeriFire - Sign In</title>
       <SignInForm />
       <SignInFooter />
-      {/* <LoginTest /> */}
     </section>
   );
 }

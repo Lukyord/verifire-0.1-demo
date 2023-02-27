@@ -3,7 +3,6 @@ export const navLinks: NavLinkNotSignedIn[] = [
   "Sign in",
   "Sign up",
   "Feedback",
-  "Contact Us",
 ];
 
 export const navLinksLoggedIn: NavLinkSignedIn[] = [
@@ -11,5 +10,5 @@ export const navLinksLoggedIn: NavLinkSignedIn[] = [
   "Friends",
   "Let's Meet",
   "Profile",
-  "Contact Us",
+  "Sign out",
 ];

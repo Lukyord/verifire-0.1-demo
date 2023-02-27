@@ -15,7 +15,6 @@ export default function RootLayout({
 
   useEffect(() => {
     init();
-    console.log(user);
   }, []);
 
   return (
@@ -24,11 +23,9 @@ export default function RootLayout({
       <body>
         <div className="relative h-screen w-screen flex flex-col bg-slate-100">
           {/* ==================== Navigation Bar ==================== */}
-
           <Overlay />
           <MobileNavBar />
           <Header />
-
           {/* ======================================================== */}
           {children}
         </div>

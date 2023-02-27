@@ -8,12 +8,12 @@ export default function page() {
   return (
     <>
       {user ? (
-        <div className="h-full w-full">
-          <p className="text-red-500">Logged In</p>
+        <div className="">
+          <p>Logged In</p>
         </div>
       ) : (
-        <div className="h-full w-full ">
-          <p className="text-red-500">Welcome guest</p>
+        <div className=" ">
+          <p>Welcome guest</p>
         </div>
       )}
     </>

@@ -6,8 +6,10 @@ import styles from "../../styles/Form.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signInValidationSchema } from "../../lib/ValidationSchema";
 import { useRouter } from "next/navigation";
+import useAuthStore from "../../store/authStore";
 
 export default function SignInForm() {
+  const { signin } = useAuthStore();
   const [show, setShow] = useState(false);
   const router = useRouter();
 
@@ -24,6 +26,7 @@ export default function SignInForm() {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 500);
+        signin(values.email, values.password);
         router.push("/");
       }}
     >

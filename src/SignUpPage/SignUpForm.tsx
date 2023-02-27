@@ -10,8 +10,10 @@ import styles from "../../styles/Form.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signUpValidationSchema } from "../../lib/ValidationSchema";
 import { useRouter } from "next/navigation";
+import useAuthStore from "../../store/authStore";
 
 export default function SignUpForm() {
+  const { signup } = useAuthStore();
   const [show, setShow] = useState({ password: false, cpassword: false });
   const router = useRouter();
 
@@ -28,6 +30,7 @@ export default function SignUpForm() {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 500);
+        signup(values.email, values.password);
         router.push("/");
       }}
     >

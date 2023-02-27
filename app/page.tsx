@@ -1,9 +1,21 @@
+"use client";
+
 import React from "react";
+import useAuthStore from "../store/authStore";
 
 export default function page() {
+  const { user } = useAuthStore();
   return (
-    <div className="h-full w-full bg-slate-400">
-      <p className="text-red-500">This is the home page</p>
-    </div>
+    <>
+      {user ? (
+        <div className="">
+          <p>Logged In</p>
+        </div>
+      ) : (
+        <div className=" ">
+          <p>Welcome guest</p>
+        </div>
+      )}
+    </>
   );
 }

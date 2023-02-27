@@ -13,8 +13,9 @@ export default function SignInForm() {
   const [show, setShow] = useState(false);
   const router = useRouter();
 
-  async function onSubmit(values: SignInData) {
-    console.log(values);
+  async function onSubmit(values: { email: string; password: string }) {
+    const { email, password } = values;
+    await signin(email, password);
   }
 
   return (
@@ -26,7 +27,7 @@ export default function SignInForm() {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 500);
-        signin(values.email, values.password);
+        onSubmit(values);
         router.push("/");
       }}
     >

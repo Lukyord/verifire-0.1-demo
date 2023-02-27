@@ -9,7 +9,11 @@ export default function Navlink({ navlink }: Props) {
 
   const handleClick = () => {
     if (navlink != "Home/About") {
-      router.push(`/${navlink.toLowerCase().replace(/ /g, "_")}`);
+      if (navlink === "Let's Meet") {
+        router.push("/lets_meet");
+      } else {
+        router.push(`/${navlink.toLowerCase().replace(/ /g, "_")}`);
+      }
     } else {
       router.replace("/");
     }

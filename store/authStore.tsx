@@ -32,7 +32,7 @@ const useAuthStore = create<AuthState>((set) => ({
         email,
         password
       );
-      set({ user: userCredential.user });
+      set({ user: userCredential.user, loading: false });
     } catch (error) {
       console.error(error);
     }
@@ -44,7 +44,7 @@ const useAuthStore = create<AuthState>((set) => ({
         email,
         password
       );
-      set({ user: userCredential.user });
+      set({ user: userCredential.user, loading: false });
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +52,7 @@ const useAuthStore = create<AuthState>((set) => ({
   signout: async () => {
     try {
       await signOut(auth);
-      set({ user: null });
+      set({ user: null, loading: false });
     } catch (error) {
       console.error(error);
     }

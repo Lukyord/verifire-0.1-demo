@@ -13,12 +13,14 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 
 export default function SignUpForm() {
-  const { signup } = useAuthStore();
+  const { signup, user } = useAuthStore();
   const [show, setShow] = useState({ password: false, cpassword: false });
   const router = useRouter();
 
-  async function onSubmit(values: SignUpData) {
-    console.log(values);
+  async function onSubmit(values: { email: string; password: string }) {
+    const { email, password } = values;
+    await signup(email, password);
+    console.log(user);
   }
 
   return (

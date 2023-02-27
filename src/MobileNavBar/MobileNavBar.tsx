@@ -2,13 +2,15 @@
 
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
-import { navLinks } from "../../constants";
+import { navLinks, navLinksLoggedIn } from "../../constants";
 import useModalShownStore from "../../store/store";
 import NavLinkMobile from "../Header/components/NavLinkMobile";
 import styles from "../../styles/MobileNavBar.module.css";
+import useAuthStore from "../../store/authStore";
 
 export default function MobileNavBar() {
   const { setModalShown, modalShown } = useModalShownStore();
+  const { user } = useAuthStore();
 
   const handleClick = () => {
     setModalShown(!modalShown);
@@ -34,9 +36,24 @@ export default function MobileNavBar() {
             color="black"
           />
         </div>
+        {user ? (
+          <>
+            {navLinksLoggedIn.map((navlink) => (
+              <NavLinkMobile key={navlink} navlink={navlink} />
+            ))}
+          </>
+        ) : (
+          <>
+            {navLinks.map((navlink) => (
+              <NavLinkMobile key={navlink} navlink={navlink} />
+            ))}
+          </>
+        )}
+        {/* <>
         {navLinks.map((navlink) => (
           <NavLinkMobile key={navlink} navlink={navlink} />
         ))}
+        </> */}
       </div>
     </div>
   );

@@ -4,28 +4,27 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../database/firebase";
 
-interface NavigationModalState {
-  modalShown: boolean;
-  setModalShown: (modalShown: boolean) => void;
-}
-
-interface UserState {
+interface AuthState {
   user: FirebaseUser | null;
   signin: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
   signout: () => Promise<void>;
+  init: () => Promise<void>;
+  loading: boolean;
 }
 
-const useModalShownStore = create<NavigationModalState>((set) => ({
-  modalShown: false,
-  setModalShown: () => set((state) => ({ modalShown: !state.modalShown })),
-}));
-
-const useUserStore = create<UserState>((set) => ({
+const useAuthStore = create<AuthState>((set) => ({
   user: null,
+  loading: true,
+  init: async () => {
+    onAuthStateChanged(auth, (user) => {
+      set({ user, loading: false });
+    });
+  },
   signin: async (email: string, password: string) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -60,4 +59,4 @@ const useUserStore = create<UserState>((set) => ({
   },
 }));
 
-export default useModalShownStore;
+export default useAuthStore;

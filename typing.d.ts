@@ -1,3 +1,6 @@
+declare module "*.module.css";
+declare module "*.module.scss";
+
 type NavLinkNotSignedIn =
   | "Home/About"
   | "Sign in"

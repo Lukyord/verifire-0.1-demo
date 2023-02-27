@@ -1,0 +1,58 @@
+.input_group {
+  @apply flex border rounded-xl;
+  position: relative;
+}
+
+.input_text {
+  @apply w-full py-4 px-6 border rounded-xl bg-slate-50;
+  @apply focus:outline-none border-none;
+}
+
+.button {
+  @apply w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-md;
+  @apply py-3 text-gray-50 text-lg;
+}
+
+.button:hover {
+  @apply bg-gradient-to-r from-gray-50 to-gray-100 border-blue-500;
+  @apply text-gray-700 border;
+}
+
+.button_custom {
+  @apply w-full border py-3 flex justify-center gap-2 hover:bg-gray-200;
+}
+
+.input_text + * {
+  color: #cbd5e1;
+}
+
+.input_text:focus + * {
+  color: #6366f1;
+}
+
+.input_text:not([type="email"]) ~ span:hover * {
+  color: #6366f1;
+  cursor: pointer;
+}
+
+.error {
+  @apply text-rose-400 text-center p-4 border-2 border-rose-400 bg-rose-200 rounded-xl;
+}
+
+.popup_balloon {
+  @apply relative before:z-10 before:absolute before:right-0 before:-top-3 before:w-[10rem];
+  @apply before:max-w-xs before:-translate-x-1/2 before:-translate-y-full before:rounded-lg;
+  @apply before:bg-gray-700 before:px-2 before:py-1.5 before:text-white before:invisible;
+  @apply before:content-[attr(data-tip)] after:z-10 after:absolute after:right-48 after:-top-3 after:h-0 after:w-0;
+  @apply after:-translate-x-1/2 after:border-8 after:border-t-gray-700 after:border-l-transparent after:border-b-transparent;
+  @apply after:border-r-transparent after:invisible hover:before:visible hover:after:visible;
+}
+
+.popup_balloon_password {
+  @apply relative before:z-10 before:absolute before:left-1/2 before:-bottom-3 before:w-max;
+  @apply before:max-w-xs before:-translate-x-1/2 before:translate-y-full before:rounded-lg;
+  @apply before:bg-amber-400 before:px-2 before:py-1.5 before:text-white before:invisible;
+  @apply before:content-[attr(data-tip)] after:z-10 after:absolute after:left-1/2 after:-bottom-3 after:h-0 after:w-0;
+  @apply after:-translate-x-1/2 after:border-8 after:border-b-gray-700 after:border-l-transparent after:border-t-transparent;
+  @apply after:border-r-transparent after:invisible hover:before:visible hover:after:visible;
+}

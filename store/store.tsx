@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "../database/firebase";
+import { auth } from "../firebase";
 
 interface NavigationModalState {
   modalShown: boolean;

@@ -1,5 +1,11 @@
-import React from "react";
+"use client";
+
+import ProtectedRoute from "../../middleware/ProtectedRoute";
 
 export default function LetsMeet() {
-  return <div>LetsMeet</div>;
+  return (
+    <ProtectedRoute>
+      <div>Let's Meet</div>
+    </ProtectedRoute>
+  );
 }

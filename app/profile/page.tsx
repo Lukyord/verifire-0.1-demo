@@ -1,5 +1,11 @@
-import React from "react";
+"use client";
+
+import ProtectedRoute from "../../middleware/ProtectedRoute";
 
 export default function Profile() {
-  return <div>Profile</div>;
+  return (
+    <ProtectedRoute>
+      <div>Profile</div>
+    </ProtectedRoute>
+  );
 }

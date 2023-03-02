@@ -72,7 +72,6 @@ export default function SignInForm() {
               type="submit"
               className={`${styles.button}`}
               disabled={isSubmitting}
-              onClick={() => console.log(isValidating, isSubmitting)}
             >
               Sign In
             </button>

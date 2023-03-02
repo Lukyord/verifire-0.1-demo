@@ -11,10 +11,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { init, loading } = useAuthStore();
+  const { init, loading, user } = useAuthStore();
 
   useEffect(() => {
     init();
+    console.log(user);
   }, []);
 
   return (

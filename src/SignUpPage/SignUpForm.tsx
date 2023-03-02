@@ -31,9 +31,10 @@ export default function SignUpForm() {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
+          signup(values.email, values.password);
         }, 500);
-        signup(values.email, values.password);
-        router.push("/");
+        onSubmit(values);
+        router.replace("sign_up/phone");
       }}
     >
       {({ errors, touched }) => (

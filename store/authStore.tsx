@@ -15,11 +15,14 @@ interface AuthState {
   signout: () => Promise<void>;
   init: () => Promise<void>;
   loading: boolean;
+  phone: string;
+  setPhone: (phone: string) => Promise<void>;
 }
 
 const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: true,
+  phone: "",
   init: async () => {
     onAuthStateChanged(auth, (user) => {
       set({ user, loading: false });
@@ -45,6 +48,13 @@ const useAuthStore = create<AuthState>((set) => ({
         password
       );
       set({ user: userCredential.user, loading: false });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  setPhone: async (phone: string) => {
+    try {
+      set({ phone: phone });
     } catch (error) {
       console.error(error);
     }

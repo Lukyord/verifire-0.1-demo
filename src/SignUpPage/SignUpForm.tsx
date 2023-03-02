@@ -20,7 +20,6 @@ export default function SignUpForm() {
   async function onSubmit(values: { email: string; password: string }) {
     const { email, password } = values;
     await signup(email, password);
-    console.log(user);
   }
 
   return (
@@ -31,10 +30,10 @@ export default function SignUpForm() {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          signup(values.email, values.password);
         }, 500);
-        onSubmit(values);
-        router.replace("sign_up/phone");
+        onSubmit(values).then(() => {
+          router.replace("sign_up/phone");
+        });
       }}
     >
       {({ errors, touched }) => (

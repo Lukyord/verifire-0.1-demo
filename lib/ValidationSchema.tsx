@@ -40,10 +40,15 @@ export const feedbackValidationSchema = Yup.object().shape({
 });
 
 const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
 export const phoneValidationSchema = Yup.object().shape({
   phone: Yup.string()
     .matches(phoneRegExp, "Please enter a valid 10-digit phone number")
     .required("Phone number is required"),
+  // otp: Yup.string()
+  //   .required()
+  //   .matches(/^[0-9]+$/, "Must be only digits")
+  //   .min(6, "Must be exactly 6 digits")
+  //   .max(6, "Must be exactly 6 digits"),
 });

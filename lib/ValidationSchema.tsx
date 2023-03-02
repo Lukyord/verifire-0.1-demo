@@ -38,3 +38,12 @@ export const feedbackValidationSchema = Yup.object().shape({
     .max(500, "Description must be at most 500 characters")
     .required("comment is required"),
 });
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+export const phoneValidationSchema = Yup.object().shape({
+  phone: Yup.string()
+    .matches(phoneRegExp, "Please enter a valid 10-digit phone number")
+    .required("Phone number is required"),
+});

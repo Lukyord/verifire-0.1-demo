@@ -8,17 +8,26 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 
+type EmergencyContact = {
+  emergencyContact1: string;
+  relationship1: string;
+  emergencyContact2: string;
+  relationship2: string;
+};
+
 interface AuthState {
   user: FirebaseUser | null;
   loading: boolean;
   phone: string;
   phoneVerifying: boolean;
+  emergencyContacts: EmergencyContact;
   signin: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
   signout: () => Promise<void>;
   init: () => Promise<void>;
   setPhone: (phone: string) => Promise<void>;
   setPhoneVerifying: (value: boolean) => void;
+  setEmergencyContacts: (contacts: EmergencyContact) => void;
   setLoading: (value: boolean) => void;
 }
 
@@ -27,6 +36,12 @@ const useAuthStore = create<AuthState>((set) => ({
   loading: true,
   phone: "",
   phoneVerifying: false,
+  emergencyContacts: {
+    emergencyContact1: "",
+    relationship1: "",
+    emergencyContact2: "",
+    relationship2: "",
+  },
   init: async () => {
     onAuthStateChanged(auth, (user) => {
       set({ user, loading: false });
@@ -72,6 +87,8 @@ const useAuthStore = create<AuthState>((set) => ({
     }
   },
   setPhoneVerifying: (value) => set(() => ({ phoneVerifying: value })),
+  setEmergencyContacts: (contacts) =>
+    set(() => ({ emergencyContacts: contacts })),
   setLoading: (value) => set(() => ({ loading: value })),
 }));
 

@@ -24,7 +24,7 @@ export default function SignUpForm() {
 
   return (
     <Formik
-      initialValues={{ username: "", email: "", password: "", cpassword: "" }}
+      initialValues={{ email: "", password: "", cpassword: "" }}
       validationSchema={signUpValidationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -38,24 +38,6 @@ export default function SignUpForm() {
     >
       {({ errors, touched }) => (
         <Form className="flex flex-col gap-5">
-          <div
-            className={`${styles.input_group} ${
-              errors.username && touched.username ? "border-rose-600" : ""
-            }  ${styles.popup_balloon}`}
-            data-tip="Username must not contain blank space"
-          >
-            <Field
-              name="username"
-              type="text"
-              className={`${styles.input_text}`}
-              placeholder="Username"
-            />
-
-            <span className="icon flex items-center px-4">
-              <UserCircleIcon className="w-8 h-8 cursor-pointer" />
-            </span>
-          </div>
-
           <div
             className={`${styles.input_group} ${
               errors.email && touched.email ? "border-rose-600" : ""

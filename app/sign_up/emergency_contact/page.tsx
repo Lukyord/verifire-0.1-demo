@@ -1,20 +1,14 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+
 import ProtectedRoute from "../../../middleware/ProtectedRoute";
-import useAuthStore from "../../../store/authStore";
+import EmergencyContactForm from "../../../src/PhonePage/EmergencyContactForm";
 
 export default function EmergencyContact() {
-  const router = useRouter();
-  const { setPhoneVerifying } = useAuthStore();
-
-  useEffect(() => {
-    setPhoneVerifying(false);
-  }, []);
   return (
     <ProtectedRoute>
-      <div>EmergencyContact</div>
-      <button onClick={() => router.replace("/sign_in")}>sign in</button>
+      <section className="w-3/4 mx-auto flex flex-col gap-10 mt-20">
+        <EmergencyContactForm />
+      </section>
     </ProtectedRoute>
   );
 }

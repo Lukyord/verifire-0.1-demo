@@ -22,7 +22,7 @@ export default function PhoneForm() {
   const [expandForm, setExpandForm] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const { setPhone, setPhoneVerifying, setLoading } = useAuthStore();
+  const { setPhone } = useAuthStore();
 
   function generateRecaptcha() {
     window.recaptchaVerifier = new RecaptchaVerifier(

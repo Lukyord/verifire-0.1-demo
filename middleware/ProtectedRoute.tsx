@@ -10,7 +10,7 @@ export default function ProtectedRoute({
   const router = useRouter();
 
   if (!user) {
-    router.push("/sign_up");
+    router.push("/sign_in");
     return null;
   }
 

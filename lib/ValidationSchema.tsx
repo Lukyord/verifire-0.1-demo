@@ -1,10 +1,6 @@
 import * as Yup from "yup";
 
 export const signUpValidationSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(3, "Username must be at least 3 characters")
-    .max(20, "Username must be less than 20 characters")
-    .required("Username is required"),
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
@@ -46,9 +42,15 @@ export const phoneValidationSchema = Yup.object().shape({
   phone: Yup.string()
     .matches(phoneRegExp, "Please enter a valid 10-digit phone number")
     .required("Phone number is required"),
-  // otp: Yup.string()
-  //   .required()
-  //   .matches(/^[0-9]+$/, "Must be only digits")
-  //   .min(6, "Must be exactly 6 digits")
-  //   .max(6, "Must be exactly 6 digits"),
+});
+
+export const EmergencyContactValidationSchema = Yup.object().shape({
+  emergencyContact1: Yup.string()
+    .matches(phoneRegExp, "Please enter a valid 10-digit phone number")
+    .required("Emergency Contact number is required"),
+  relationship1: Yup.string().required("Relationship is required"),
+  emergencyContact2: Yup.string()
+    .matches(phoneRegExp, "Please enter a valid 10-digit phone number")
+    .required("Emergency Contact number is required"),
+  relationship2: Yup.string().required("Relationship is required"),
 });

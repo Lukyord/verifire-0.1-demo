@@ -34,7 +34,7 @@ export default function SignInForm() {
       {({ isSubmitting, isValidating, errors, touched }) => (
         <Form className="flex flex-col gap-5">
           <div
-            className={`${styles.input_group} ${
+            className={`${styles.input_group} group relative ${
               errors.email && touched.email ? "border-rose-600" : ""
             }`}
           >

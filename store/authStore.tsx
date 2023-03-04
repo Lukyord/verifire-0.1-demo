@@ -10,19 +10,23 @@ import { auth } from "../firebase";
 
 interface AuthState {
   user: FirebaseUser | null;
+  loading: boolean;
+  phone: string;
+  phoneVerifying: boolean;
   signin: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
   signout: () => Promise<void>;
   init: () => Promise<void>;
-  loading: boolean;
-  phone: string;
   setPhone: (phone: string) => Promise<void>;
+  setPhoneVerifying: (value: boolean) => void;
+  setLoading: (value: boolean) => void;
 }
 
 const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: true,
   phone: "",
+  phoneVerifying: false,
   init: async () => {
     onAuthStateChanged(auth, (user) => {
       set({ user, loading: false });
@@ -67,6 +71,8 @@ const useAuthStore = create<AuthState>((set) => ({
       console.error(error);
     }
   },
+  setPhoneVerifying: (value) => set(() => ({ phoneVerifying: value })),
+  setLoading: (value) => set(() => ({ loading: value })),
 }));
 
 export default useAuthStore;

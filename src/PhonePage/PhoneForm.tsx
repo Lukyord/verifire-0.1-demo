@@ -22,7 +22,7 @@ export default function PhoneForm() {
   const [expandForm, setExpandForm] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const { setPhone } = useAuthStore();
+  const { setPhone, setPhoneVerifying, setLoading } = useAuthStore();
 
   function generateRecaptcha() {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -48,24 +48,23 @@ export default function PhoneForm() {
       });
   }
 
-  function verifyOtp(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleOtpChange(event: React.ChangeEvent<HTMLInputElement>) {
     const OTP = event.target.value;
     setOtp(OTP);
+  }
 
-    if (OTP.length === 6) {
-      //verify otp
-      let confirmationResult = window.confirmationResult;
-      confirmationResult
-        .confirm(OTP)
-        .then(() => {
-          console.log("verified");
-          setPhone(phoneNumber);
-          router.replace("sign_up/emergency_contact");
-        })
-        .catch((error: string) => {
-          console.log(error);
-        });
-    }
+  async function verifyOtp() {
+    let confirmationResult = window.confirmationResult;
+    confirmationResult
+      .confirm(otp)
+      .then(() => {
+        console.log("verified");
+        setPhone(phoneNumber);
+        router.replace("sign_up/emergency_contact");
+      })
+      .catch((error: string) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -105,7 +104,7 @@ export default function PhoneForm() {
                     className={styles.input_text}
                     id="otpInput"
                     value={otp}
-                    onChange={verifyOtp}
+                    onChange={handleOtpChange}
                   />
                 </div>
               </>
@@ -123,6 +122,17 @@ export default function PhoneForm() {
         )}
       </Formik>
       <div id="recaptcha-container"></div>
+      {expandForm && (
+        <div className="button">
+          <button
+            onClick={verifyOtp}
+            disabled={otp.length != 6}
+            className={`${styles.button}`}
+          >
+            Confirm
+          </button>
+        </div>
+      )}
     </>
   );
 }

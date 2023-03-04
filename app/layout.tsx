@@ -11,10 +11,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { init, loading, user } = useAuthStore();
+  const { init, loading, user, phoneVerifying, setLoading } = useAuthStore();
 
   useEffect(() => {
     init();
+    setLoading(false);
     console.log(user);
   }, []);
 
@@ -23,13 +24,18 @@ export default function RootLayout({
       <head />
       <body>
         {loading && <div>loading</div>}
-        {!loading && (
+        {!loading && !phoneVerifying && (
           <div className="relative h-screen w-screen flex flex-col bg-slate-100">
             {/* ==================== Navigation Bar ==================== */}
             <Overlay />
             <MobileNavBar />
             <Header />
             {/* ======================================================== */}
+            {children}
+          </div>
+        )}
+        {!loading && phoneVerifying && (
+          <div className="relative h-screen w-screen flex flex-col bg-slate-100">
             {children}
           </div>
         )}

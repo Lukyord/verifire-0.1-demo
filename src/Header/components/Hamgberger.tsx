@@ -5,7 +5,7 @@ export default function Hamgberger() {
   const { setModalShown, modalShown } = useModalShownStore();
 
   const handleClick = () => {
-    setModalShown(!modalShown);
+    setModalShown();
     // console.log(useModalShownStore.getState().modalShown);
   };
 

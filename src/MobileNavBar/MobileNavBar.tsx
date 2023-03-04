@@ -13,7 +13,7 @@ export default function MobileNavBar() {
   const { user } = useAuthStore();
 
   const handleClick = () => {
-    setModalShown(!modalShown);
+    setModalShown();
     // console.log(useModalShownStore.getState().modalShown);
   };
 

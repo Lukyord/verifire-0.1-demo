@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 
 export default function SignUpForm() {
-  const { signup, user } = useAuthStore();
+  const { signup, user, setPhoneVerifying, setLoading } = useAuthStore();
   const [show, setShow] = useState({ password: false, cpassword: false });
   const router = useRouter();
 

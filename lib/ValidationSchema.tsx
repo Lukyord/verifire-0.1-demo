@@ -54,3 +54,18 @@ export const EmergencyContactValidationSchema = Yup.object().shape({
     .required("Emergency Contact number is required"),
   relationship2: Yup.string().required("Relationship is required"),
 });
+
+export const EditProfileValidationSchema = Yup.object().shape({
+  verifireId: Yup.string().required("VeriFire ID is required"),
+  displayName: Yup.string()
+    .required("Display Name is required")
+    .min(2, "Display Name must be at least 2 characters")
+    .max(50, "Display Name must be at most 50 characters"),
+  dob: Yup.date()
+    .max(new Date(), "Date of Birth cannot be in the future")
+    .required("Date of Birth is required"),
+  gender: Yup.string()
+    .oneOf(["Male", "Female", "LGBTQ+"], "Invalid choice")
+    .required("Choice is required"),
+  bio: Yup.string().max(500, "Description must be at most 500 characters"),
+});

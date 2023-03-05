@@ -18,6 +18,7 @@ type EmergencyContact = {
 interface AuthState {
   user: FirebaseUser | null;
   loading: boolean;
+  email: string;
   phone: string;
   phoneVerifying: boolean;
   emergencyContacts: EmergencyContact;
@@ -25,7 +26,8 @@ interface AuthState {
   signup: (email: string, password: string) => Promise<void>;
   signout: () => Promise<void>;
   init: () => Promise<void>;
-  setPhone: (phone: string) => Promise<void>;
+  setEmail: (value: string) => void;
+  setPhone: (value: string) => void;
   setPhoneVerifying: (value: boolean) => void;
   setEmergencyContacts: (contacts: EmergencyContact) => void;
   setLoading: (value: boolean) => void;
@@ -34,6 +36,7 @@ interface AuthState {
 const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: true,
+  email: "",
   phone: "",
   phoneVerifying: false,
   emergencyContacts: {
@@ -71,12 +74,11 @@ const useAuthStore = create<AuthState>((set) => ({
       console.error(error);
     }
   },
-  setPhone: async (phone: string) => {
-    try {
-      set({ phone: phone });
-    } catch (error) {
-      console.error(error);
-    }
+  setEmail: (value: string) => {
+    set({ email: value });
+  },
+  setPhone: (value: string) => {
+    set({ phone: value });
   },
   signout: async () => {
     try {
@@ -86,10 +88,10 @@ const useAuthStore = create<AuthState>((set) => ({
       console.error(error);
     }
   },
-  setPhoneVerifying: (value) => set(() => ({ phoneVerifying: value })),
-  setEmergencyContacts: (contacts) =>
-    set(() => ({ emergencyContacts: contacts })),
-  setLoading: (value) => set(() => ({ loading: value })),
+  setPhoneVerifying: (value: boolean) => set({ phoneVerifying: value }),
+  setEmergencyContacts: (contacts: EmergencyContact) =>
+    set({ emergencyContacts: contacts }),
+  setLoading: (value: boolean) => set({ loading: value }),
 }));
 
 export default useAuthStore;

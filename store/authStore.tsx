@@ -19,6 +19,7 @@ interface AuthState {
   user: FirebaseUser | null;
   loading: boolean;
   email: string;
+  id: string;
   phone: string;
   phoneVerifying: boolean;
   emergencyContacts: EmergencyContact;
@@ -27,6 +28,7 @@ interface AuthState {
   signout: () => Promise<void>;
   init: () => Promise<void>;
   setEmail: (value: string) => void;
+  setId: (value: string) => void;
   setPhone: (value: string) => void;
   setPhoneVerifying: (value: boolean) => void;
   setEmergencyContacts: (contacts: EmergencyContact) => void;
@@ -37,6 +39,7 @@ const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: true,
   email: "",
+  id: "",
   phone: "",
   phoneVerifying: false,
   emergencyContacts: {
@@ -76,6 +79,9 @@ const useAuthStore = create<AuthState>((set) => ({
   },
   setEmail: (value: string) => {
     set({ email: value });
+  },
+  setId: (value: string) => {
+    set({ id: value });
   },
   setPhone: (value: string) => {
     set({ phone: value });

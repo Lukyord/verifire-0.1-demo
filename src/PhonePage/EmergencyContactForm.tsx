@@ -10,13 +10,8 @@ import { db } from "../../firebase";
 
 export default function EmergencyContactForm() {
   const router = useRouter();
-  const {
-    user,
-    phone,
-    emergencyContacts,
-    setEmergencyContacts,
-    setPhoneVerifying,
-  } = useAuthStore();
+  const { id, phone, email, setEmergencyContacts, setPhoneVerifying } =
+    useAuthStore();
 
   async function onSubmit(values: {
     emergencyContact1: string;
@@ -38,23 +33,19 @@ export default function EmergencyContactForm() {
       relationship2: relationship2,
     });
 
-    const uid = user?.uid;
-
-    if (uid) {
-      await setDoc(doc(db, "users", uid), {
-        email: user.email,
-        phone: phone,
-        id: uid,
-        emergencyContacts: useAuthStore.getState().emergencyContacts,
-        timestamp: serverTimestamp(),
-        photoURL: "",
-        verifireId: "",
-        displayName: "",
-        dob: "",
-        gender: "",
-        bio: "",
-      });
-    }
+    await setDoc(doc(db, "users", id), {
+      email: email,
+      phone: phone,
+      id: id,
+      emergencyContacts: useAuthStore.getState().emergencyContacts,
+      timestamp: serverTimestamp(),
+      photoURL: "",
+      verifireId: "",
+      displayName: "",
+      dob: "",
+      gender: "",
+      bio: "",
+    });
 
     setPhoneVerifying(false);
   }

@@ -1,4 +1,7 @@
+"use client";
+
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import useAuthStore from "../store/authStore";
 
 export default function ProtectedRoute({
@@ -9,8 +12,13 @@ export default function ProtectedRoute({
   const { user } = useAuthStore();
   const router = useRouter();
 
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, [user]);
+
   if (!user) {
-    router.push("/sign_in");
     return null;
   }
 

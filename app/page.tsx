@@ -1,10 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import useAuthStore from "../store/authStore";
 
 export default function page() {
   const { user } = useAuthStore();
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
   return (
     <>
       {user ? (

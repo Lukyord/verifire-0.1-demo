@@ -8,7 +8,7 @@ import useAuthStore from "../../store/authStore";
 
 export default function EmergencyContactForm() {
   const router = useRouter();
-  const { setEmergencyContacts, emergencyContacts } = useAuthStore();
+  const { setEmergencyContacts, setPhoneVerifying } = useAuthStore();
 
   async function onSubmit(values: {
     emergencyContact1: string;
@@ -29,7 +29,7 @@ export default function EmergencyContactForm() {
       emergencyContact2: emergencyContact2,
       relationship2: relationship2,
     });
-
+    setPhoneVerifying(false);
     console.log(useAuthStore.getState().emergencyContacts);
   }
 
@@ -62,7 +62,7 @@ export default function EmergencyContactForm() {
               }`}
             >
               <Field
-                name="emergencyContact"
+                name="emergencyContact1"
                 type="text"
                 className={styles.input_text}
                 placeholder="Emergency Contact 1"
@@ -76,7 +76,7 @@ export default function EmergencyContactForm() {
               } `}
             >
               <Field
-                name="relationship"
+                name="relationship1"
                 type="text"
                 className={styles.input_text}
                 placeholder="Relationship 1"
@@ -92,7 +92,7 @@ export default function EmergencyContactForm() {
               }`}
             >
               <Field
-                name="emergencyContact"
+                name="emergencyContact2"
                 type="text"
                 className={styles.input_text}
                 placeholder="Emergency Contact 2"
@@ -106,7 +106,7 @@ export default function EmergencyContactForm() {
               } `}
             >
               <Field
-                name="relationship"
+                name="relationship2"
                 type="text"
                 className={styles.input_text}
                 placeholder="Relationship 2"

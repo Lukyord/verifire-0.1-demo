@@ -5,10 +5,18 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { EmergencyContactValidationSchema } from "../../lib/ValidationSchema";
 import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 export default function EmergencyContactForm() {
   const router = useRouter();
-  const { setEmergencyContacts, setPhoneVerifying } = useAuthStore();
+  const {
+    user,
+    phone,
+    emergencyContacts,
+    setEmergencyContacts,
+    setPhoneVerifying,
+  } = useAuthStore();
 
   async function onSubmit(values: {
     emergencyContact1: string;
@@ -29,8 +37,26 @@ export default function EmergencyContactForm() {
       emergencyContact2: emergencyContact2,
       relationship2: relationship2,
     });
+
+    const uid = user?.uid;
+
+    if (uid) {
+      await setDoc(doc(db, "users", uid), {
+        email: user.email,
+        phone: phone,
+        id: uid,
+        emergencyContacts: useAuthStore.getState().emergencyContacts,
+        timestamp: serverTimestamp(),
+        photoURL: "",
+        verifireId: "",
+        displayName: "",
+        dob: "",
+        gender: "",
+        bio: "",
+      });
+    }
+
     setPhoneVerifying(false);
-    console.log(useAuthStore.getState().emergencyContacts);
   }
 
   return (

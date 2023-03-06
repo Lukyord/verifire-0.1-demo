@@ -19,7 +19,7 @@ export default function SignUpForm() {
 
   async function onSubmit(values: { email: string; password: string }) {
     const { email, password } = values;
-    await signup(email, password).then(() => {});
+    await signup(email, password);
   }
 
   return (

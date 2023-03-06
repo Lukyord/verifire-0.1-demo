@@ -6,9 +6,6 @@ import useAuthStore from "../store/authStore";
 export default function page() {
   const { user } = useAuthStore();
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
   return (
     <>
       {user ? (

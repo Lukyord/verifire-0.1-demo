@@ -16,7 +16,6 @@ export default function RootLayout({
   useEffect(() => {
     init();
     setLoading(false);
-    console.log(user);
   }, []);
 
   return (

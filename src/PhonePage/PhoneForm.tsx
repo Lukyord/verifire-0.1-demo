@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import styles from "../../styles/Form.module.css";
 import { phoneValidationSchema } from "../../lib/ValidationSchema";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 
@@ -22,7 +22,17 @@ export default function PhoneForm() {
   const [expandForm, setExpandForm] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const { setPhone } = useAuthStore();
+  const { setPhone, user, setEmail, email, setId } = useAuthStore();
+
+  useEffect(() => {
+    const uid = user?.uid;
+
+    if (uid) {
+      setEmail(email);
+      setId(uid);
+      console.log(useAuthStore.getState().id);
+    }
+  }, []);
 
   function generateRecaptcha() {
     window.recaptchaVerifier = new RecaptchaVerifier(

@@ -7,10 +7,11 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { sign } from "crypto";
 
 export default function EmergencyContactForm() {
   const router = useRouter();
-  const { id, phone, email, setEmergencyContacts, setPhoneVerifying } =
+  const { id, phone, email, setEmergencyContacts, setPhoneVerifying, signout } =
     useAuthStore();
 
   async function onSubmit(values: {
@@ -48,6 +49,8 @@ export default function EmergencyContactForm() {
     });
 
     setPhoneVerifying(false);
+
+    await signout();
   }
 
   return (
@@ -65,7 +68,7 @@ export default function EmergencyContactForm() {
           setSubmitting(false);
         }, 500);
         onSubmit(values);
-        router.push("/");
+        router.push("/sign_in");
       }}
     >
       {({ isSubmitting, isValidating, errors, touched }) => (

@@ -26,3 +26,19 @@ type FeedbackData = {
   topic: string;
   comment: string;
 };
+
+type EmergencyContact = {
+  emergencyContact1: string;
+  relationship1: string;
+  emergencyContact2: string;
+  relationship2: string;
+};
+
+type UserData = {
+  bio: string;
+  displayName: string;
+  dob: string;
+  gender: string;
+  photoURL: string;
+  verifireId: string;
+};

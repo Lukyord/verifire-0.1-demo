@@ -9,7 +9,7 @@ import { db } from "../../firebase";
 
 export default function EditProfileForm() {
   const router = useRouter();
-  const { user, id } = useAuthStore();
+  const { user, verifireId, displayName, dob, gender, bio } = useAuthStore();
 
   async function onSubmit(values: {
     verifireId: string;
@@ -19,7 +19,6 @@ export default function EditProfileForm() {
     bio: string;
   }) {
     const { verifireId, displayName, dob, gender, bio } = values;
-    console.log(verifireId, displayName, dob, gender, bio);
 
     if (user) {
       await updateDoc(doc(db, "users", user.uid), {
@@ -35,11 +34,11 @@ export default function EditProfileForm() {
   return (
     <Formik
       initialValues={{
-        verifireId: "",
-        displayName: "",
-        dob: "",
-        gender: "",
-        bio: "",
+        verifireId: verifireId,
+        displayName: displayName,
+        dob: dob,
+        gender: gender,
+        bio: bio,
       }}
       validationSchema={EditProfileValidationSchema}
       onSubmit={(values, { setSubmitting }) => {

@@ -4,12 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { EditProfileValidationSchema } from "../../lib/ValidationSchema";
 import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
-import { updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 export default function EditProfileForm() {
   const router = useRouter();
-  const { user } = useAuthStore();
+  const { user, id } = useAuthStore();
 
   async function onSubmit(values: {
     verifireId: string;
@@ -21,7 +21,15 @@ export default function EditProfileForm() {
     const { verifireId, displayName, dob, gender, bio } = values;
     console.log(verifireId, displayName, dob, gender, bio);
 
-    // await updateDoc(doc(db, 'users', ))
+    if (user) {
+      await updateDoc(doc(db, "users", user.uid), {
+        verifireId: verifireId,
+        gender: gender,
+        dob: dob,
+        displayName: displayName,
+        bio: bio,
+      });
+    }
   }
 
   return (

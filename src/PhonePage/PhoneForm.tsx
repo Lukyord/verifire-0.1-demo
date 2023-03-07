@@ -22,15 +22,20 @@ export default function PhoneForm() {
   const [expandForm, setExpandForm] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const { setPhone, user, setEmail, email, setId } = useAuthStore();
+  const { setPhone, user, setEmail, setId } = useAuthStore();
 
   useEffect(() => {
     const uid = user?.uid;
+    const email = user?.email;
 
     if (uid) {
-      setEmail(email);
       setId(uid);
       console.log(useAuthStore.getState().id);
+    }
+
+    if (email) {
+      setEmail(email);
+      console.log(useAuthStore.getState().email);
     }
   }, []);
 

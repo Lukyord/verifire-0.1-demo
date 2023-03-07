@@ -8,8 +8,7 @@ type NavLinkSignedIn =
   | "Friends"
   | "Let's Meet"
   | "History Meet"
-  | "Profile"
-  | "Sign out";
+  | "Profile";
 
 type SignUpData = {
   username: string;

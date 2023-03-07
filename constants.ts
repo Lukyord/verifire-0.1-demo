@@ -11,5 +11,4 @@ export const navLinksLoggedIn: NavLinkSignedIn[] = [
   "Let's Meet",
   "History Meet",
   "Profile",
-  "Sign out",
 ];

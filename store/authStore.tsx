@@ -61,6 +61,7 @@ const useAuthStore = create<AuthState>((set) => ({
         password
       );
       set({ user: userCredential.user, loading: false });
+      console.log("signed in");
     } catch (error) {
       console.error(error);
     }
@@ -90,6 +91,7 @@ const useAuthStore = create<AuthState>((set) => ({
     try {
       await signOut(auth);
       set({ user: null, loading: false });
+      console.log("signed out");
     } catch (error) {
       console.error(error);
     }

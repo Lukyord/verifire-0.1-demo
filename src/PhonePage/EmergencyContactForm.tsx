@@ -68,7 +68,7 @@ export default function EmergencyContactForm() {
           setSubmitting(false);
         }, 500);
         onSubmit(values);
-        router.push("/sign_in");
+        router.replace("sign_in");
       }}
     >
       {({ isSubmitting, isValidating, errors, touched }) => (

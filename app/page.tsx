@@ -31,7 +31,6 @@ export default function page() {
             verifireId: data.verifireId,
           });
         }
-        console.log(data);
         return false;
       }
     }

@@ -9,6 +9,7 @@ export const navLinksLoggedIn: NavLinkSignedIn[] = [
   "Home/About",
   "Friends",
   "Let's Meet",
+  "History Meet",
   "Profile",
   "Sign out",
 ];

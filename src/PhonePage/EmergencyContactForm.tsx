@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import { sign } from "crypto";
 
 export default function EmergencyContactForm() {
   const router = useRouter();
@@ -67,8 +66,9 @@ export default function EmergencyContactForm() {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 500);
-        onSubmit(values);
-        router.replace("sign_in");
+        onSubmit(values).then(() => {
+          router.replace("sign_in");
+        });
       }}
     >
       {({ isSubmitting, isValidating, errors, touched }) => (

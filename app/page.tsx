@@ -8,7 +8,7 @@ import HomePageSignedIn from "../src/HomePage/HomePageSignedIn";
 import useAuthStore from "../store/authStore";
 
 export default function page() {
-  const { user, setData } = useAuthStore();
+  const { user, setData, displayName } = useAuthStore();
   const router = useRouter();
 
   async function checkVeriFireIdExists(
@@ -46,7 +46,7 @@ export default function page() {
         }
       });
     }
-  }, [db]);
+  }, [db, user]);
 
   return (
     <>

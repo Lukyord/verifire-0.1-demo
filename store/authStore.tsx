@@ -112,7 +112,7 @@ const useAuthStore = create<AuthState>((set) => ({
       displayName: value.displayName,
       dob: value.dob,
       gender: value.gender,
-      photoURL: "",
+      photoURL: value.photoURL,
       verifireId: value.verifireId,
     }),
 }));

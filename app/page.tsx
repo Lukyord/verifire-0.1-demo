@@ -27,9 +27,10 @@ export default function page() {
             displayName: data.displayName,
             dob: data.dob,
             gender: data.gender,
-            photoURL: "",
+            photoURL: data.photoURL,
             verifireId: data.verifireId,
           });
+          console.log(data);
         }
         return false;
       }

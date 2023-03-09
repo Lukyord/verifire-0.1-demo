@@ -7,7 +7,7 @@ import useAuthStore from "../../store/authStore";
 import styles from "../../styles/Image.module.css";
 
 export default function Profile() {
-  const { signout, user, photoURL } = useAuthStore();
+  const { signout, verifireId, photoURL } = useAuthStore();
   const router = useRouter();
 
   async function handleSignOut() {
@@ -30,7 +30,11 @@ export default function Profile() {
           height={20}
         />
       </div>
-      <button onClick={() => router.push("/profile/create")}>create</button>
+      {verifireId === "" ? (
+        <button onClick={() => router.push("/profile/create")}>create</button>
+      ) : (
+        <button onClick={() => router.push("/profile/edit")}>edit</button>
+      )}
       <button onClick={handleSignOut}>sign out</button>
     </ProtectedRoute>
   );

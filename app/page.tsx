@@ -8,7 +8,8 @@ import HomePageSignedIn from "../src/HomePage/HomePageSignedIn";
 import useAuthStore from "../store/authStore";
 
 export default function page() {
-  const { user, setData, displayName } = useAuthStore();
+  const { user, setData, setEmail, setId, setPhone, setEmergencyContacts } =
+    useAuthStore();
   const router = useRouter();
 
   async function checkVeriFireIdExists(
@@ -30,6 +31,10 @@ export default function page() {
             photoURL: data.photoURL,
             verifireId: data.verifireId,
           });
+          setEmail(data.email);
+          setId(data.id);
+          setPhone(data.phone);
+          setEmergencyContacts(data.emergencyContacts);
           console.log(data);
         }
         return false;

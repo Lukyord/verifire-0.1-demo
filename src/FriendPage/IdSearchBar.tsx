@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "../../styles/Form.module.css";
+import stylesCard from "../../styles/UserCard.module.css";
+import stylesImage from "../../styles/Image.module.css";
 import getUserByVeriFireId from "../../lib/getUserByVeriFireId";
 import { DocumentData } from "firebase/firestore";
+import Image from "next/image";
+import UserCard from "./UserCard";
 
 export default function IdSearchBar() {
   const [user, setUser] = useState<DocumentData | null | undefined>();
@@ -44,16 +48,14 @@ export default function IdSearchBar() {
           </button>
         </Form>
       </Formik>
-      {user !== null && user !== undefined && (
-        <div>
-          <p>{user.displayName}</p>
-        </div>
-      )}
-      {user === null && (
-        <div>
-          <p>not found</p>
-        </div>
-      )}
+      <div className={stylesCard.single_card}>
+        {user !== null && user !== undefined && <UserCard user={user} />}
+        {user === null && (
+          <div>
+            <p>not found</p>
+          </div>
+        )}
+      </div>
     </>
   );
 }

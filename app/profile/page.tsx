@@ -26,8 +26,8 @@ export default function Profile() {
               : photoURL
           }
           alt="user profile image"
-          width={20}
-          height={20}
+          width={1080}
+          height={1080}
         />
       </div>
       {verifireId === "" ? (

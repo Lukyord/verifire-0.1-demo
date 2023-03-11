@@ -1,17 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import {
-  MagnifyingGlassCircleIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "../../styles/Form.module.css";
+import getUserByVeriFireId from "../../lib/getUserByVeriFireId";
 
 export default function IdSearchBar() {
+  const [search, setSearch] = useState("");
+  const [user, setUser] = useState(null);
+
   const onSubmit = async (values: { searchQuery: string }) => {
     const { searchQuery } = values;
+    setSearch(searchQuery);
     console.log(searchQuery);
+    const user = await getUserByVeriFireId(search);
+
+    if (user) {
+      console.log(user);
+    } else {
+      console.log("not found");
+    }
   };
 
   return (
@@ -37,6 +46,11 @@ export default function IdSearchBar() {
           </button>
         </Form>
       </Formik>
+      {search !== "" && (
+        <div>
+          <p>search not empty</p>
+        </div>
+      )}
     </>
   );
 }

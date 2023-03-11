@@ -5,6 +5,7 @@ import MobileNavBar from "../src/MobileNavBar/MobileNavBar";
 import "../styles/globals.css";
 import { useEffect } from "react";
 import useAuthStore from "../store/authStore";
+import useModalShownStore from "../store/store";
 
 export default function RootLayout({
   children,
@@ -12,10 +13,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const { init, loading, user, phoneVerifying, setLoading } = useAuthStore();
+  const { setModalShown } = useModalShownStore();
 
   useEffect(() => {
     init();
     setLoading(false);
+    setModalShown();
   }, []);
 
   return (

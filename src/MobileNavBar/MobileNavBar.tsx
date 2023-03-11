@@ -1,27 +1,28 @@
 "use client";
 
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
 import { navLinks, navLinksLoggedIn } from "../../constants";
 import useModalShownStore from "../../store/store";
 import NavLinkMobile from "../Header/components/NavLinkMobile";
 import styles from "../../styles/MobileNavBar.module.css";
 import useAuthStore from "../../store/authStore";
+import { useEffect } from "react";
 
 export default function MobileNavBar() {
-  const { setModalShown, modalShown } = useModalShownStore();
+  const { toggle, modalShown, setModalShown } = useModalShownStore();
   const { user } = useAuthStore();
 
-  const handleClick = () => {
+  // console.log(useModalShownStore.getState().modalShown);
+
+  useEffect(() => {
     setModalShown();
-    // console.log(useModalShownStore.getState().modalShown);
-  };
+  }, []);
 
   return (
     <div
       className={`fixed z-20 bg-slate-100 h-full
       ${modalShown ? styles.MobileNavBarShown : styles.MobileNavBarNotShown}
-      whitespace-nowrap ease-in duration-300 w-screen xs:hidden
+      whitespace-nowrap ease-in duration-300 w-screen xs:invisible
       `}
     >
       <div
@@ -31,7 +32,7 @@ export default function MobileNavBar() {
       >
         <div className="h-36 flex ml-8">
           <ArrowRightCircleIcon
-            onClick={handleClick}
+            onClick={toggle}
             className="w-20 h-20 cursor-pointer mt-8"
             color="black"
           />

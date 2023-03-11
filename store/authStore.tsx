@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { persist } from "zustand/middleware";
 
 interface AuthState {
   user: FirebaseUser | null;
@@ -116,5 +117,4 @@ const useAuthStore = create<AuthState>((set) => ({
       verifireId: value.verifireId,
     }),
 }));
-
 export default useAuthStore;

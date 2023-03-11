@@ -5,10 +5,8 @@ import { Formik, Form, Field } from "formik";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "../../styles/Form.module.css";
 import stylesCard from "../../styles/UserCard.module.css";
-import stylesImage from "../../styles/Image.module.css";
 import getUserByVeriFireId from "../../lib/getUserByVeriFireId";
 import { DocumentData } from "firebase/firestore";
-import Image from "next/image";
 import UserCard from "./UserCard";
 
 export default function IdSearchBar() {

@@ -5,21 +5,19 @@ import { Formik, Form, Field } from "formik";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "../../styles/Form.module.css";
 import getUserByVeriFireId from "../../lib/getUserByVeriFireId";
+import { DocumentData } from "firebase/firestore";
 
 export default function IdSearchBar() {
-  const [search, setSearch] = useState("");
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<DocumentData | null | undefined>();
 
   const onSubmit = async (values: { searchQuery: string }) => {
     const { searchQuery } = values;
-    setSearch(searchQuery);
-    console.log(searchQuery);
-    const user = await getUserByVeriFireId(search);
+    const searchedUser = await getUserByVeriFireId(searchQuery);
 
-    if (user) {
-      console.log(user);
+    if (searchedUser !== null) {
+      setUser(searchedUser);
     } else {
-      console.log("not found");
+      setUser(null);
     }
   };
 
@@ -46,9 +44,14 @@ export default function IdSearchBar() {
           </button>
         </Form>
       </Formik>
-      {search !== "" && (
+      {user !== null && user !== undefined && (
         <div>
-          <p>search not empty</p>
+          <p>{user.displayName}</p>
+        </div>
+      )}
+      {user === null && (
+        <div>
+          <p>not found</p>
         </div>
       )}
     </>

@@ -9,10 +9,11 @@ export default async function getUserByVeriFireId(verifireId: string) {
   const querySnapshot = await getDocs(q);
 
   if (querySnapshot.empty) {
+    console.log("not found");
     return null;
   }
 
   const data = querySnapshot.docs[0].data();
-
+  console.log("user: ", data.displayName);
   return data;
 }

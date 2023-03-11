@@ -42,3 +42,17 @@ type UserData = {
   photoURL: string;
   verifireId: string;
 };
+
+type User = {
+  bio: string;
+  displayName: string;
+  dob: string;
+  gender: string;
+  photoURL: string;
+  verifireId: string;
+  emergencyContacts: EmergencyContact;
+  id: string;
+  phone: string;
+  timestamp: Timestamp;
+  verifireId: string;
+};

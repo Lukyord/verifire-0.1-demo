@@ -7,9 +7,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signInValidationSchema } from "../../lib/ValidationSchema";
 import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 export default function SignInForm() {
-  const { signin } = useAuthStore();
+  const { user, signin, setEmail, setId, setPhone, setEmergencyContacts } =
+    useAuthStore();
   const [show, setShow] = useState(false);
   const router = useRouter();
 
@@ -27,14 +30,15 @@ export default function SignInForm() {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 500);
-        onSubmit(values);
-        router.push("/");
+        onSubmit(values).then(() => {
+          router.push("/");
+        });
       }}
     >
       {({ isSubmitting, isValidating, errors, touched }) => (
         <Form className="flex flex-col gap-5">
           <div
-            className={`${styles.input_group} ${
+            className={`${styles.input_group} group relative ${
               errors.email && touched.email ? "border-rose-600" : ""
             }`}
           >
@@ -72,7 +76,6 @@ export default function SignInForm() {
               type="submit"
               className={`${styles.button}`}
               disabled={isSubmitting}
-              onClick={() => console.log(isValidating, isSubmitting)}
             >
               Sign In
             </button>

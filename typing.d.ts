@@ -7,8 +7,8 @@ type NavLinkSignedIn =
   | "Home/About"
   | "Friends"
   | "Let's Meet"
-  | "Profile"
-  | "Sign out";
+  | "History Meet"
+  | "Profile";
 
 type SignUpData = {
   username: string;
@@ -25,4 +25,34 @@ type SignInData = {
 type FeedbackData = {
   topic: string;
   comment: string;
+};
+
+type EmergencyContact = {
+  emergencyContact1: string;
+  relationship1: string;
+  emergencyContact2: string;
+  relationship2: string;
+};
+
+type UserData = {
+  bio: string;
+  displayName: string;
+  dob: string;
+  gender: string;
+  photoURL: string;
+  verifireId: string;
+};
+
+type User = {
+  bio: string;
+  displayName: string;
+  dob: string;
+  gender: string;
+  photoURL: string;
+  verifireId: string;
+  emergencyContacts: EmergencyContact;
+  id: string;
+  phone: string;
+  timestamp: Timestamp;
+  verifireId: string;
 };

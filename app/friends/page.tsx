@@ -1,5 +1,12 @@
-import React from "react";
+"use client";
+
+import ProtectedRoute from "../../middleware/ProtectedRoute";
+import FriendHeader from "../../src/FriendPage/FriendHeader";
 
 export default function Friends() {
-  return <div>Friends</div>;
+  return (
+    <ProtectedRoute>
+      <FriendHeader />
+    </ProtectedRoute>
+  );
 }

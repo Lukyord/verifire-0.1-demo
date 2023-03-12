@@ -60,7 +60,7 @@ export default function RootLayout({
 
   useEffect(() => {
     init();
-    if (user) {
+    if (user && !phoneVerifying) {
       checkVeriFireIdExists(user.uid).then((idNotExists) => {
         if (idNotExists) {
           router.push("/profile/create");

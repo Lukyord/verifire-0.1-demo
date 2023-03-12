@@ -11,7 +11,7 @@ export default function PendingRequest() {
   const router = useRouter();
   const [pendingRequests, setPendingRequests] = useState<
     DocumentData | undefined | null
-  >(null);
+  >([]);
 
   useEffect(() => {
     if (!id) {
@@ -25,14 +25,13 @@ export default function PendingRequest() {
 
   return (
     <div>
-      {/* {pendingRequests &&
-        pendingRequests.map((friendRequest: DocumentData) => (
-          <div key={friendRequest.id}>
-            <h2>{friendRequest.displayName}</h2>
-            <p>{friendRequest.dob}</p>
-          </div>
-        ))} */}
-      {/* {pendingRequests && pendingRequests[0].id} */}
+      {/* {pendingRequests?.map((friendRequest: DocumentData) => (
+        <div key={friendRequest.id}>
+          <h2>{friendRequest.displayName}</h2>
+          <p>{friendRequest.dob}</p>
+        </div>
+      ))} */}
+      {/* {pendingRequests && pendingRequests[0]} */}
       <button onClick={() => console.log(pendingRequests)}>o</button>
     </div>
   );

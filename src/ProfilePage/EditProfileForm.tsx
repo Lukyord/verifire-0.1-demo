@@ -29,9 +29,6 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
   async function uploadFile() {
     if (imageUpload == null) return;
     const imagesRef = ref(storage, `profileImages/${id}`);
-    // uploadBytes(imagesRef, imageUpload).then((snapshot) => {
-    //   console.log("Uploaded a blob or file!");
-    // });
     const uploadTask = uploadBytesResumable(imagesRef, imageUpload);
 
     uploadTask.on(
@@ -46,6 +43,12 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
       },
       async () => {
         const downloadURL = await getDownloadURL(imagesRef);
+        console.log(downloadURL);
+        if (user) {
+          await updateDoc(doc(db, "users", user.uid), {
+            photoURL: downloadURL,
+          });
+        }
         onUpload(downloadURL);
       }
     );

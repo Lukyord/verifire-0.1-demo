@@ -1,3 +1,3 @@
-export default function CheckIfAlreadyFriend() {
+export default function checkIfAlreadyFriend() {
   return;
 }

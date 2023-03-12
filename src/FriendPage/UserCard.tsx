@@ -4,16 +4,16 @@ import Image from "next/image";
 import stylesCard from "../../styles/UserCard.module.css";
 import stylesImage from "../../styles/Image.module.css";
 import { DocumentData } from "firebase/firestore";
-import SendFriendRequest from "../../lib/AddandAcceptFriends/SendFriendRequest";
 import useAuthStore from "../../store/authStore";
 import { useRouter } from "next/navigation";
+import sendFriendRequest from "../../lib/AddandAcceptFriends/sendFriendRequest";
 
 export default function UserCard({ user }: DocumentData) {
   const { id } = useAuthStore();
   const router = useRouter();
 
   async function handleAdd() {
-    SendFriendRequest(user.id, id);
+    sendFriendRequest(user.id, id);
     router.push("friends");
   }
 

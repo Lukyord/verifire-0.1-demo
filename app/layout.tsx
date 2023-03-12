@@ -60,7 +60,6 @@ export default function RootLayout({
 
   useEffect(() => {
     init();
-    setLoading(false);
     if (user) {
       checkVeriFireIdExists(user.uid).then((idNotExists) => {
         if (idNotExists) {
@@ -70,6 +69,7 @@ export default function RootLayout({
         }
       });
     }
+    setLoading(false);
   }, [db, user]);
 
   return (

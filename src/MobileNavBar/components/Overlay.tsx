@@ -4,11 +4,8 @@ import React, { useEffect } from "react";
 import useModalShownStore from "../../../store/store";
 
 export default function Overlay() {
-  const { toggle, modalShown, setModalShown } = useModalShownStore();
+  const { toggle, modalShown } = useModalShownStore();
   // console.log(useModalShownStore.getState().modalShown);
-  useEffect(() => {
-    setModalShown();
-  }, []);
 
   return (
     <div

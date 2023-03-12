@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import produce from "immer";
 
 interface NavigationModalState {
   modalShown: boolean;
@@ -8,23 +7,10 @@ interface NavigationModalState {
   setModalShown: () => void;
 }
 
-const useModalShownStore = create(
-  persist<NavigationModalState>(
-    (set, get) => ({
-      modalShown: false,
-      toggle: () =>
-        set(
-          produce((state) => {
-            state.modalShown = !state.modalShown;
-          })
-        ),
-      setModalShown: () => set({ modalShown: false }),
-    }),
-    {
-      name: "overlayModal-storage",
-      storage: createJSONStorage(() => sessionStorage),
-    }
-  )
-);
+const useModalShownStore = create<NavigationModalState>((set, get) => ({
+  modalShown: false,
+  toggle: () => set({ modalShown: !get().modalShown }), //!get().modalShown
+  setModalShown: () => set({ modalShown: false }),
+}));
 
 export default useModalShownStore;

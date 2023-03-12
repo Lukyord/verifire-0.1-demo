@@ -3,7 +3,7 @@ import React from "react";
 import useAuthStore from "../../store/authStore";
 
 export default function HomePageSignedIn() {
-  const { user, displayName } = useAuthStore();
+  const { displayName } = useAuthStore();
   const router = useRouter();
 
   return (

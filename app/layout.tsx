@@ -5,7 +5,7 @@ import MobileNavBar from "../src/MobileNavBar/MobileNavBar";
 import "../styles/globals.css";
 import { useEffect } from "react";
 import useAuthStore from "../store/authStore";
-import useModalShownStore from "../store/store";
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -13,12 +13,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const { init, loading, user, phoneVerifying, setLoading } = useAuthStore();
-  const { setModalShown } = useModalShownStore();
+  const router = useRouter();
 
   useEffect(() => {
     init();
     setLoading(false);
-    setModalShown();
+
+    if (typeof window !== "undefined") {
+      // Check if the page is being loaded or refreshed
+      if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+        // If the page is being refreshed, navigate the user to the homepage
+        router.push("/");
+      }
+    }
   }, []);
 
   return (

@@ -6,17 +6,12 @@ import useModalShownStore from "../../store/store";
 import NavLinkMobile from "../Header/components/NavLinkMobile";
 import styles from "../../styles/MobileNavBar.module.css";
 import useAuthStore from "../../store/authStore";
-import { useEffect } from "react";
 
 export default function MobileNavBar() {
-  const { toggle, modalShown, setModalShown } = useModalShownStore();
+  const { toggle, modalShown } = useModalShownStore();
   const { user } = useAuthStore();
 
   // console.log(useModalShownStore.getState().modalShown);
-
-  useEffect(() => {
-    setModalShown();
-  }, []);
 
   return (
     <div

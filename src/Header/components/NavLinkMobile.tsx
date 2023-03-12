@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import useModalShownStore from "../../../store/store";
 
@@ -7,7 +9,6 @@ type Props = {
 
 export default function Navlink({ navlink }: Props) {
   const router = useRouter();
-
   const { toggle } = useModalShownStore();
 
   const handleSubmit = () => {

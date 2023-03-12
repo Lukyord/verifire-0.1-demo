@@ -6,27 +6,71 @@ import "../styles/globals.css";
 import { useEffect } from "react";
 import useAuthStore from "../store/authStore";
 import { useRouter } from "next/navigation";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { init, loading, user, phoneVerifying, setLoading } = useAuthStore();
+  const {
+    init,
+    loading,
+    user,
+    phoneVerifying,
+    setLoading,
+    setData,
+    setEmail,
+    setId,
+    setPhone,
+    setEmergencyContacts,
+  } = useAuthStore();
   const router = useRouter();
+
+  async function checkVeriFireIdExists(
+    uid: string
+  ): Promise<boolean | undefined> {
+    if (user) {
+      const docRef = doc(db, "users", user.uid);
+      const docSnapshot = await getDoc(docRef);
+      if (docSnapshot.exists() && docSnapshot.data()?.verifireId === "") {
+        return true;
+      } else {
+        const data = docSnapshot.data();
+        if (data) {
+          setData({
+            bio: data.bio,
+            displayName: data.displayName,
+            dob: data.dob,
+            gender: data.gender,
+            photoURL: data.photoURL,
+            verifireId: data.verifireId,
+          });
+          setEmail(data.email);
+          setId(data.id);
+          setPhone(data.phone);
+          setEmergencyContacts(data.emergencyContacts);
+          console.log(data);
+        }
+        return false;
+      }
+    }
+  }
 
   useEffect(() => {
     init();
     setLoading(false);
-
-    if (typeof window !== "undefined") {
-      // Check if the page is being loaded or refreshed
-      if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
-        // If the page is being refreshed, navigate the user to the homepage
-        router.push("/");
-      }
+    if (user) {
+      checkVeriFireIdExists(user.uid).then((idNotExists) => {
+        if (idNotExists) {
+          router.push("/profile/create");
+        } else {
+          console.log("id exists");
+        }
+      });
     }
-  }, []);
+  }, [db, user]);
 
   return (
     <html>

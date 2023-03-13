@@ -8,19 +8,20 @@ import useAuthStore from "../../../store/authStore";
 import { useRouter } from "next/navigation";
 import sendFriendRequest from "../../../lib/AddandAcceptFriends/sendFriendRequest";
 import { useEffect, useState } from "react";
+import checkAlreadyFriendOrThemself from "../../../lib/AddandAcceptFriends/checkAlreadyFriendOrThemself";
 
 export default function UserCard({ user }: DocumentData) {
-  const [searchResult, setSearchResult] = useState("");
-  const { id, verifireId, userData } = useAuthStore();
+  const [searchResult, setSearchResult] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const { id, userData } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
-    if (user.verifireId === verifireId) {
-      setSearchResult("yourself");
-    } else {
-      setSearchResult("ok");
-    }
-  }, []);
+    setLoading(true);
+    checkAlreadyFriendOrThemself(user.id, id)
+      .then((status: string) => setSearchResult(status))
+      .then(() => setLoading(false));
+  }, [user]);
 
   async function handleAdd() {
     if (userData) {
@@ -28,6 +29,8 @@ export default function UserCard({ user }: DocumentData) {
     }
     router.push("friends");
   }
+
+  if (loading) return <div>loading...</div>;
 
   return (
     <div className={stylesCard.user_card}>
@@ -48,7 +51,7 @@ export default function UserCard({ user }: DocumentData) {
       ) : (
         <div>
           {searchResult === "yourself" && <p>Can't add yourself as a friend</p>}
-          {searchResult === "already Friend" && <p>Already friend</p>}
+          {searchResult === "already friend" && <p>Already friend</p>}
         </div>
       )}
     </div>

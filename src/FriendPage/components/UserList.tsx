@@ -10,7 +10,9 @@ import styles from "../../../styles/UserList.module.css";
 export default function UserList(data: any) {
   const { id, userData } = useAuthStore();
   async function handleAdd() {
-    acceptFriendRequest(data.data.id, id, data.data, userData);
+    if (userData) {
+      acceptFriendRequest(data.data.id, id, data.data, userData);
+    }
   }
 
   async function handleReject() {

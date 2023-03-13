@@ -11,6 +11,6 @@ export default async function sendFriendRequest(
   await setDoc(doc(db, "users", friendId, "pendingFriend", currentUserId), {
     userData,
   });
-  console.log("requst sent to:", friendId, " from:", currentUserId);
+  console.log("request sent to:", friendId, " from:", currentUserId);
   return null;
 }

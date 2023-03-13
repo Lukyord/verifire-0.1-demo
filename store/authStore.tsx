@@ -7,7 +7,6 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase";
-import { persist, createJSONStorage } from "zustand/middleware";
 
 interface AuthState {
   user: FirebaseUser | null;

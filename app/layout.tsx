@@ -19,6 +19,7 @@ export default function RootLayout({
     loading,
     user,
     phoneVerifying,
+    id,
     setLoading,
     setData,
     setEmail,
@@ -35,9 +36,10 @@ export default function RootLayout({
       const docRef = doc(db, "users", user.uid);
       const docSnapshot = await getDoc(docRef);
       if (docSnapshot.exists() && docSnapshot.data()?.verifireId === "") {
+        setLoading(false);
         return true;
       } else {
-        const data = docSnapshot.data();
+        const data = await docSnapshot.data();
         if (data) {
           setData({
             bio: data.bio,
@@ -52,6 +54,7 @@ export default function RootLayout({
           setPhone(data.phone);
           setEmergencyContacts(data.emergencyContacts);
           console.log(data);
+          setLoading(false);
         }
         return false;
       }
@@ -69,7 +72,6 @@ export default function RootLayout({
         }
       });
     }
-    setLoading(false);
   }, [db, user]);
 
   return (

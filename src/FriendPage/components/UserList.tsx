@@ -1,9 +1,19 @@
+"use client";
+
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
-import { DocumentData } from "firebase/firestore";
 import Image from "next/image";
+import rejectFriendRequest from "../../../lib/AddandAcceptFriends/rejectFriendRequest";
+import useAuthStore from "../../../store/authStore";
 import styles from "../../../styles/UserList.module.css";
 
 export default function UserList(data: any) {
+  const { id } = useAuthStore();
+  async function handleAdd() {}
+
+  async function handleReject() {
+    rejectFriendRequest(data.data.id, id);
+  }
+
   return (
     <div className={styles.list}>
       <div className="flex flex-row gap-1 items-center">
@@ -22,8 +32,16 @@ export default function UserList(data: any) {
         <p>{data.data.dob}</p>
       </div>
       <div className="flex flex-row gap-1 p-2">
-        <XCircleIcon className="w-8 h-8" color="gray" />
-        <CheckCircleIcon className="w-8 h-8" color="purple" />
+        <XCircleIcon
+          className="w-8 h-8 cursor-pointer"
+          color="gray"
+          onClick={handleReject}
+        />
+        <CheckCircleIcon
+          className="w-8 h-8 cursor-pointer"
+          color="purple"
+          onClick={handleAdd}
+        />
       </div>
     </div>
   );

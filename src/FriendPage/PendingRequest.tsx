@@ -1,34 +1,43 @@
 "use clinet";
 
-import { DocumentData } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import useAuthStore from "../../store/authStore";
-import { collection, getDocs } from "firebase/firestore";
+import { DocumentData, onSnapshot } from "firebase/firestore";
+import { collection } from "@firebase/firestore";
 import { db } from "../../firebase";
 import styles from "../../styles/UserList.module.css";
-import Image from "next/image";
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import UserList from "./components/UserList";
 
 export default function PendingRequest() {
   const { id } = useAuthStore();
   const router = useRouter();
-  const [pendingRequests, setPendingRequests] = useState<DocumentData>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [pendingRequests, setPendingRequests] = useState<DocumentData[]>([]);
 
   useEffect(() => {
-    if (!id) {
+    if (id === "") {
       return;
     }
-    async function getPendingRequest() {
-      const pendingReq = await getDocs(
-        collection(db, "users", id, "pendingFriend")
-      );
-      setPendingRequests(pendingReq.docs.map((doc) => doc.data()));
-    }
-    getPendingRequest();
-    console.log(pendingRequests);
+
+    const ref = collection(db, "users", id, "pendingFriend");
+
+    const unsubscribe = onSnapshot(ref, async (snapshot) => {
+      const docs: DocumentData[] = [];
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        docs.push({ id: doc.id, ...data } as DocumentData);
+      });
+      console.log(docs);
+      setPendingRequests(docs);
+    });
+    setIsLoading(false);
+    return () => unsubscribe();
   }, [id]);
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <div className={styles.list_box}>

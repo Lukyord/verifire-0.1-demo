@@ -7,9 +7,11 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { DocumentData } from "firebase/firestore";
 
 interface AuthState {
   user: FirebaseUser | null;
+  userData: DocumentData | null;
   loading: boolean;
   email: string;
   id: string;
@@ -26,6 +28,7 @@ interface AuthState {
   signup: (email: string, password: string) => Promise<void>;
   signout: () => Promise<void>;
   init: () => Promise<void>;
+  setUserData: (value: DocumentData) => void;
   setEmail: (value: string) => void;
   setId: (value: string) => void;
   setPhone: (value: string) => void;
@@ -37,6 +40,7 @@ interface AuthState {
 
 const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
+  userData: null,
   loading: true,
   email: "",
   id: "",
@@ -58,6 +62,9 @@ const useAuthStore = create<AuthState>((set, get) => ({
     onAuthStateChanged(auth, (user) => {
       set({ user, loading: false });
     });
+  },
+  setUserData: async (value: DocumentData) => {
+    set({ userData: value });
   },
   signin: async (email: string, password: string) => {
     try {

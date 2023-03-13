@@ -16,10 +16,10 @@ export default function RootLayout({
 }) {
   const {
     init,
+    setUserData,
     loading,
     user,
     phoneVerifying,
-    id,
     setLoading,
     setData,
     setEmail,
@@ -54,6 +54,7 @@ export default function RootLayout({
           setPhone(data.phone);
           setEmergencyContacts(data.emergencyContacts);
           console.log(data);
+          setUserData(data);
           setLoading(false);
         }
         return false;

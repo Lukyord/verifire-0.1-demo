@@ -28,7 +28,6 @@ export default function PendingRequest() {
         const data = doc.data();
         docs.push({ id: doc.id, ...data } as DocumentData);
       });
-      console.log(docs);
       setPendingRequests(docs);
     });
     setIsLoading(false);

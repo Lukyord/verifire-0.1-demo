@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 export default function UserCard({ user }: DocumentData) {
   const [searchResult, setSearchResult] = useState("");
-  const { id, verifireId } = useAuthStore();
+  const { id, verifireId, userData } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +23,9 @@ export default function UserCard({ user }: DocumentData) {
   }, []);
 
   async function handleAdd() {
-    sendFriendRequest(user.id, id);
+    if (userData) {
+      sendFriendRequest(user.id, id, userData);
+    }
     router.push("friends");
   }
 

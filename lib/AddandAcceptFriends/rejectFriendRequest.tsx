@@ -5,8 +5,6 @@ export default async function rejectFriendRequest(
   requesterId: string,
   currentUserId: string
 ) {
-  console.log(requesterId);
-  console.log(currentUserId);
   try {
     await deleteDoc(
       doc(db, "users", currentUserId, "pendingFriend", requesterId)
@@ -14,6 +12,6 @@ export default async function rejectFriendRequest(
   } catch (error) {
     console.error(error);
   }
-  console.log("deletee request from:", requesterId);
+  console.log("delete user:", requesterId, "from pending friend requests");
   return null;
 }

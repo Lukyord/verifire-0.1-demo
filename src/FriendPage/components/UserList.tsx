@@ -42,6 +42,7 @@ export default function UserList(data: any) {
           color="purple"
           onClick={handleAdd}
         />
+        <button onClick={() => console.log(data.data)}>o</button>
       </div>
     </div>
   );

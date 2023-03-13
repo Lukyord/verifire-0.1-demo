@@ -1,16 +1,11 @@
-import {
-  deleteDoc,
-  doc,
-  DocumentData,
-  getDoc,
-  setDoc,
-} from "firebase/firestore";
+import { deleteDoc, doc, DocumentData, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 export default async function acceptFriendRequest(
   requesterId: string,
   currentUserId: string,
-  friendData: DocumentData
+  friendData: DocumentData,
+  userData: DocumentData
 ) {
   try {
     await deleteDoc(
@@ -25,10 +20,10 @@ export default async function acceptFriendRequest(
     console.log("added:", requesterId, "to", currentUserId, "friend list");
 
     await setDoc(
-      doc(db, "users", currentUserId, "friend", requesterId),
-      friendData
+      doc(db, "users", requesterId, "friend", currentUserId),
+      userData
     );
-    console.log("added:", requesterId, "to", currentUserId, "friend list");
+    console.log("added:", currentUserId, "to", requesterId, "friend list");
   } catch (error) {
     console.error(error);
   }

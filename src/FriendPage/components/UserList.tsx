@@ -2,13 +2,16 @@
 
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import acceptFriendRequest from "../../../lib/AddandAcceptFriends/acceptFriendRequest";
 import rejectFriendRequest from "../../../lib/AddandAcceptFriends/rejectFriendRequest";
 import useAuthStore from "../../../store/authStore";
 import styles from "../../../styles/UserList.module.css";
 
 export default function UserList(data: any) {
-  const { id } = useAuthStore();
-  async function handleAdd() {}
+  const { id, userData } = useAuthStore();
+  async function handleAdd() {
+    acceptFriendRequest(data.data.id, id, data.data, userData);
+  }
 
   async function handleReject() {
     rejectFriendRequest(data.data.id, id);
@@ -42,7 +45,6 @@ export default function UserList(data: any) {
           color="purple"
           onClick={handleAdd}
         />
-        <button onClick={() => console.log(data.data)}>o</button>
       </div>
     </div>
   );

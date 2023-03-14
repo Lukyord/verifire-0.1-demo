@@ -7,12 +7,7 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 import { doc, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
-import {
-  ref,
-  uploadBytes,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
 
 type FileInputProps = {

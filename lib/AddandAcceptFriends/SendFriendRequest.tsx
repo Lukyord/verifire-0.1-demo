@@ -6,9 +6,10 @@ export default async function sendFriendRequest(
   currentUserId: string,
   userData: DocumentData
 ) {
-  await setDoc(doc(db, "users", friendId, "pendingFriend", currentUserId), {
-    userData,
-  });
+  await setDoc(
+    doc(db, "users", friendId, "pendingFriend", currentUserId),
+    userData
+  );
   console.log("request sent to:", friendId, " from:", currentUserId);
   return null;
 }

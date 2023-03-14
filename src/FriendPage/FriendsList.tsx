@@ -1,26 +1,23 @@
-"use clinet";
+"use client";
 
-import { useRouter } from "next/navigation";
+import { collection, DocumentData, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import useAuthStore from "../../store/authStore";
-import { DocumentData, onSnapshot } from "firebase/firestore";
-import { collection } from "@firebase/firestore";
 import { db } from "../../firebase";
-import styles from "../../styles/UserList.module.css";
+import useAuthStore from "../../store/authStore";
 import UserList from "./components/UserList";
+import styles from "../../styles/UserList.module.css";
 
-export default function PendingRequest() {
+export default function FriendsList() {
   const { id } = useAuthStore();
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-  const [pendingRequests, setPendingRequests] = useState<DocumentData[]>([]);
+  const [friendslist, setFriendslist] = useState<DocumentData[]>([]);
 
   useEffect(() => {
     if (id === "") {
       return;
     }
 
-    const ref = collection(db, "users", id, "pendingFriend");
+    const ref = collection(db, "users", id, "friend");
 
     const unsubscribe = onSnapshot(ref, async (snapshot) => {
       const docs: DocumentData[] = [];
@@ -28,7 +25,7 @@ export default function PendingRequest() {
         const data = doc.data();
         docs.push({ id: doc.id, ...data } as DocumentData);
       });
-      setPendingRequests(docs);
+      setFriendslist(docs);
     });
     setIsLoading(false);
     return () => unsubscribe();
@@ -40,9 +37,10 @@ export default function PendingRequest() {
 
   return (
     <div className={styles.list_box}>
-      {pendingRequests.map((data: DocumentData) => (
-        <UserList data={data} key={data.id} type={"request"} />
+      {friendslist.map((data: DocumentData) => (
+        <UserList data={data} key={data.id} type="friends" />
       ))}
+      {/* <button onClick={() => console.log(friendslist)}>o</button> */}
     </div>
   );
 }

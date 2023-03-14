@@ -9,6 +9,7 @@ import sendFriendRequest from "../../../lib/AddandAcceptFriends/sendFriendReques
 import { useEffect, useState } from "react";
 import checkAlreadyFriendOrThemself from "../../../lib/AddandAcceptFriends/checkAlreadyFriendOrThemself";
 import PopupRequestSent from "./PopupRequestSent";
+import { calculateAge } from "../../../lib/Miscellaneous/CalculateAge";
 
 export default function UserCard({ user }: DocumentData) {
   const [triggerPopup, setTriggerPopup] = useState(false);
@@ -34,7 +35,9 @@ export default function UserCard({ user }: DocumentData) {
 
   return (
     <div className={stylesCard.user_card}>
-      <h1>{user.displayName}</h1>
+      <h1>
+        {user.displayName}, {calculateAge(user.dob)}
+      </h1>
       <Image
         className={stylesImage.circular_pic}
         src={

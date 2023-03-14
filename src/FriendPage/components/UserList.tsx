@@ -5,6 +5,7 @@ import { DocumentData } from "firebase/firestore";
 import Image from "next/image";
 import acceptFriendRequest from "../../../lib/AddandAcceptFriends/acceptFriendRequest";
 import rejectFriendRequest from "../../../lib/AddandAcceptFriends/rejectFriendRequest";
+import { calculateAge } from "../../../lib/Miscellaneous/CalculateAge";
 import useAuthStore from "../../../store/authStore";
 import styles from "../../../styles/UserList.module.css";
 
@@ -41,7 +42,7 @@ export default function UserList({
           height={40}
         />
         <h2>{data.displayName}, </h2>
-        <p>{data.dob}</p>
+        <p>{calculateAge(data.dob)}</p>
       </div>
       {type === "request" && (
         <div className="flex flex-row gap-1 p-2">

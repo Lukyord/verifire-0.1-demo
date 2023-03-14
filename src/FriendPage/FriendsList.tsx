@@ -36,10 +36,19 @@ export default function FriendsList() {
   }
 
   return (
-    <div className={styles.list_box}>
-      {friendslist.map((data: DocumentData) => (
-        <UserList data={data} key={data.id} type="friends" />
-      ))}
+    <div className="flex flex-col w-full items-center justify-center">
+      {friendslist.length === 0 ? (
+        <p className="text-center">
+          No one is in your friend list yet, maybe add some?
+        </p>
+      ) : (
+        <div className={styles.list_box}>
+          {friendslist.map((data: DocumentData) => (
+            <UserList data={data} key={data.id} type="friends" />
+          ))}
+        </div>
+      )}
+
       {/* <button onClick={() => console.log(friendslist)}>o</button> */}
     </div>
   );

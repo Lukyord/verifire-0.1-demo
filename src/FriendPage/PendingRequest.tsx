@@ -39,10 +39,17 @@ export default function PendingRequest() {
   }
 
   return (
-    <div className={styles.list_box}>
-      {pendingRequests.map((data: DocumentData) => (
-        <UserList data={data} key={data.id} type={"request"} />
-      ))}
+    <div className="flex flex-col w-full items-center justify-center">
+      {/* <button onClick={() => console.log(pendingRequests.length)}>o</button> */}
+      {pendingRequests.length === 0 ? (
+        <p>No pending request</p>
+      ) : (
+        <div className={styles.list_box}>
+          {pendingRequests.map((data: DocumentData) => (
+            <UserList data={data} key={data.id} type={"request"} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

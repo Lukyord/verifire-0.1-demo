@@ -1,0 +1,11 @@
+.popup {
+  @apply fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-20 flex  justify-center items-center;
+}
+
+.popup_inner {
+  @apply relative p-8 w-full h-40 max-w-xs md:max-w-xl bg-white rounded-2xl;
+}
+
+.popup_inner .close_btn {
+  @apply absolute bottom-4 right-4;
+}

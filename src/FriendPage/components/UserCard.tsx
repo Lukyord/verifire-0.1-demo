@@ -5,16 +5,16 @@ import stylesCard from "../../../styles/UserCard.module.css";
 import stylesImage from "../../../styles/Image.module.css";
 import { DocumentData } from "firebase/firestore";
 import useAuthStore from "../../../store/authStore";
-import { useRouter } from "next/navigation";
 import sendFriendRequest from "../../../lib/AddandAcceptFriends/sendFriendRequest";
 import { useEffect, useState } from "react";
 import checkAlreadyFriendOrThemself from "../../../lib/AddandAcceptFriends/checkAlreadyFriendOrThemself";
+import PopupRequestSent from "./PopupRequestSent";
 
 export default function UserCard({ user }: DocumentData) {
+  const [triggerPopup, setTriggerPopup] = useState(false);
   const [searchResult, setSearchResult] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const { id, userData } = useAuthStore();
-  const router = useRouter();
 
   useEffect(() => {
     setLoading(true);
@@ -26,8 +26,8 @@ export default function UserCard({ user }: DocumentData) {
   async function handleAdd() {
     if (userData) {
       sendFriendRequest(user.id, id, userData);
+      setTriggerPopup(true);
     }
-    router.push("friends");
   }
 
   if (loading) return <div>loading...</div>;
@@ -47,7 +47,12 @@ export default function UserCard({ user }: DocumentData) {
         height={1080}
       />
       {searchResult === "ok" ? (
-        <button onClick={handleAdd}>Add</button>
+        <>
+          <button onClick={handleAdd}>Add</button>
+          <PopupRequestSent trigger={triggerPopup} setTrigger={setTriggerPopup}>
+            <h1>Request Sent</h1>
+          </PopupRequestSent>
+        </>
       ) : (
         <div>
           {searchResult === "yourself" && <p>Can't add yourself as a friend</p>}

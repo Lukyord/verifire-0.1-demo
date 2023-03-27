@@ -4,7 +4,7 @@ declare module "*.module.scss";
 type NavLinkNotSignedIn = "Home/About" | "Sign in" | "Sign up" | "Feedback";
 
 type NavLinkSignedIn =
-  | "Home/About"
+  | "Home"
   | "Friends"
   | "Let's Meet"
   | "History Meet"

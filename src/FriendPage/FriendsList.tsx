@@ -48,7 +48,6 @@ export default function FriendsList() {
           ))}
         </div>
       )}
-
       {/* <button onClick={() => console.log(friendslist)}>o</button> */}
     </div>
   );

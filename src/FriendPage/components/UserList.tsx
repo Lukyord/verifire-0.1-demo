@@ -1,8 +1,10 @@
 "use client";
 
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
-import { DocumentData } from "firebase/firestore";
+import { doc, DocumentData, getDoc } from "firebase/firestore";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { db } from "../../../firebase";
 import acceptFriendRequest from "../../../lib/AddandAcceptFriends/acceptFriendRequest";
 import rejectFriendRequest from "../../../lib/AddandAcceptFriends/rejectFriendRequest";
 import { calculateAge } from "../../../lib/Miscellaneous/CalculateAge";
@@ -17,6 +19,28 @@ export default function UserList({
   type: string;
 }) {
   const { id, userData } = useAuthStore();
+  const [picURL, setPicURL] = useState("");
+
+  async function getPicUrl() {
+    const docRef = doc(db, "users", data.id);
+    const docSnapshot = await getDoc(docRef);
+
+    if (docSnapshot.exists()) {
+      const friendData = await docSnapshot.data();
+      if (friendData) {
+        return friendData.photoURL;
+      }
+    }
+  }
+
+  useEffect(() => {
+    getPicUrl().then((url) => {
+      if (url) {
+        setPicURL(url);
+      }
+    });
+  }, []);
+
   async function handleAdd() {
     if (userData) {
       acceptFriendRequest(data.id, id, data, userData);
@@ -33,13 +57,14 @@ export default function UserList({
         <Image
           className={`${styles.circular_pic}`}
           src={
-            data.photoURL === ""
+            picURL === ""
               ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-              : data.photoURL
+              : picURL
           }
           alt="user profile image"
           width={40}
           height={40}
+          unoptimized
         />
         <h2>{data.displayName}, </h2>
         <p>{calculateAge(data.dob)}</p>

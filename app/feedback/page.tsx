@@ -8,7 +8,7 @@ export default function Feedback() {
       <title>VeriFire - Feedback</title>
       <h1 className="text-4xl font-bold p-8 tracking-normal">Feedback</h1>
       <FeedbackForm />
-      <FeedbackFooter />
+      {/* <FeedbackFooter /> */}
     </div>
   );
 }

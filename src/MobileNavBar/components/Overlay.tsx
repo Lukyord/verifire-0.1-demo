@@ -14,7 +14,6 @@ export default function Overlay() {
       }`}
       onClick={() => {
         toggle();
-        console.log("ja");
       }}
     ></div>
   );

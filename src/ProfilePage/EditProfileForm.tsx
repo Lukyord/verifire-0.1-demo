@@ -9,6 +9,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
+import ProfileChanged from "./components/ProfileChanged";
 
 type FileInputProps = {
   onUpload: (url: string) => void;
@@ -17,7 +18,7 @@ type FileInputProps = {
 export default function EditProfileForm({ onUpload }: FileInputProps) {
   const [imageUpload, setImageUpload] = useState<File | null>(null);
   const [progress, setProgress] = useState<number | null>(null);
-  const router = useRouter();
+  const [triggerPopup, setTriggerPopup] = useState(false);
   const { user, id, verifireId, displayName, dob, gender, bio } =
     useAuthStore();
 
@@ -97,8 +98,9 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 500);
-          onSubmit(values);
-          router.push("/profile");
+          onSubmit(values).then(() => {
+            setTriggerPopup(true);
+          });
         }}
       >
         {({ isSubmitting, isValidating, errors, touched }) => (
@@ -177,6 +179,10 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
           </Form>
         )}
       </Formik>
+      <ProfileChanged trigger={triggerPopup} setTrigger={setTriggerPopup}>
+        <h1>Changes made</h1>
+        <h2>Please refresh page to see the changes</h2>
+      </ProfileChanged>
     </>
   );
 }

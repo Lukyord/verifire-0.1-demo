@@ -6,12 +6,20 @@
   @apply relative p-8 w-full h-40 max-w-xs md:max-w-xl bg-white rounded-2xl;
 }
 
-.popup_inner .close_btn {
+.popup_inner_large {
+  @apply relative p-8 w-full h-60 max-w-xs md:max-w-xl bg-white rounded-2xl;
+}
+
+.close_btn {
   @apply absolute bottom-4 right-4;
 }
 
 .popup h1 {
   @apply text-center text-2xl font-bold;
+}
+
+.popup h2 {
+  @apply text-center text-lg pt-4;
 }
 
 .popup button {

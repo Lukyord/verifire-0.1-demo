@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "../../styles/Form.module.css";
 import { feedbackValidationSchema } from "../../lib/ValidationSchema";
@@ -9,16 +9,16 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useRouter } from "next/navigation";
 import { GetDateInString } from "../../lib/Miscellaneous/GetDateInString";
+import FeedbackSent from "./components/FeedbackSent";
 
 export default function FeedbackForm() {
   const { id, email, phone, dob, gender } = useAuthStore();
-  const router = useRouter();
+  const [triggerPopup, setTriggerPopup] = useState(false);
 
   async function onSubmit(values: { topic: string; comment: string }) {
     const { topic, comment } = values;
 
     const feedbackId = GetDateInString() + id;
-    console.log(feedbackId);
     await setDoc(doc(db, "feedback", feedbackId), {
       topic: topic,
       comment: comment,
@@ -42,7 +42,7 @@ export default function FeedbackForm() {
             setSubmitting(false);
           }, 500);
           onSubmit(values).then(() => {
-            router.replace("/");
+            setTriggerPopup(true);
           });
         }}
       >
@@ -86,6 +86,9 @@ export default function FeedbackForm() {
           </Form>
         )}
       </Formik>
+      <FeedbackSent trigger={triggerPopup} setTrigger={setTriggerPopup}>
+        <h1>Feedback Sent</h1>
+      </FeedbackSent>
     </section>
   );
 }

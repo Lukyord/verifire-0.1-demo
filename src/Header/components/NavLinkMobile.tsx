@@ -12,7 +12,7 @@ export default function Navlink({ navlink }: Props) {
   const { toggle } = useModalShownStore();
 
   const handleSubmit = () => {
-    if (navlink != "Home/About") {
+    if (navlink != "Home") {
       if (navlink === "Let's Meet") {
         router.push("/lets_meet");
       } else {

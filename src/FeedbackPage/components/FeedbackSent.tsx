@@ -16,12 +16,14 @@ export default function FeedbackSent({
         <div className={styles.popup}>
           <div className={styles.popup_inner}>
             {children}
-            <button
-              className={styles.close_btn}
-              onClick={() => setTrigger(false)}
-            >
-              <Link href="/">OK</Link>
-            </button>
+            <Link href="/">
+              <button
+                className={styles.close_btn}
+                onClick={() => setTrigger(false)}
+              >
+                OK
+              </button>
+            </Link>
           </div>
         </div>
       )}

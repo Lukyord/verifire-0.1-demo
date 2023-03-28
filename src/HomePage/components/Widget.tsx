@@ -13,7 +13,7 @@ export default function Widget() {
       </div>
       <div
         className="bg-yellow-500 p-4 cursor-pointer"
-        onClick={() => router.push("lets_meet")}
+        onClick={() => router.push("/lets_meet")}
       >
         Let's Meet
       </div>

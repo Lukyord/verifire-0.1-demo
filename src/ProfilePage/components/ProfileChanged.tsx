@@ -16,12 +16,14 @@ export default function ProfileChanged({
         <div className={styles.popup}>
           <div className={styles.popup_inner_large}>
             {children}
-            <button
-              className={styles.close_btn}
-              onClick={() => setTrigger(false)}
-            >
-              <Link href="/profile">OK</Link>
-            </button>
+            <Link href="profile">
+              <button
+                className={styles.close_btn}
+                onClick={() => setTrigger(false)}
+              >
+                OK
+              </button>
+            </Link>
           </div>
         </div>
       )}

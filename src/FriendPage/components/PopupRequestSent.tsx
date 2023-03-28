@@ -16,12 +16,14 @@ export default function PopupRequestSent({
         <div className={styles.popup}>
           <div className={styles.popup_inner}>
             {children}
-            <button
-              className={styles.close_btn}
-              onClick={() => setTrigger(false)}
-            >
-              <Link href="friends">OK</Link>
-            </button>
+            <Link href="friends">
+              <button
+                className={styles.close_btn}
+                onClick={() => setTrigger(false)}
+              >
+                OK
+              </button>
+            </Link>
           </div>
         </div>
       )}

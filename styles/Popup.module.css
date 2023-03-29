@@ -10,6 +10,10 @@
   @apply relative p-8 w-full h-60 max-w-xs md:max-w-xl bg-white rounded-2xl;
 }
 
+.popup_inner_lets_meet {
+  @apply relative p-1 w-full h-96 mx-2 md:max-w-xl bg-white rounded-2xl;
+}
+
 .close_btn {
   @apply absolute bottom-4 right-4;
 }

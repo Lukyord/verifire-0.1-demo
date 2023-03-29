@@ -2,8 +2,16 @@
   @apply flex flex-col gap-4 w-full;
 }
 
+.list_box_overlay {
+  @apply flex flex-col gap-2 mt-2 w-full;
+}
+
 .list {
   @apply bg-slate-200 rounded-2xl mx-4 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
+}
+
+.list_overlay {
+  @apply bg-slate-200 rounded-2xl mx-2 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
 }
 
 .circular_pic {

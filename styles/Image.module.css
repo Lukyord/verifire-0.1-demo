@@ -1,3 +1,7 @@
 .circular_pic {
   @apply rounded-full h-40 w-40 object-cover;
 }
+
+.circular_pic_profile_page {
+  @apply rounded-full h-60 w-60 object-cover;
+}

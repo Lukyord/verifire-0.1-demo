@@ -124,7 +124,7 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
         }}
       >
         {({ isSubmitting, isValidating, errors, touched }) => (
-          <Form className="flex flex-col gap-5">
+          <Form className="flex flex-col gap-4">
             <div
               className={`${styles.input_group} group relative ${
                 errors.verifireId && touched.verifireId ? "border-rose-600" : ""
@@ -133,7 +133,7 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
               <Field
                 name="verifireId"
                 type="text"
-                className={styles.input_text}
+                className={`${styles.input_text}`}
                 placeholder="VeriFire ID"
               />
             </div>
@@ -192,7 +192,7 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
               />
             </div>
             <div className="button">
-              <button type="submit" className={`${styles.button}`}>
+              <button type="submit" className={`${styles.button} `}>
                 Confirm
               </button>
             </div>

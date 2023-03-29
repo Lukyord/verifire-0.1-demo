@@ -45,6 +45,7 @@ type UserData = {
 
 type User = {
   bio: string;
+  email: string;
   displayName: string;
   dob: string;
   gender: string;
@@ -54,5 +55,4 @@ type User = {
   id: string;
   phone: string;
   timestamp: Timestamp;
-  verifireId: string;
 };

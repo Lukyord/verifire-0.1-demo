@@ -1,21 +1,36 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { getUserData } from "../../../lib/userData/getUserData";
+import ProtectedRoute from "../../../middleware/ProtectedRoute";
 
-export default function UserProfiles() {
+export default function UserProfiles({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const userId = useSearchParams();
 
-  async function checkUserExist(uid: string): Promise<boolean> {
-    console.log(userId);
-    return true;
+  async function fetchUserData(uid: string) {
+    const userData = await getUserData(uid);
+    if (userData) {
+      console.log("User name:", userData.displayName);
+      console.log("User email:", userData.email);
+    } else {
+      console.log("User not found!");
+    }
   }
 
   useEffect(() => {
-    checkUserExist("asd");
-  }, []);
+    const userId = params.id;
+    if (userId) {
+      fetchUserData(userId);
+    } else {
+    }
+  });
 
-  return <div>UserProfiles</div>;
+  return (
+    <ProtectedRoute>
+      <div>
+        <p>{params.id}</p>
+      </div>
+    </ProtectedRoute>
+  );
 }

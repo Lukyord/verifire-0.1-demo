@@ -3,6 +3,7 @@
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { doc, DocumentData, getDoc } from "firebase/firestore";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import acceptFriendRequest from "../../../lib/AddandAcceptFriends/acceptFriendRequest";
@@ -18,6 +19,7 @@ export default function UserList({
   data: DocumentData;
   type: string;
 }) {
+  const router = useRouter();
   const { id, userData } = useAuthStore();
   const [picURL, setPicURL] = useState("");
 
@@ -52,7 +54,10 @@ export default function UserList({
   }
 
   return (
-    <div className={styles.list}>
+    <div
+      className={styles.list}
+      onClick={() => router.push(`/profile/${data.id}`)}
+    >
       <div className="flex flex-row gap-1 items-center">
         <Image
           className={`${styles.circular_pic}`}

@@ -3,9 +3,19 @@
 }
 
 .list {
-  @apply bg-slate-200 rounded-2xl mx-4 h-20 flex flex-row gap-3 items-center justify-between;
+  @apply bg-slate-200 rounded-2xl mx-4 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
 }
 
 .circular_pic {
   @apply rounded-full h-16 w-16 object-cover m-2;
+}
+
+.lets_meet_button {
+  @apply bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl border;
+  @apply py-2 px-3 mx-3 text-white;
+}
+
+.lets_meet_button:hover {
+  @apply bg-gradient-to-r from-gray-50 to-gray-100 border-blue-500;
+  @apply text-gray-700 border;
 }

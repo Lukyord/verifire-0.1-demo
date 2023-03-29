@@ -90,9 +90,7 @@ export default function UserList({
       )}
       {type === "friends" && (
         <div>
-          <button className="bg-purple-500 text-white mx-3 px-3 py-2 rounded-2xl">
-            Let's meet
-          </button>
+          <button className={`${styles.lets_meet_button}`}>Let's meet</button>
         </div>
       )}
     </div>

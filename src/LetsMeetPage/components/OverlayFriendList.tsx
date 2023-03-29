@@ -36,17 +36,20 @@ export default function FriendsList() {
   }
 
   return (
-    <div className="flex flex-col w-full items-center justify-center">
+    <div className="flex flex-col w-full items-center justify-center overflow-y-auto">
       {friendslist.length === 0 ? (
         <p className="text-center">
           No one is in your friend list yet, maybe add some?
         </p>
       ) : (
-        <div className={styles.list_box_overlay}>
-          {friendslist.map((data: DocumentData) => (
-            <OverlayUserList data={data} key={data.id} />
-          ))}
-        </div>
+        <>
+          <h1 className="mt-2">Friend Lists</h1>
+          <div className={styles.list_box_overlay}>
+            {friendslist.map((data: DocumentData) => (
+              <OverlayUserList data={data} key={data.id} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

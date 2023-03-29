@@ -14,17 +14,7 @@ export default function PopupFriendListOverlay({
     <>
       {trigger && (
         <div className={styles.popup} onClick={() => setTrigger(false)}>
-          <div className={styles.popup_inner_lets_meet}>
-            {children}
-            {/* <Link href="lets_meet">
-              <button
-                className={styles.close_btn}
-                onClick={() => setTrigger(false)}
-              >
-                OK
-              </button>
-            </Link> */}
-          </div>
+          <div className={styles.popup_inner_lets_meet}>{children}</div>
         </div>
       )}
     </>

@@ -53,9 +53,9 @@ export default function UserList({ data }: { data: DocumentData }) {
         <p>{data.displayName}, </p>
         <p>{calculateAge(data.dob)}</p>
       </div>
-      <div>
-        <button className={`${styles.lets_meet_button}`}>Let's meet</button>
-      </div>
+      <button className={`${styles.lets_meet_button_overlay}`}>
+        <p className="text-xs">Let's meet</p>
+      </button>
     </div>
   );
 }

@@ -18,7 +18,7 @@ export default function ProfileChanged({
             {children}
             <Link href="profile">
               <button
-                className={styles.close_btn}
+                className={styles.popup_ok_button}
                 onClick={() => setTrigger(false)}
               >
                 OK

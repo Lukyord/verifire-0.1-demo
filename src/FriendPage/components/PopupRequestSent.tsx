@@ -18,7 +18,7 @@ export default function PopupRequestSent({
             {children}
             <Link href="friends">
               <button
-                className={styles.close_btn}
+                className={styles.popup_ok_button}
                 onClick={() => setTrigger(false)}
               >
                 OK

@@ -3,6 +3,7 @@
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { doc, DocumentData, getDoc } from "firebase/firestore";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { db } from "../../../firebase";
@@ -89,14 +90,14 @@ export default function UserList({
         </div>
       )}
       {type === "friends" && (
-        <div>
-          <button
-            className={`${styles.lets_meet_button}`}
-            onClick={() => router.push(`/lets_meet/form/${data.id}`)}
-          >
-            Let's meet
-          </button>
-        </div>
+        <Link
+          href={{
+            pathname: `/lets_meet/form`,
+            query: { id: data.id, displayName: data.displayName },
+          }}
+        >
+          <button className={`${styles.lets_meet_button}`}>Let's meet</button>
+        </Link>
       )}
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { doc, DocumentData, getDoc } from "firebase/firestore";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { db } from "../../../firebase";
@@ -53,12 +54,16 @@ export default function UserList({ data }: { data: DocumentData }) {
         <p>{data.displayName}, </p>
         <p>{calculateAge(data.dob)}</p>
       </div>
-      <button
-        className={`${styles.lets_meet_button_overlay}`}
-        onClick={() => router.push(`/lets_meet/form/${data.id}`)}
+      <Link
+        href={{
+          pathname: `/lets_meet/form`,
+          query: { id: data.id, displayName: data.displayName },
+        }}
       >
-        <p className="text-xs">Let's meet</p>
-      </button>
+        <button className={`${styles.lets_meet_button_overlay}`}>
+          <p className="text-xs">Let's meet</p>
+        </button>
+      </Link>
     </div>
   );
 }

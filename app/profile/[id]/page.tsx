@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { calculateAge } from "../../../lib/Miscellaneous/CalculateAge";
@@ -17,7 +18,6 @@ export default function UserProfiles({ params }: { params: { id: string } }) {
     const data = await getUserData(uid);
     if (data) {
       setUserData(data);
-      console.log(userData);
     } else {
       console.log("User not found!");
     }
@@ -55,12 +55,18 @@ export default function UserProfiles({ params }: { params: { id: string } }) {
         </p>
 
         <p className="m-4 mx-8 md:m-10 md:mx-24">{userData.bio}</p>
-        <button
-          className={`${styles.lets_meet_button} absolute -bottom-16 left-1/2 transform -translate-x-1/2`}
-          onClick={() => router.push(`/lets_meet/form/${userData.id}`)}
+        <Link
+          href={{
+            pathname: `/lets_meet/form`,
+            query: { id: userData.id, displayName: userData.displayName },
+          }}
         >
-          Let's meet
-        </button>
+          <button
+            className={`${styles.lets_meet_button} absolute -bottom-16 left-1/2 transform -translate-x-1/2`}
+          >
+            Let's meet
+          </button>
+        </Link>
       </div>
     </ProtectedRoute>
   );

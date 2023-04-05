@@ -1,6 +1,13 @@
 "use client";
 
-import { collection, DocumentData, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  DocumentData,
+  getDoc,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import useAuthStore from "../../../store/authStore";
@@ -17,18 +24,39 @@ export default function FriendsList() {
       return;
     }
 
-    const ref = collection(db, "users", id, "friend");
+    // const ref = collection(db, "users", id, "friend");
 
-    const unsubscribe = onSnapshot(ref, async (snapshot) => {
-      const docs: DocumentData[] = [];
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        docs.push({ id: doc.id, ...data } as DocumentData);
-      });
-      setFriendslist(docs);
-    });
-    setIsLoading(false);
-    return () => unsubscribe();
+    // const unsubscribe = onSnapshot(ref, async (snapshot) => {
+    //   const docs: DocumentData[] = [];
+    //   snapshot.forEach((doc) => {
+    //     const data = doc.data();
+    //     docs.push({ id: doc.id, ...data } as DocumentData);
+    //   });
+    //   setFriendslist(docs);
+    // });
+    // setIsLoading(false);
+    // return () => unsubscribe();
+    const getFriendsList = async () => {
+      setIsLoading(true);
+      const friendsRef = collection(db, "users", id, "friend");
+      const friendsSnapshot = await getDocs(friendsRef);
+      const friendsDocs = friendsSnapshot.docs;
+      const friendIds = friendsDocs.map((friendDoc) => friendDoc.id);
+
+      const friendsData = await Promise.all(
+        friendIds.map(async (friendId) => {
+          const friendRef = doc(db, "users", friendId);
+          const friendDoc = await getDoc(friendRef);
+          const friendData = friendDoc.data() as DocumentData;
+          return { id: friendId, ...friendData };
+        })
+      );
+
+      setFriendslist(friendsData);
+      setIsLoading(false);
+    };
+
+    getFriendsList();
   }, [id]);
 
   if (isLoading) {

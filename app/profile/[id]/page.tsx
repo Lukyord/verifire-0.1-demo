@@ -57,6 +57,7 @@ export default function UserProfiles({ params }: { params: { id: string } }) {
         <p className="m-4 mx-8 md:m-10 md:mx-24">{userData.bio}</p>
         <button
           className={`${styles.lets_meet_button} absolute -bottom-16 left-1/2 transform -translate-x-1/2`}
+          onClick={() => router.push(`/lets_meet/form/${userData.id}`)}
         >
           Let's meet
         </button>

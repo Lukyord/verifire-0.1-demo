@@ -54,11 +54,11 @@ export default function UserList({
   }
 
   return (
-    <div
-      className={styles.list}
-      onClick={() => router.push(`/profile/${data.id}`)}
-    >
-      <div className="flex flex-row gap-1 items-center">
+    <div className={styles.list}>
+      <div
+        className="flex flex-row gap-1 items-center"
+        onClick={() => router.push(`/profile/${data.id}`)}
+      >
         <Image
           className={`${styles.circular_pic}`}
           src={
@@ -90,7 +90,12 @@ export default function UserList({
       )}
       {type === "friends" && (
         <div>
-          <button className={`${styles.lets_meet_button}`}>Let's meet</button>
+          <button
+            className={`${styles.lets_meet_button}`}
+            onClick={() => router.push(`/lets_meet/form/${data.id}`)}
+          >
+            Let's meet
+          </button>
         </div>
       )}
     </div>

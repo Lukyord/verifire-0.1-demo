@@ -33,11 +33,11 @@ export default function UserList({ data }: { data: DocumentData }) {
   }, []);
 
   return (
-    <div
-      className={styles.list_overlay}
-      onClick={() => router.push(`/profile/${data.id}`)}
-    >
-      <div className="flex flex-row gap-0.5 items-center">
+    <div className={styles.list_overlay}>
+      <div
+        className="flex flex-row gap-0.5 items-center"
+        onClick={() => router.push(`/profile/${data.id}`)}
+      >
         <Image
           className={`${styles.circular_pic}`}
           src={
@@ -53,7 +53,10 @@ export default function UserList({ data }: { data: DocumentData }) {
         <p>{data.displayName}, </p>
         <p>{calculateAge(data.dob)}</p>
       </div>
-      <button className={`${styles.lets_meet_button_overlay}`}>
+      <button
+        className={`${styles.lets_meet_button_overlay}`}
+        onClick={() => router.push(`/lets_meet/form/${data.id}`)}
+      >
         <p className="text-xs">Let's meet</p>
       </button>
     </div>

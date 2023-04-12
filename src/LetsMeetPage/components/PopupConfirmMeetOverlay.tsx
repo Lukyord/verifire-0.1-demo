@@ -1,6 +1,6 @@
 import styles from "../../../styles/Popup.module.css";
 
-export default function PopupFriendListOverlay({
+export default function PopupConfirmMeetOverlay({
   trigger,
   setTrigger,
   children,
@@ -13,7 +13,7 @@ export default function PopupFriendListOverlay({
     <>
       {trigger && (
         <div className={styles.popup} onClick={() => setTrigger(false)}>
-          <div className={styles.popup_inner_lets_meet}>{children}</div>
+          <div className={styles.popup_inner_lets_meet_confirm}>{children}</div>
         </div>
       )}
     </>

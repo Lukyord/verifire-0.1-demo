@@ -10,6 +10,7 @@ import { db } from "../../../firebase";
 import acceptFriendRequest from "../../../lib/AddandAcceptFriends/acceptFriendRequest";
 import rejectFriendRequest from "../../../lib/AddandAcceptFriends/rejectFriendRequest";
 import { calculateAge } from "../../../lib/Miscellaneous/CalculateAge";
+import getPicUrl from "../../../lib/Miscellaneous/GetPicUrl";
 import useAuthStore from "../../../store/authStore";
 import styles from "../../../styles/UserList.module.css";
 
@@ -24,20 +25,8 @@ export default function UserList({
   const { id, userData } = useAuthStore();
   const [picURL, setPicURL] = useState("");
 
-  async function getPicUrl() {
-    const docRef = doc(db, "users", data.id);
-    const docSnapshot = await getDoc(docRef);
-
-    if (docSnapshot.exists()) {
-      const friendData = await docSnapshot.data();
-      if (friendData) {
-        return friendData.photoURL;
-      }
-    }
-  }
-
   useEffect(() => {
-    getPicUrl().then((url) => {
+    getPicUrl(data.id).then((url) => {
       if (url) {
         setPicURL(url);
       }

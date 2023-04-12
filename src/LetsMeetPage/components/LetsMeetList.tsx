@@ -4,6 +4,7 @@ import { DocumentData } from "firebase/firestore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import acceptLetsMeetRequest from "../../../lib/LetsMeet/acceptLetsMeetRequest";
 import getDisplayname from "../../../lib/Miscellaneous/GetDisplayname";
 import getPicUrl from "../../../lib/Miscellaneous/GetPicUrl";
 import useAuthStore from "../../../store/authStore";
@@ -45,8 +46,8 @@ export default function LetsMeetList({
             : picURL
         }
         alt="user profile image"
-        width={40}
-        height={40}
+        width={28}
+        height={28}
         unoptimized
       />
       <div className="flex flex-col">
@@ -59,7 +60,12 @@ export default function LetsMeetList({
 
       {type === "request" && (
         <div className=" md:ml-auto">
-          <button className={`${styles.confirm_button} mt-16 ml-4`}>
+          <button
+            className={`${styles.confirm_button} mt-16 ml-4`}
+            onClick={() =>
+              acceptLetsMeetRequest(data.requestorId, id, data.id, data)
+            }
+          >
             Confirm
           </button>
         </div>

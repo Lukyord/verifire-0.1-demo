@@ -39,7 +39,7 @@ export default function PendingMeets() {
     <>
       <h2 className="mx-8 my-2 md:mx-32">PendingMeets</h2>
       {pendingLetsMeetRequests.length === 0 ? (
-        <p>No pending request</p>
+        <p className="text-center">No pending request :(</p>
       ) : (
         <div className={styles.list_box}>
           {pendingLetsMeetRequests.map((data: DocumentData) => (

@@ -1,16 +1,15 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, DocumentData, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
-export default async function SendFriendRequest(
+export default async function sendFriendRequest(
   friendId: string,
-  currentUserId: string
+  currentUserId: string,
+  userData: DocumentData
 ) {
-  const currentUser = await getDoc(doc(db, "users", currentUserId));
-  const currentUserData = currentUser.data();
-
-  await setDoc(doc(db, "users", friendId, "pendingFriend", currentUserId), {
-    currentUserData,
-  });
-  console.log("requst sent to:", friendId, " from:", currentUserId);
+  await setDoc(
+    doc(db, "users", friendId, "pendingFriend", currentUserId),
+    userData
+  );
+  console.log("request sent to:", friendId, " from:", currentUserId);
   return null;
 }

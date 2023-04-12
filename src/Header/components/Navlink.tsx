@@ -8,7 +8,7 @@ export default function Navlink({ navlink }: Props) {
   const router = useRouter();
 
   const handleClick = () => {
-    if (navlink != "Home/About") {
+    if (navlink != "Home") {
       if (navlink === "Let's Meet") {
         router.push("/lets_meet");
       } else {

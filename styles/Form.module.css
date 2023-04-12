@@ -1,5 +1,5 @@
 .input_group {
-  @apply flex border rounded-xl;
+  @apply flex border rounded-xl text-sm;
   position: relative;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .button {
-  @apply w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-md;
+  @apply w-full mx-auto bg-gradient-to-r from-blue-500 to-indigo-500 rounded-md;
   @apply py-3 text-gray-50 text-lg;
 }
 

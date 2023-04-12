@@ -9,8 +9,8 @@ export default function EditProfile() {
 
   return (
     <ProtectedRoute>
-      <section className="w-3/4 mx-auto flex flex-col gap-10 mt-20">
-        <p>Edit Profile</p>
+      <section className="w-3/4 mx-auto flex flex-col mt-10 h-full">
+        <h1 className="text-2xl font-bold mb-5">Edit Profile</h1>
         <EditProfileForm onUpload={handleUpload} />
       </section>
     </ProtectedRoute>

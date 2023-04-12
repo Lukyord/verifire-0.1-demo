@@ -69,3 +69,44 @@ export const EditProfileValidationSchema = Yup.object().shape({
     .required("Choice is required"),
   bio: Yup.string().max(500, "Description must be at most 500 characters"),
 });
+
+export const LetsMeetValidationSchema = Yup.object().shape({
+  place: Yup.string()
+    .min(2, "Place name must be at least 2 characters")
+    .max(50, "Place name must be at most 50 characters")
+    .required("Place name is required"),
+  date: Yup.date().required("Date is required"),
+  timeFrom: Yup.string()
+    .matches(
+      /^([01]\d|2[0-3]):([0-5]\d)$/,
+      "Time format must be in HH:mm (e.g. 09:00)"
+    )
+    .required("Time from is required"),
+  timeTo: Yup.string()
+    .matches(
+      /^([01]\d|2[0-3]):([0-5]\d)$/,
+      "Time format must be in HH:mm (e.g. 09:00)"
+    )
+    .required("Time to is required")
+    .test("timeTo", "Time to must be later than time from", function (value) {
+      const { timeFrom } = this.parent;
+      if (!timeFrom || !value) {
+        return true; // don't run this test if either field is empty
+      }
+      const [fromHours, fromMinutes] = timeFrom.split(":");
+      const [toHours, toMinutes] = value.split(":");
+      const fromTime = new Date(
+        0,
+        0,
+        0,
+        parseInt(fromHours),
+        parseInt(fromMinutes)
+      );
+      const toTime = new Date(0, 0, 0, parseInt(toHours), parseInt(toMinutes));
+      return toTime > fromTime;
+    }),
+  about: Yup.string()
+    .min(10, "About must be at least 10 characters")
+    .max(500, "About must be at most 500 characters")
+    .required("About is required"),
+});

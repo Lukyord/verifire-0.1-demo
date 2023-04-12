@@ -1,4 +1,3 @@
-import React from "react";
 import FriendHeader from "../../../src/FriendPage/FriendHeader";
 import IdSearchBar from "../../../src/FriendPage/IdSearchBar";
 

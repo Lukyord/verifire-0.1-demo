@@ -4,7 +4,7 @@ declare module "*.module.scss";
 type NavLinkNotSignedIn = "Home/About" | "Sign in" | "Sign up" | "Feedback";
 
 type NavLinkSignedIn =
-  | "Home/About"
+  | "Home"
   | "Friends"
   | "Let's Meet"
   | "History Meet"
@@ -45,6 +45,7 @@ type UserData = {
 
 type User = {
   bio: string;
+  email: string;
   displayName: string;
   dob: string;
   gender: string;
@@ -54,5 +55,14 @@ type User = {
   id: string;
   phone: string;
   timestamp: Timestamp;
-  verifireId: string;
+};
+
+type LetsMeetData = {
+  place: string;
+  date: string;
+  timeFrom: string;
+  timeTo: string;
+  about: string;
+  requestorId: string;
+  recieverId: string;
 };

@@ -6,7 +6,7 @@ export const navLinks: NavLinkNotSignedIn[] = [
 ];
 
 export const navLinksLoggedIn: NavLinkSignedIn[] = [
-  "Home/About",
+  "Home",
   "Friends",
   "Let's Meet",
   "History Meet",

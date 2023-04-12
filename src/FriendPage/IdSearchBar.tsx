@@ -7,13 +7,14 @@ import styles from "../../styles/Form.module.css";
 import stylesCard from "../../styles/UserCard.module.css";
 import getUserByVeriFireId from "../../lib/getUserByVeriFireId";
 import { DocumentData } from "firebase/firestore";
-import UserCard from "./UserCard";
+import UserCard from "./components/UserCard";
 
 export default function IdSearchBar() {
   const [user, setUser] = useState<DocumentData | null | undefined>();
 
   const onSubmit = async (values: { searchQuery: string }) => {
     const { searchQuery } = values;
+
     const searchedUser = await getUserByVeriFireId(searchQuery);
 
     if (searchedUser !== null) {

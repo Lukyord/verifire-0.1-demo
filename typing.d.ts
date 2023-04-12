@@ -56,3 +56,13 @@ type User = {
   phone: string;
   timestamp: Timestamp;
 };
+
+type LetsMeetData = {
+  place: string;
+  date: string;
+  timeFrom: string;
+  timeTo: string;
+  about: string;
+  requestorId: string;
+  recieverId: string;
+};

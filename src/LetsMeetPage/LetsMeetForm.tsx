@@ -1,8 +1,20 @@
+"use client";
+
 import { Field, Form, Formik } from "formik";
 import { LetsMeetValidationSchema } from "../../lib/ValidationSchema";
+import useAuthStore from "../../store/authStore";
 import styles from "../../styles/Form.module.css";
+import sendLetsMeetRequest from "../../lib/LetsMeet/sendLetsMeetRequest";
+import { useRouter } from "next/navigation";
+import {
+  GetDateInString,
+  GetTimeInString,
+} from "../../lib/Miscellaneous/GetDateInString";
 
-export default function LetsMeetForm() {
+export default function LetsMeetForm({ friendId }: { friendId: string }) {
+  const { id } = useAuthStore();
+  const router = useRouter();
+
   async function onSubmit(values: {
     place: string;
     date: string;
@@ -11,7 +23,19 @@ export default function LetsMeetForm() {
     about: string;
   }) {
     const { place, date, timeFrom, timeTo, about } = values;
-    console.log(place, date, timeFrom, timeTo, about);
+    const LetsMeetData: LetsMeetData = {
+      place: place,
+      date: date,
+      timeFrom: timeFrom,
+      timeTo: timeTo,
+      about: about,
+      requestorId: id,
+      recieverId: friendId,
+    };
+
+    const letsMeetId = GetTimeInString() + id;
+    sendLetsMeetRequest(friendId, letsMeetId, LetsMeetData);
+    router.push("/lets_meet");
   }
   return (
     <div className="h-full">

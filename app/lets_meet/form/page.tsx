@@ -40,6 +40,7 @@ export default function page({
             '"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"'
           }
           unoptimized
+          priority
           alt="user profile image"
           width={1080}
           height={1080}
@@ -47,7 +48,7 @@ export default function page({
       </div>
       <section className="w-[90%] mx-auto flex flex-col h-full">
         <p>Set up Meet</p>
-        <LetsMeetForm />
+        <LetsMeetForm friendId={searchParams.id} />
       </section>
     </ProtectedRoute>
   );

@@ -1,6 +1,5 @@
 "use clinet";
 
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import useAuthStore from "../../store/authStore";
 import { DocumentData, onSnapshot } from "firebase/firestore";
@@ -11,7 +10,6 @@ import UserList from "./components/UserList";
 
 export default function PendingRequest() {
   const { id } = useAuthStore();
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [pendingRequests, setPendingRequests] = useState<DocumentData[]>([]);
 

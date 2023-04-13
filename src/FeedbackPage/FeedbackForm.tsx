@@ -14,8 +14,10 @@ import FeedbackSent from "./components/FeedbackSent";
 export default function FeedbackForm() {
   const { id, email, phone, dob, gender } = useAuthStore();
   const [triggerPopup, setTriggerPopup] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function onSubmit(values: { topic: string; comment: string }) {
+    setIsSubmitting(true);
     const { topic, comment } = values;
 
     const feedbackId = GetDateInString() + id;
@@ -28,6 +30,7 @@ export default function FeedbackForm() {
       gender: gender,
       resolve: false,
     });
+    setIsSubmitting(false);
   }
 
   return (

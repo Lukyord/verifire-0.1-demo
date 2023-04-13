@@ -10,10 +10,12 @@ import {
   GetDateInString,
   GetTimeInString,
 } from "../../lib/Miscellaneous/GetDateInString";
+import { useState } from "react";
 
 export default function LetsMeetForm({ friendId }: { friendId: string }) {
   const { id } = useAuthStore();
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function onSubmit(values: {
     place: string;
@@ -22,6 +24,7 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
     timeTo: string;
     about: string;
   }) {
+    setIsSubmitting(true);
     const { place, date, timeFrom, timeTo, about } = values;
     const [hour, minute] = timeFrom.split(":");
     const targetDate = new Date(`${date}T${hour}:${minute}`)
@@ -41,6 +44,7 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
     const letsMeetId = GetTimeInString() + id;
     sendLetsMeetRequest(friendId, letsMeetId, LetsMeetData);
     router.push("/lets_meet");
+    setIsSubmitting(false);
   }
   return (
     <div className="h-full">
@@ -121,7 +125,11 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
               />
             </div>
             <div className="button">
-              <button type="submit" className={`${styles.button} `}>
+              <button
+                type="submit"
+                className={`${styles.button}`}
+                disabled={isSubmitting}
+              >
                 Confirm
               </button>
             </div>

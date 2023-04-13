@@ -24,6 +24,7 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
     useAuthStore();
   const [uploadedImageURL, setUploadedImageURL] = useState(photoURL);
   const [finishUploading, setFinishUploading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     uploadFile();
@@ -69,6 +70,8 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
     gender: string;
     bio: string;
   }) {
+    setIsSubmitting(true);
+
     const { verifireId, displayName, dob, gender, bio } = values;
 
     if (user) {
@@ -80,6 +83,7 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
         bio: bio,
         photoURL: uploadedImageURL,
       });
+      setIsSubmitting(false);
     }
   }
 
@@ -192,7 +196,11 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
               />
             </div>
             <div className="button">
-              <button type="submit" className={`${styles.button} `}>
+              <button
+                type="submit"
+                className={`${styles.button}`}
+                disabled={isSubmitting}
+              >
                 Confirm
               </button>
             </div>

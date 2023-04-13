@@ -8,27 +8,25 @@ export default async function acceptLetsMeetRequest(
   LetsMeetId: string,
   LetsMeetData: DocumentData
 ) {
-  const LetsMeedIdforRequestor = GetTimeInString() + currentUserId;
-  const LetsMeedIdforCurrentUser = GetTimeInString() + requestorId;
   try {
     await deleteDoc(doc(db, "users", currentUserId, "pendingMeet", LetsMeetId));
     console.log(
-      "delete user:",
-      requestorId,
+      "delete Meet rquest:",
+      LetsMeetId,
       "from pending Let's Meet requests"
     );
 
     await setDoc(
-      doc(db, "users", currentUserId, "meet", LetsMeedIdforCurrentUser),
+      doc(db, "users", currentUserId, "meet", LetsMeetId),
       LetsMeetData
     );
-    console.log("added:", requestorId, "to", currentUserId, "friend list");
+    console.log("added meet:", LetsMeetId, "to", currentUserId, "meet list");
 
     await setDoc(
-      doc(db, "users", requestorId, "meet", LetsMeedIdforRequestor),
+      doc(db, "users", requestorId, "meet", LetsMeetId),
       LetsMeetData
     );
-    console.log("added:", currentUserId, "to", requestorId, "friend list");
+    console.log("added meet:", LetsMeetId, "to", requestorId, "meet list");
   } catch (error) {
     console.error(error);
   }

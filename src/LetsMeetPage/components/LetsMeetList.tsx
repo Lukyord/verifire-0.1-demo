@@ -8,6 +8,7 @@ import getPicUrl from "../../../lib/Miscellaneous/GetPicUrl";
 import useAuthStore from "../../../store/authStore";
 import styles from "../../../styles/LetsMeet.module.css";
 import OverlayConfrimMeet from "./OverlayConfrimMeet";
+import OverlayEndMeet from "./OverlayEndMeet";
 import PopupConfirmMeetOverlay from "./PopupConfirmMeetOverlay";
 
 export default function LetsMeetList({
@@ -38,7 +39,7 @@ export default function LetsMeetList({
 
   return (
     <div className={styles.list}>
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-between gap-2">
         <Image
           className={`${styles.circular_pic}`}
           src={
@@ -52,16 +53,20 @@ export default function LetsMeetList({
           unoptimized
         />
         <div className="flex flex-col">
-          <h1 className="text-lg md:text-xl font-bold mb-5">{name}</h1>
-          <p className="text-sm">at {data.place}</p>
-          <p className="text-sm">
+          <h1 className="text-lg md:text-xl font-bold mb-3">{name}</h1>
+          <p className="text-sm mb-3 leading-none">
+            {data.about.substring(0, 15)}
+            {data.about.length > 18 && "..."}
+          </p>
+          <p className="text-sm text-gray-600">at {data.place}</p>
+          <p className="text-sm text-gray-600">
             {data.timeFrom} - {data.timeTo}
           </p>
         </div>
       </div>
 
       {type === "request" && (
-        <div className="md:ml-auto">
+        <div className="flex flex-col h-5/6 justify-end items-center">
           <button
             className={`${styles.confirm_button} mt-16 ml-4`}
             onClick={() => setTriggerPopup(true)}
@@ -94,7 +99,7 @@ export default function LetsMeetList({
             trigger={triggerPopup}
             setTrigger={setTriggerPopup}
           >
-            <OverlayConfrimMeet
+            <OverlayEndMeet
               setTrigger={setTriggerPopup}
               requestorId={data.requestorId}
               currentUserId={id}

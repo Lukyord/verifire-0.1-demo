@@ -23,6 +23,10 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
     about: string;
   }) {
     const { place, date, timeFrom, timeTo, about } = values;
+    const [hour, minute] = timeFrom.split(":");
+    const targetDate = new Date(`${date}T${hour}:${minute}`)
+      .toISOString()
+      .slice(0, 16);
     const LetsMeetData: LetsMeetData = {
       place: place,
       date: date,
@@ -31,6 +35,7 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
       about: about,
       requestorId: id,
       recieverId: friendId,
+      timeStamp: targetDate,
     };
 
     const letsMeetId = GetTimeInString() + id;

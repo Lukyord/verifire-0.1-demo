@@ -7,6 +7,7 @@ import getDisplayname from "../../../lib/Miscellaneous/GetDisplayname";
 import getPicUrl from "../../../lib/Miscellaneous/GetPicUrl";
 import useAuthStore from "../../../store/authStore";
 import styles from "../../../styles/LetsMeet.module.css";
+import Countdown from "./CountdownTimer";
 import OverlayConfrimMeet from "./OverlayConfrimMeet";
 import OverlayEndMeet from "./OverlayEndMeet";
 import PopupConfirmMeetOverlay from "./PopupConfirmMeetOverlay";
@@ -24,17 +25,21 @@ export default function LetsMeetList({
   const [name, setName] = useState("");
 
   useEffect(() => {
-    getPicUrl(data.requestorId).then((url) => {
-      if (url) {
+    if (id === data.requestorId) {
+      getPicUrl(data.recieverId).then((url) => {
         setPicURL(url);
-      }
-    });
-
-    getDisplayname(data.requestorId).then((name) => {
-      if (name) {
+      });
+      getDisplayname(data.recieverId).then((name) => {
         setName(name);
-      }
-    });
+      });
+    } else {
+      getPicUrl(data.requestorId).then((url) => {
+        setPicURL(url);
+      });
+      getDisplayname(data.requestorId).then((name) => {
+        setName(name);
+      });
+    }
   }, []);
 
   return (
@@ -55,10 +60,11 @@ export default function LetsMeetList({
         <div className="flex flex-col">
           <h1 className="text-lg md:text-xl font-bold mb-3">{name}</h1>
           <p className="text-sm mb-3 leading-none">
-            {data.about.substring(0, 15)}
-            {data.about.length > 18 && "..."}
+            {data.about.substring(0, 13)}
+            {data.about.length > 15 && "..."}
           </p>
           <p className="text-sm text-gray-600">at {data.place}</p>
+          <p className="text-sm text-gray-600">{data.date}</p>
           <p className="text-sm text-gray-600">
             {data.timeFrom} - {data.timeTo}
           </p>
@@ -88,7 +94,7 @@ export default function LetsMeetList({
       )}
       {type === "meet" && (
         <div className="flex flex-col h-5/6 justify-between items-center">
-          <p>time</p>
+          <Countdown targetDate={data.timeStamp} />
           <button
             className={`${styles.confirm_button}`}
             onClick={() => setTriggerPopup(true)}

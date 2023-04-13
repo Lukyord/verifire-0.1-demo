@@ -2,13 +2,11 @@
 
 import { DocumentData } from "firebase/firestore";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import acceptLetsMeetRequest from "../../../lib/LetsMeet/acceptLetsMeetRequest";
 import getDisplayname from "../../../lib/Miscellaneous/GetDisplayname";
 import getPicUrl from "../../../lib/Miscellaneous/GetPicUrl";
 import useAuthStore from "../../../store/authStore";
-import styles from "../../../styles/LetsMeetList.module.css";
+import styles from "../../../styles/LetsMeet.module.css";
 import OverlayConfrimMeet from "./OverlayConfrimMeet";
 import PopupConfirmMeetOverlay from "./PopupConfirmMeetOverlay";
 
@@ -40,7 +38,7 @@ export default function LetsMeetList({
 
   return (
     <div className={styles.list}>
-      <div className="flex flex-row items-center justify-between gap-2">
+      <div className="flex flex-row items-center justify-between">
         <Image
           className={`${styles.circular_pic}`}
           src={
@@ -63,15 +61,34 @@ export default function LetsMeetList({
       </div>
 
       {type === "request" && (
-        <div className=" md:ml-auto">
+        <div className="md:ml-auto">
           <button
             className={`${styles.confirm_button} mt-16 ml-4`}
-            onClick={
-              () => setTriggerPopup(true)
-              // acceptLetsMeetRequest(data.requestorId, id, data.id, data)
-            }
+            onClick={() => setTriggerPopup(true)}
           >
             Confirm
+          </button>
+          <PopupConfirmMeetOverlay
+            trigger={triggerPopup}
+            setTrigger={setTriggerPopup}
+          >
+            <OverlayConfrimMeet
+              setTrigger={setTriggerPopup}
+              requestorId={data.requestorId}
+              currentUserId={id}
+              data={data}
+            />
+          </PopupConfirmMeetOverlay>
+        </div>
+      )}
+      {type === "meet" && (
+        <div className="flex flex-col h-5/6 justify-between items-center">
+          <p>time</p>
+          <button
+            className={`${styles.confirm_button}`}
+            onClick={() => setTriggerPopup(true)}
+          >
+            End meet
           </button>
           <PopupConfirmMeetOverlay
             trigger={triggerPopup}

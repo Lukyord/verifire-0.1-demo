@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import useAuthStore from "../../store/authStore";
 import LetsMeetList from "./components/LetsMeetList";
-import styles from "../../styles/LetsMeetList.module.css";
+import styles from "../../styles/LetsMeet.module.css";
 
 export default function PendingMeets() {
   const { id } = useAuthStore();

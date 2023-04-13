@@ -19,13 +19,13 @@ export default async function acceptLetsMeetRequest(
     );
 
     await setDoc(
-      doc(db, "users", currentUserId, "Meet", LetsMeedIdforCurrentUser),
+      doc(db, "users", currentUserId, "meet", LetsMeedIdforCurrentUser),
       LetsMeetData
     );
     console.log("added:", requestorId, "to", currentUserId, "friend list");
 
     await setDoc(
-      doc(db, "users", requestorId, "Meet", LetsMeedIdforRequestor),
+      doc(db, "users", requestorId, "meet", LetsMeedIdforRequestor),
       LetsMeetData
     );
     console.log("added:", currentUserId, "to", requestorId, "friend list");

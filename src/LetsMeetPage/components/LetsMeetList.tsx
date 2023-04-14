@@ -29,7 +29,7 @@ export default function LetsMeetList({
       getPicUrl(data.recieverId).then((url) => {
         setPicURL(url);
       });
-      getDisplayname(data.recieverId).then((name) => {
+      getDisplayname(data.requestorId).then((name) => {
         setName(name);
       });
     } else {
@@ -44,7 +44,11 @@ export default function LetsMeetList({
 
   return (
     <div className={styles.list}>
-      <div className="flex flex-row items-center justify-between gap-2">
+      <div
+        className={`flex flex-row items-center gap-2 ${
+          type === "history" ? "w-full" : "justify-between"
+        }`}
+      >
         <Image
           className={`${styles.circular_pic}`}
           src={
@@ -114,6 +118,7 @@ export default function LetsMeetList({
           </PopupConfirmMeetOverlay>
         </div>
       )}
+      {type === "history" && <div className="hidden"></div>}
     </div>
   );
 }

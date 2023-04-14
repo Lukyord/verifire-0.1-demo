@@ -1,5 +1,11 @@
-import React from "react";
+"use client";
+import ProtectedRoute from "../../middleware/ProtectedRoute";
+import AboutCarousel from "../../src/AboutPage/AboutCarousel";
 
 export default function About() {
-  return <div>About</div>;
+  return (
+    <ProtectedRoute>
+      <AboutCarousel />
+    </ProtectedRoute>
+  );
 }

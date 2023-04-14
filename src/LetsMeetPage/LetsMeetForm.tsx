@@ -97,6 +97,7 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
                   id="timeFrom"
                   name="timeFrom"
                   className={styles.input_text}
+                  step={1800}
                 />
               </div>
               <div

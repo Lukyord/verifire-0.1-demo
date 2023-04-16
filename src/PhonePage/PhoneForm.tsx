@@ -1,16 +1,16 @@
 "use client";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
 import styles from "../../styles/Form.module.css";
-import { phoneValidationSchema } from "../../lib/ValidationSchema";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 interface PhoneForm {
   phone: string;
@@ -23,6 +23,7 @@ export default function PhoneForm() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const { setPhone, user, setEmail, setId } = useAuthStore();
+  const [value, setValue] = useState<string | undefined>();
 
   useEffect(() => {
     const uid = user?.uid;
@@ -49,8 +50,8 @@ export default function PhoneForm() {
     );
   }
 
-  async function requestOtp(values: PhoneForm) {
-    const { phone } = values;
+  async function requestOtp() {
+    const phone = value || "";
     setPhoneNumber(phone);
     generateRecaptcha();
     let appVerifier = window.recaptchaVerifier;
@@ -84,58 +85,49 @@ export default function PhoneForm() {
 
   return (
     <>
-      <Formik
-        initialValues={{ phone: "" }}
-        validationSchema={phoneValidationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
-          setExpandForm(true);
-          requestOtp(values);
-        }}
-      >
-        {({ isSubmitting, isValidating, errors, touched }) => (
-          <Form className="flex flex-col gap-5">
-            <div
-              className={`${styles.input_group} 
-            ${errors.phone && touched.phone ? "border-rose-600" : ""}
+      <div className="flex flex-col gap-5">
+        <div
+          className={`${styles.input_group} 
         `}
-            >
-              <Field
-                name="phone"
-                type="text"
-                className={styles.input_text}
-                placeholder="Phone Number"
-              />
-            </div>
-            {expandForm && (
-              <>
-                <div className={`${styles.input_group} `}>
-                  <label htmlFor="otpInput">OTP</label>
-                  <input
-                    type="number"
-                    className={styles.input_text}
-                    id="otpInput"
-                    value={otp}
-                    onChange={handleOtpChange}
-                  />
-                </div>
-              </>
-            )}
-            {!expandForm && (
-              <div className="button">
-                <button type="submit" className={`${styles.button}`}>
-                  Request OTP
-                </button>
-              </div>
-            )}
-            {/* <ErrorMessage name="email" component="div" />
-        <ErrorMessage name="password" component="div" /> */}
-          </Form>
-        )}
-      </Formik>
+        >
+          <PhoneInput
+            placeholder="Enter phone number"
+            value={value}
+            onChange={setValue}
+            className={styles.input_text}
+          />
+          <p onClick={() => console.log(value)}>O</p>
+        </div>
+      </div>
+      {expandForm && (
+        <>
+          <div className={`${styles.input_group} `}>
+            <label htmlFor="otpInput">OTP</label>
+            <input
+              type="number"
+              className={styles.input_text}
+              id="otpInput"
+              value={otp}
+              onChange={handleOtpChange}
+            />
+          </div>
+        </>
+      )}
+      {!expandForm && (
+        <div className="button">
+          <button
+            type="submit"
+            className={`${styles.button}`}
+            onClick={() => {
+              setExpandForm(true);
+              requestOtp();
+            }}
+          >
+            Request OTP
+          </button>
+        </div>
+      )}
+
       <div id="recaptcha-container"></div>
       {expandForm && (
         <div className="button">

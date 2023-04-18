@@ -7,17 +7,14 @@ import { feedbackValidationSchema } from "../../lib/ValidationSchema";
 import useAuthStore from "../../store/authStore";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import { useRouter } from "next/navigation";
 import { GetDateInString } from "../../lib/Miscellaneous/GetDateInString";
 import FeedbackSent from "./components/FeedbackSent";
 
 export default function FeedbackForm() {
   const { id, email, phone, dob, gender } = useAuthStore();
   const [triggerPopup, setTriggerPopup] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function onSubmit(values: { topic: string; comment: string }) {
-    setIsSubmitting(true);
     const { topic, comment } = values;
 
     const feedbackId = GetDateInString() + id;
@@ -30,7 +27,6 @@ export default function FeedbackForm() {
       gender: gender,
       resolve: false,
     });
-    setIsSubmitting(false);
   }
 
   return (
@@ -40,16 +36,13 @@ export default function FeedbackForm() {
         initialValues={{ topic: "", comment: "" }}
         validationSchema={feedbackValidationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
           onSubmit(values).then(() => {
             setTriggerPopup(true);
+            setSubmitting(false);
           });
         }}
       >
-        {({ isSubmitting, isValidating, errors, touched }) => (
+        {({ isSubmitting, errors, touched }) => (
           <Form className="flex flex-col gap-5">
             <div
               className={`${styles.input_group} ${

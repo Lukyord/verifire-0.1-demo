@@ -24,7 +24,6 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
     useAuthStore();
   const [uploadedImageURL, setUploadedImageURL] = useState(photoURL);
   const [finishUploading, setFinishUploading] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     uploadFile();
@@ -70,8 +69,6 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
     gender: string;
     bio: string;
   }) {
-    setIsSubmitting(true);
-
     const { verifireId, displayName, dob, gender, bio } = values;
 
     if (user) {
@@ -83,7 +80,6 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
         bio: bio,
         photoURL: uploadedImageURL,
       });
-      setIsSubmitting(false);
     }
   }
 
@@ -118,16 +114,13 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
         }}
         validationSchema={EditProfileValidationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
           onSubmit(values).then(() => {
             setTriggerPopup(true);
+            setSubmitting(false);
           });
         }}
       >
-        {({ isSubmitting, isValidating, errors, touched }) => (
+        {({ isSubmitting, errors, touched }) => (
           <Form className="flex flex-col gap-4">
             <div
               className={`${styles.input_group} group relative ${

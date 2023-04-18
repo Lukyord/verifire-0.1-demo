@@ -7,12 +7,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signInValidationSchema } from "../../lib/ValidationSchema";
 import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase";
 
 export default function SignInForm() {
-  const { user, signin, setEmail, setId, setPhone, setEmergencyContacts } =
-    useAuthStore();
+  const { signin } = useAuthStore();
   const [show, setShow] = useState(false);
   const router = useRouter();
 
@@ -26,16 +23,13 @@ export default function SignInForm() {
       initialValues={{ email: "", password: "" }}
       validationSchema={signInValidationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 500);
         onSubmit(values).then(() => {
+          setSubmitting(false);
           router.push("/");
         });
       }}
     >
-      {({ isSubmitting, isValidating, errors, touched }) => (
+      {({ isSubmitting, errors, touched }) => (
         <Form className="flex flex-col gap-5">
           <div
             className={`${styles.input_group} group relative ${
@@ -80,8 +74,6 @@ export default function SignInForm() {
               Sign In
             </button>
           </div>
-          {/* <ErrorMessage name="email" component="div" />
-            <ErrorMessage name="password" component="div" /> */}
         </Form>
       )}
     </Formik>

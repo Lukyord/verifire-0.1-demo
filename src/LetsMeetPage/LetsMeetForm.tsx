@@ -6,16 +6,12 @@ import useAuthStore from "../../store/authStore";
 import styles from "../../styles/Form.module.css";
 import sendLetsMeetRequest from "../../lib/LetsMeet/sendLetsMeetRequest";
 import { useRouter } from "next/navigation";
-import {
-  GetDateInString,
-  GetTimeInString,
-} from "../../lib/Miscellaneous/GetDateInString";
+import { GetTimeInString } from "../../lib/Miscellaneous/GetDateInString";
 import { useState } from "react";
 
 export default function LetsMeetForm({ friendId }: { friendId: string }) {
   const { id } = useAuthStore();
   const router = useRouter();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function onSubmit(values: {
     place: string;
@@ -24,7 +20,6 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
     timeTo: string;
     about: string;
   }) {
-    setIsSubmitting(true);
     const { place, date, timeFrom, timeTo, about } = values;
     const targetDate = `${date}T${timeFrom}`;
     const emerDate = `${date}T${timeTo}`;
@@ -44,9 +39,7 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
     };
 
     const letsMeetId = GetTimeInString() + id;
-    sendLetsMeetRequest(friendId, letsMeetId, LetsMeetData);
-    router.push("/lets_meet");
-    setIsSubmitting(false);
+    await sendLetsMeetRequest(friendId, letsMeetId, LetsMeetData);
   }
   return (
     <div className="h-full">
@@ -60,11 +53,10 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
         }}
         validationSchema={LetsMeetValidationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+          onSubmit(values).then(() => {
             setSubmitting(false);
-          }, 500);
-          onSubmit(values);
+            router.push("/lets_meet");
+          });
         }}
       >
         {({ isSubmitting, isValidating, errors, touched }) => (

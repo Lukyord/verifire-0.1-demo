@@ -1,11 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  FingerPrintIcon,
-  AtSymbolIcon,
-  UserCircleIcon,
-} from "@heroicons/react/24/solid";
+import { FingerPrintIcon, AtSymbolIcon } from "@heroicons/react/24/solid";
 import styles from "../../styles/Form.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signUpValidationSchema } from "../../lib/ValidationSchema";
@@ -13,7 +9,7 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 
 export default function SignUpForm() {
-  const { user, signup } = useAuthStore();
+  const { signup } = useAuthStore();
   const [show, setShow] = useState({ password: false, cpassword: false });
   const router = useRouter();
 
@@ -27,16 +23,13 @@ export default function SignUpForm() {
       initialValues={{ email: "", password: "", cpassword: "" }}
       validationSchema={signUpValidationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 500);
         onSubmit(values).then(() => {
+          setSubmitting(false);
           router.replace("sign_up/phone");
         });
       }}
     >
-      {({ errors, touched }) => (
+      {({ isSubmitting, errors, touched }) => (
         <Form className="flex flex-col gap-5">
           <div
             className={`${styles.input_group} ${
@@ -96,7 +89,11 @@ export default function SignUpForm() {
           </div>
 
           <div className="button">
-            <button type="submit" className={`${styles.button}`}>
+            <button
+              type="submit"
+              className={`${styles.button}`}
+              disabled={isSubmitting}
+            >
               Sign Up
             </button>
           </div>

@@ -24,6 +24,7 @@ export default function PhoneForm() {
   const [otp, setOtp] = useState("");
   const { setPhone, user, setEmail, setId } = useAuthStore();
   const [value, setValue] = useState<string | undefined>();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const uid = user?.uid;
@@ -70,6 +71,7 @@ export default function PhoneForm() {
   }
 
   async function verifyOtp() {
+    setIsSubmitting(true);
     let confirmationResult = window.confirmationResult;
     confirmationResult
       .confirm(otp)
@@ -77,6 +79,7 @@ export default function PhoneForm() {
         console.log("verified");
         setPhone(phoneNumber);
         router.replace("sign_up/emergency_contact");
+        setIsSubmitting(false);
       })
       .catch((error: string) => {
         console.log(error);
@@ -133,7 +136,7 @@ export default function PhoneForm() {
         <div className="button">
           <button
             onClick={verifyOtp}
-            disabled={otp.length != 6}
+            disabled={otp.length != 6 || isSubmitting}
             className={`${styles.button}`}
           >
             Confirm

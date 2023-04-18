@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import styles from "../../styles/Form.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -62,16 +63,13 @@ export default function EmergencyContactForm() {
       }}
       validationSchema={EmergencyContactValidationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 500);
         onSubmit(values).then(() => {
+          setSubmitting(false);
           router.replace("sign_in");
         });
       }}
     >
-      {({ isSubmitting, isValidating, errors, touched }) => (
+      {({ isSubmitting, errors, touched }) => (
         <Form className="flex flex-col gap-5">
           <div className="flex flex-row w-full gap-2">
             <div

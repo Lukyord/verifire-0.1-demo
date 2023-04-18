@@ -42,8 +42,8 @@ export default function SignInForm() {
               className={styles.input_text}
               placeholder="Email"
             />
-            <span className="icon flex items-center px-4">
-              <AtSymbolIcon className="w-8 h-8" />
+            <span className="icon flex items-center px-4 ">
+              <AtSymbolIcon className="w-8 h-8" color="white" />
             </span>
           </div>
           <div
@@ -62,10 +62,13 @@ export default function SignInForm() {
               data-tip="Show Password"
               onClick={() => setShow(!show)}
             >
-              <FingerPrintIcon className="w-8 h-8 cursor-pointer" />
+              <FingerPrintIcon
+                className="w-8 h-8 cursor-pointer"
+                color="white"
+              />
             </span>
           </div>
-          <div className="button">
+          <div className="button flex justify-center items-center mt-10">
             <button
               type="submit"
               className={`${styles.button}`}

@@ -8,7 +8,10 @@ export default function Hamgberger() {
 
   return (
     <div onClick={toggle}>
-      <Bars3Icon className="w-8 h-8 cursor-pointer" color="white" />
+      <Bars3Icon
+        className="mt-6 w-10 h-10 cursor-pointer drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
+        color="black"
+      />
     </div>
   );
 }

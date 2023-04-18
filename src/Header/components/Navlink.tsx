@@ -20,7 +20,10 @@ export default function Navlink({ navlink }: Props) {
   };
 
   return (
-    <button onClick={handleClick} className="text-white text-lg">
+    <button
+      onClick={handleClick}
+      className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg"
+    >
       {navlink}
     </button>
   );

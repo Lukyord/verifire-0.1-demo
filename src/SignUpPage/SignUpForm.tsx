@@ -30,7 +30,7 @@ export default function SignUpForm() {
       }}
     >
       {({ isSubmitting, errors, touched }) => (
-        <Form className="flex flex-col gap-5">
+        <Form className="flex flex-col gap-3">
           <div
             className={`${styles.input_group} ${
               errors.email && touched.email ? "border-rose-600" : ""
@@ -44,7 +44,7 @@ export default function SignUpForm() {
               placeholder="Email"
             />
             <span className="icon flex items-center px-4">
-              <AtSymbolIcon className="w-8 h-8" />
+              <AtSymbolIcon className="w-8 h-8" color="white" />
             </span>
           </div>
           <div
@@ -64,7 +64,10 @@ export default function SignUpForm() {
               data-tip="Show Password"
               onClick={() => setShow({ ...show, password: !show.password })}
             >
-              <FingerPrintIcon className="w-8 h-8 cursor-pointer" />
+              <FingerPrintIcon
+                className="w-8 h-8 cursor-pointer"
+                color="white"
+              />
             </span>
           </div>
           <div
@@ -84,14 +87,17 @@ export default function SignUpForm() {
               data-tip="Show Password"
               onClick={() => setShow({ ...show, cpassword: !show.cpassword })}
             >
-              <FingerPrintIcon className="w-8 h-8 cursor-pointer" />
+              <FingerPrintIcon
+                className="w-8 h-8 cursor-pointer"
+                color="white"
+              />
             </span>
           </div>
 
-          <div className="button">
+          <div className="button flex justify-center items-center">
             <button
               type="submit"
-              className={`${styles.button}`}
+              className={`${styles.button} mt-10`}
               disabled={isSubmitting}
             >
               Sign Up

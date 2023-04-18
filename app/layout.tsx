@@ -8,6 +8,7 @@ import useAuthStore from "../store/authStore";
 import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import Background1 from "../src/Background/Background1";
 
 export default function RootLayout({
   children,
@@ -81,17 +82,22 @@ export default function RootLayout({
       <body>
         {loading && <div>loading</div>}
         {!loading && !phoneVerifying && (
-          <div className="relative h-screen w-screen flex flex-col bg-slate-100 overflow-y-auto overflow-x-hidden">
+          <div className="relative h-screen w-screen flex flex-col bg-slate-100">
             {/* ==================== Navigation Bar ==================== */}
-            <Overlay />
-            <MobileNavBar />
-            <Header />
             {/* ======================================================== */}
-            {children}
+            <div className="z-0">
+              <Background1 />
+            </div>
+            <div className="overflow-y-auto overflow-x-hidden z-10">
+              <Overlay />
+              <MobileNavBar />
+              <Header />
+              {children}
+            </div>
           </div>
         )}
         {!loading && phoneVerifying && (
-          <div className="relative h-screen w-screen flex flex-col bg-slate-100 overflow-y-auto overflow-x-hidde">
+          <div className="relative h-screen w-screen flex flex-col bg-slate-100 overflow-y-auto overflow-x-hidden">
             {children}
           </div>
         )}

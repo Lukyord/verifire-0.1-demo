@@ -41,7 +41,7 @@ export default function PendingMeets() {
       {pendingLetsMeetRequests.length === 0 ? (
         <p className="text-center">No pending request :(</p>
       ) : (
-        <div className={styles.list_box}>
+        <div className={`${styles.list_box}`}>
           {pendingLetsMeetRequests.map((data: DocumentData) => (
             <LetsMeetList data={data} key={data.id} type={"request"} />
           ))}

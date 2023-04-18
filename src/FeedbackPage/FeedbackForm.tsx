@@ -30,7 +30,7 @@ export default function FeedbackForm() {
   }
 
   return (
-    <section className="w-3/4 mx-auto flex flex-col gap-10 mt-4">
+    <section className="w-3/4 mx-auto flex flex-col gap-10 mt-4 opacity-0">
       <title>VeriFire - Feedback</title>
       <Formik
         initialValues={{ topic: "", comment: "" }}

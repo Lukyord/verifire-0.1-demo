@@ -10,9 +10,11 @@ export default function HomePageSignedIn() {
 
   return (
     <div className="grow overflow-y-auto">
-      <h1>Welcome...</h1>
-      <h1>{displayName}</h1>
-      {/* <p>{availableHeight}</p> */}
+      <div className="m-3 md:text-6xl md:mx-6 text-3xl ">
+        <h1 className="font-helvetica_outline tracking-tight">Welcome...</h1>
+        <h1 className="font-bold tracking-tight">{displayName}</h1>
+      </div>
+
       <Widget />
       <FeedbackSection />
       <HomepageFooter />

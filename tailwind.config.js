@@ -31,7 +31,8 @@ module.exports = {
     fontFamily: {
       nunito: ["Nunito", "sans-serif"],
       poppin: ["Poppins", "sans-serif"],
-      helvetica: ["Helvetica", "Arial", "sans-serif"],
+      helvetica: ["Helvetica", "sans-serif"],
+      helvetica_outline: ["var(--font-my)"],
     },
   },
   plugins: [],

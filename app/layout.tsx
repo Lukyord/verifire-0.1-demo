@@ -9,6 +9,12 @@ import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import Background1 from "../src/Background/Background1";
+import localFont from "@next/font/local";
+
+const myFont = localFont({
+  src: "../public/fonts/Helvetica-Outline.woff2",
+  variable: "--font-my",
+});
 
 export default function RootLayout({
   children,
@@ -79,7 +85,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body>
+      <body className={`${myFont.variable} font-sans`}>
         {loading && <div>loading</div>}
         {!loading && !phoneVerifying && (
           <div className="relative h-screen w-screen flex flex-col bg-slate-100">

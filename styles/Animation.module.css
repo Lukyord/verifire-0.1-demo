@@ -1,11 +1,11 @@
 .animation {
-  @apply absolute rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob;
+  @apply w-56 h-56 md:w-96 md:h-96 absolute rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob;
 }
 
 .animation_delay_2000 {
-  @apply absolute rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000;
+  @apply w-56 h-56 md:w-96 md:h-96 absolute rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000;
 }
 
 .animation_delay_4000 {
-  @apply absolute rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000;
+  @apply w-56 h-56 md:w-96 md:h-96 absolute rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000;
 }

@@ -6,28 +6,34 @@ export default function Widget() {
   return (
     <div className="grid grid-cols-2 grid-rows-4 gap-4 m-4 h-[40rem] md:h-[29.5rem]">
       <div
-        className="bg-blue-500 p-4 row-span-2 col-span-2 cursor-pointer"
+        className="bg-purple-700 p-4 row-span-2 col-span-2 cursor-pointer rounded-3xl bg-opacity-60 flex flex-col justify-end"
         onClick={() => router.push("/about")}
       >
-        About
+        <h1 className="font-helvetica_outline text-white text-4xl ">About</h1>
       </div>
       <div
-        className="bg-yellow-500 p-4 cursor-pointer"
+        className="bg-purple-700 p-4 cursor-pointer rounded-3xl bg-opacity-30 flex flex-col justify-end"
         onClick={() => router.push("/lets_meet")}
       >
-        Let's Meet
+        <div className="text-xl font-semibold">
+          <h1>Let's</h1>
+          <h1>Meet</h1>
+        </div>
       </div>
       <div
-        className="bg-yellow-500 p-4 row-span-2 cursor-pointer"
+        className="bg-purple-300 p-4 row-span-2 cursor-pointer rounded-3xl bg-opacity-60 flex flex-col justify-end"
         onClick={() => router.push("/friends")}
       >
-        Friends
+        <h1 className="text-xl text-white">Friends</h1>
       </div>
       <div
-        className="bg-red-500 p-4 cursor-pointer"
+        className="bg-gray-700 p-4 cursor-pointer rounded-3xl bg-opacity-60 flex flex-col justify-end"
         onClick={() => router.push("/history_meet")}
       >
-        History Meet
+        <div className="text-xl text-white">
+          <h1>History</h1>
+          <h1>Meet</h1>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 declare module "*.module.css";
 declare module "*.module.scss";
 
-type NavLinkNotSignedIn = "Home/About" | "Sign in" | "Sign up" | "Feedback";
+type NavLinkNotSignedIn = "Home" | "Sign in" | "Sign up" | "Feedback";
 
 type NavLinkSignedIn =
   | "Home"

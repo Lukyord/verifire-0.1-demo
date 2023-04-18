@@ -1,5 +1,5 @@
 export const navLinks: NavLinkNotSignedIn[] = [
-  "Home/About",
+  "Home",
   "Sign in",
   "Sign up",
   "Feedback",

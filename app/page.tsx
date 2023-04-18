@@ -2,6 +2,7 @@
 
 import React from "react";
 import { emerApi } from "../lib/SendingEmerNotification/api";
+import HomePageGuest from "../src/HomePage/HomePageGuest";
 import HomePageSignedIn from "../src/HomePage/HomePageSignedIn";
 import useAuthStore from "../store/authStore";
 
@@ -29,7 +30,7 @@ export default function page() {
         </>
       ) : (
         <div className="">
-          <p>Welcome guest</p>
+          <HomePageGuest />
           {/* <button onClick={handleClick}>make call</button> */}
         </div>
       )}

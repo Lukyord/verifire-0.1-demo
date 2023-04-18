@@ -6,7 +6,6 @@ import Widget from "./components/Widget";
 
 export default function HomePageSignedIn() {
   const { displayName } = useAuthStore();
-  // const availableHeight = window.screen.availHeight;
 
   return (
     <div className="grow overflow-y-auto">

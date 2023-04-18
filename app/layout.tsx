@@ -81,7 +81,7 @@ export default function RootLayout({
       <body>
         {loading && <div>loading</div>}
         {!loading && !phoneVerifying && (
-          <div className="relative h-screen w-screen flex flex-col bg-slate-100">
+          <div className="relative h-screen w-screen flex flex-col bg-slate-100 overflow-y-auto overflow-x-hidden">
             {/* ==================== Navigation Bar ==================== */}
             <Overlay />
             <MobileNavBar />
@@ -91,7 +91,7 @@ export default function RootLayout({
           </div>
         )}
         {!loading && phoneVerifying && (
-          <div className="relative h-screen w-screen flex flex-col bg-slate-100">
+          <div className="relative h-screen w-screen flex flex-col bg-slate-100 overflow-y-auto overflow-x-hidde">
             {children}
           </div>
         )}

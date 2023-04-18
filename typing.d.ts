@@ -64,6 +64,7 @@ type LetsMeetData = {
   timeTo: string;
   about: string;
   requestorId: string;
-  recieverId: string;
+  receiverId: string;
   timeStamp: string;
+  emerTimeStamp: string;
 };

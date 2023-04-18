@@ -26,10 +26,10 @@ export default function LetsMeetList({
 
   useEffect(() => {
     if (id === data.requestorId) {
-      getPicUrl(data.recieverId).then((url) => {
+      getPicUrl(data.receiverId).then((url) => {
         setPicURL(url);
       });
-      getDisplayname(data.requestorId).then((name) => {
+      getDisplayname(data.receiverId).then((name) => {
         setName(name);
       });
     } else {

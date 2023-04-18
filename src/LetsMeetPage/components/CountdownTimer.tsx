@@ -35,8 +35,14 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
 
   return (
     <div className="text-sm">
-      <p>{remainingTime.days} days</p>
-      <p>{remainingTime.hours} hrs</p>
+      {remainingTime.hours < 0 ? (
+        <p className="mr-2">Right about now...</p>
+      ) : (
+        <>
+          <p>{remainingTime.days > 0 ? remainingTime.days : "0"} days</p>
+          <p>{remainingTime.hours} hrs</p>
+        </>
+      )}
     </div>
   );
 };

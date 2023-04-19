@@ -131,7 +131,7 @@ export default function EmergencyContactForm() {
               />
             </div>
           </div>
-          <div className="button">
+          <div className="button flex justify-center items-center mt-10">
             <button
               type="submit"
               className={`${styles.button}`}

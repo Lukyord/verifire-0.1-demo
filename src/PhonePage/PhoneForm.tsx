@@ -83,6 +83,7 @@ export default function PhoneForm() {
       })
       .catch((error: string) => {
         console.log(error);
+        setIsSubmitting(false);
       });
   }
 
@@ -93,13 +94,14 @@ export default function PhoneForm() {
           className={`${styles.input_group} 
         `}
         >
+          {/* <label htmlFor="phoneInput">Phone</label> */}
           <PhoneInput
             placeholder="Enter phone number"
+            id="phoneInput"
             value={value}
             onChange={setValue}
             className={styles.input_text}
           />
-          <p onClick={() => console.log(value)}>O</p>
         </div>
       </div>
       {expandForm && (
@@ -117,7 +119,7 @@ export default function PhoneForm() {
         </>
       )}
       {!expandForm && (
-        <div className="button">
+        <div className="button flex justify-center items-center">
           <button
             type="submit"
             className={`${styles.button}`}
@@ -133,7 +135,7 @@ export default function PhoneForm() {
 
       <div id="recaptcha-container"></div>
       {expandForm && (
-        <div className="button">
+        <div className="button flex justify-center items-center">
           <button
             onClick={verifyOtp}
             disabled={otp.length != 6 || isSubmitting}

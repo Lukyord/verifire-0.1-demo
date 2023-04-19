@@ -68,7 +68,7 @@ export default function FeedbackForm() {
                 placeholder="Comment"
               />
             </div>
-            <div className="button">
+            <div className="button flex justify-center items-center mt-2">
               <button
                 type="submit"
                 className={`${styles.button}`}

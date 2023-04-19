@@ -10,6 +10,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import Background1 from "../src/Background/Background1";
 import localFont from "@next/font/local";
+import Background2 from "../src/Background/Background2";
 
 const myFont = localFont({
   src: "../public/fonts/Helvetica-Outline.woff2",
@@ -93,8 +94,9 @@ export default function RootLayout({
             {/* ======================================================== */}
             <div className="z-0">
               <Background1 />
+              {/* <Background2 /> */}
             </div>
-            <div className="overflow-y-auto overflow-x-hidden z-10">
+            <div className="h-full w-full overflow-y-auto overflow-x-hidden z-10">
               <Overlay />
               <MobileNavBar />
               <Header />

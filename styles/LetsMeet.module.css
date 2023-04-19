@@ -1,6 +1,6 @@
 .plus_button {
-  @apply bg-gradient-to-r from-blue-300 to-indigo-300 rounded-2xl border;
-  @apply py-2 px-3 mx-3 text-white text-3xl;
+  @apply bg-purple-300 rounded-2xl opacity-30;
+  @apply py-2 px-3 mx-3 text-3xl;
 }
 
 .plus_button:hover {

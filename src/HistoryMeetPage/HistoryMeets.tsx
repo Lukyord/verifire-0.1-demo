@@ -32,11 +32,10 @@ export default function HistoryMeets() {
   }, [id]);
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <div className="text-center">loading...</div>;
   }
   return (
     <>
-      <h2 className="mx-8 my-2 md:mx-32">PendingMeets</h2>
       {historyMeets.length === 0 ? (
         <p className="text-center">No history meet :(</p>
       ) : (

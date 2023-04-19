@@ -7,6 +7,7 @@ import { calculateAge } from "../../lib/Miscellaneous/CalculateAge";
 import ProtectedRoute from "../../middleware/ProtectedRoute";
 import useAuthStore from "../../store/authStore";
 import stylesImage from "../../styles/Image.module.css";
+import stylesForm from "../../styles/Form.module.css";
 import styles from "../../styles/UserList.module.css";
 
 export default function Profile() {
@@ -45,7 +46,14 @@ export default function Profile() {
         />
       </div>
       {verifireId === "" ? (
-        <button onClick={() => router.push("/profile/create")}>create</button>
+        <div className="button w-full flex justify-center items-center my-2">
+          <button
+            onClick={() => router.push("/profile/create")}
+            className={`${stylesForm.button}`}
+          >
+            create
+          </button>
+        </div>
       ) : (
         <>
           {/* <button onClick={() => router.push("/profile/edit")}>edit</button> */}
@@ -53,7 +61,7 @@ export default function Profile() {
             <p className="text-center text-2xl md:text-3xl font-bold">
               {displayName}, {calculateAge(dob)}
             </p>
-            <p className="text-center text-sm my-2 text-gray-400">
+            <p className="text-center text-sm my-2">
               VeriFire Id: {verifireId}
             </p>
           </div>

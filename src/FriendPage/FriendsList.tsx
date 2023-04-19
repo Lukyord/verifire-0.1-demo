@@ -12,11 +12,23 @@ import { db } from "../../firebase";
 import useAuthStore from "../../store/authStore";
 import UserList from "./components/UserList";
 import styles from "../../styles/UserList.module.css";
+import stylesForm from "../../styles/Form.module.css";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 export default function FriendsList() {
   const { id } = useAuthStore();
   const [isLoading, setIsLoading] = useState(true);
   const [friendslist, setFriendslist] = useState<DocumentData[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<DocumentData[]>([]);
+
+  function handleChange(searchValue: string) {
+    setSearchTerm(searchValue);
+    const filteredDocuments = friendslist.filter((document) =>
+      document.displayName.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setSearchResults(filteredDocuments);
+  }
 
   useEffect(() => {
     if (id === "") {
@@ -68,9 +80,28 @@ export default function FriendsList() {
         <p className="text-center my-4">No one is in your friend list yet</p>
       ) : (
         <div className={styles.list_box}>
-          {friendslist.map((data: DocumentData) => (
-            <UserList data={data} key={data.id} type="friends" />
-          ))}
+          <div className="w-4/5 md:w-3/5 mx-auto relative mt-4">
+            <input
+              type="text"
+              placeholder="Search by DisplayName"
+              value={searchTerm}
+              onChange={(e) => handleChange(e.target.value)}
+              className="w-full py-1 px-4 rounded-2xl bg-purple-100 border border-gray-300 shadow-2xl"
+            />
+            <button
+              type="submit"
+              className="absolute inset-y-0 right-4 pl-3 flex items-center"
+            >
+              <MagnifyingGlassIcon className="w-6 h-6" color="gray" />
+            </button>
+          </div>
+          {searchTerm === ""
+            ? friendslist.map((data: DocumentData) => (
+                <UserList data={data} key={data.id} type="friends" />
+              ))
+            : searchResults.map((data: DocumentData) => (
+                <UserList data={data} key={data.id} type="friends" />
+              ))}
         </div>
       )}
     </div>

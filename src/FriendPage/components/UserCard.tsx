@@ -5,11 +5,11 @@ import stylesCard from "../../../styles/UserCard.module.css";
 import stylesImage from "../../../styles/Image.module.css";
 import { DocumentData } from "firebase/firestore";
 import useAuthStore from "../../../store/authStore";
-import sendFriendRequest from "../../../lib/AddandAcceptFriends/sendFriendRequest";
 import { useEffect, useState } from "react";
 import checkAlreadyFriendOrThemself from "../../../lib/AddandAcceptFriends/checkAlreadyFriendOrThemself";
 import PopupRequestSent from "./PopupRequestSent";
 import { calculateAge } from "../../../lib/Miscellaneous/CalculateAge";
+import sendFriendRequest from "../../../lib/AddandAcceptFriends/SendFriendRequest";
 
 export default function UserCard({ user }: DocumentData) {
   const [triggerPopup, setTriggerPopup] = useState(false);

@@ -1,5 +1,5 @@
 .list_box {
-  @apply flex flex-col gap-4 w-full;
+  @apply flex flex-col gap-4 w-full md:w-3/5;
 }
 
 .list_box_overlay {
@@ -7,11 +7,13 @@
 }
 
 .list {
-  @apply bg-slate-100 rounded-2xl mx-4 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
+  @apply bg-purple-100 rounded-2xl mx-4 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
+  @apply border border-gray-300 shadow-xl;
 }
 
 .list_overlay {
-  @apply bg-slate-100 rounded-2xl mx-2 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
+  @apply bg-purple-100 rounded-2xl mx-2 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
+  @apply border border-gray-300 shadow-xl;
 }
 
 .circular_pic {

@@ -44,7 +44,7 @@ export default function UserList({
   }
 
   return (
-    <div className={styles.list}>
+    <div className={`${styles.list}`}>
       <div
         className="flex flex-row gap-1 items-center"
         onClick={() => router.push(`/profile/${data.id}`)}

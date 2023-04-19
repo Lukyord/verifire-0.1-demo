@@ -33,24 +33,24 @@ export default function FriendHeader() {
         <h1 className="font-helvetica_outline tracking-tight">{header}</h1>
       </div>
 
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row gap-4 md:gap-8 mr-2 md:mr-8 mt-2 md:mt-4">
         {header !== "Pending Request" && (
           <ClockIcon
-            className="w-8 h-8 cursor-pointer"
+            className="w-8 h-8 md:w-12 md:h-12 cursor-pointer"
             color="white"
             onClick={() => router.push("friends/pending")}
           />
         )}
         {header !== "Add Friend" && (
           <UserPlusIcon
-            className="w-8 h-8 cursor-pointer"
+            className="w-8 h-8 md:w-12 md:h-12 cursor-pointer"
             color="white"
             onClick={() => router.push("friends/add")}
           />
         )}
         {header !== "Friends" && (
           <UserGroupIcon
-            className="w-8 h-8 cursor-pointer"
+            className="w-8 h-8 md:w-12 md:h-12 cursor-pointer"
             color="white"
             onClick={() => router.push("friends")}
           />

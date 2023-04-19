@@ -96,7 +96,7 @@ export default function RootLayout({
               <Background1 />
               {/* <Background2 /> */}
             </div>
-            <div className="h-full w-full overflow-y-auto overflow-x-hidden z-10">
+            <div className="h-full w-full overflow-x-hidden z-10">
               <Overlay />
               <MobileNavBar />
               <Header />

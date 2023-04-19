@@ -7,8 +7,10 @@ import FriendsList from "../../src/FriendPage/FriendsList";
 export default function Friends() {
   return (
     <ProtectedRoute>
-      <FriendHeader />
-      <FriendsList />
+      <div className="overflow-y-auto">
+        <FriendHeader />
+        <FriendsList />
+      </div>
     </ProtectedRoute>
   );
 }

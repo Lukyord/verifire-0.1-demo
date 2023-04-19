@@ -5,7 +5,9 @@ import AboutCarousel from "../../src/AboutPage/AboutCarousel";
 export default function About() {
   return (
     <ProtectedRoute>
-      <AboutCarousel />
+      <div className="overflow-y-hidden">
+        <AboutCarousel />
+      </div>
     </ProtectedRoute>
   );
 }

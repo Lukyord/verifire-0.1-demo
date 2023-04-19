@@ -8,7 +8,7 @@ export default function HistoryMeet() {
   return (
     <ProtectedRoute>
       {/* <Background3 /> */}
-      <div className="z-20">
+      <div className="z-20 overflow-y-auto">
         <div className="m-10 mb-2">
           <div className="text-start text-[2.75rem] md:text-[5rem] leading-[2.75rem] md:leading-[5rem] flex flex-col gap-2">
             <h1 className="font-helvetica_outline tracking-tight">History</h1>

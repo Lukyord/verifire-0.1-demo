@@ -1,3 +1,7 @@
+.circular_pic_custom {
+  @apply rounded-full object-cover;
+}
+
 .circular_pic_small {
   @apply rounded-full h-28 w-28 object-cover;
 }

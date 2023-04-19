@@ -4,7 +4,7 @@ import React from "react";
 export default function Widget() {
   const router = useRouter();
   return (
-    <div className="grid grid-cols-2 grid-rows-4 gap-4 m-4 h-[40rem] md:h-[29.5rem]">
+    <div className="grid grid-cols-2 grid-rows-4 gap-4 m-4 mt-2 h-[40rem] md:h-[29.5rem]">
       <div
         className="bg-purple-700 p-4 row-span-2 col-span-2 cursor-pointer rounded-3xl bg-opacity-60 flex flex-col justify-end"
         onClick={() => router.push("/about")}

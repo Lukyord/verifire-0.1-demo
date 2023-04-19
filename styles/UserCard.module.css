@@ -3,7 +3,7 @@
 }
 
 .user_card {
-  @apply bg-slate-200 rounded-3xl h-80 w-64 flex flex-col justify-around items-center;
+  @apply bg-slate-100 rounded-3xl h-80 w-64 flex flex-col justify-around items-center shadow-2xl;
 }
 
 .user_card h1 {

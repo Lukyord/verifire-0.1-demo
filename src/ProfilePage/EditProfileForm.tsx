@@ -98,7 +98,7 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
           width={1080}
           height={1080}
         />
-        <input type="file" onChange={handleChange} className="my-2" />
+        <input type="file" onChange={handleChange} className="my-2 ml-14" />
         <div className="flex flex-col items-center justify-center grow">
           {progress && <progress value={progress} max="100" className="grow" />}
           {finishUploading && <p className="text-center">Photo Updated</p>}
@@ -188,7 +188,7 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
                 placeholder="About you"
               />
             </div>
-            <div className="button">
+            <div className="button flex justify-center items-center my-10">
               <button
                 type="submit"
                 className={`${styles.button}`}

@@ -5,7 +5,7 @@ export default function AddFriend() {
   return (
     <div>
       <FriendHeader />
-      <section className="w-3/4 mx-auto flex flex-col gap-10 mt-20">
+      <section className="w-3/4 mx-auto flex flex-col gap-10 mt-10">
         <IdSearchBar />
       </section>
     </div>

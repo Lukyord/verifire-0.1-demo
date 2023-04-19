@@ -59,15 +59,13 @@ export default function FriendsList() {
   }, [id]);
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <div className="text-center">loading...</div>;
   }
 
   return (
     <div className="flex flex-col w-full items-center justify-center">
       {friendslist.length === 0 ? (
-        <p className="text-center">
-          No one is in your friend list yet, maybe add some?
-        </p>
+        <p className="text-center my-4">No one is in your friend list yet</p>
       ) : (
         <div className={styles.list_box}>
           {friendslist.map((data: DocumentData) => (

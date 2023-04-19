@@ -37,7 +37,7 @@ export default function UpcomingMeets() {
   return (
     <>
       <div className="mb-8">
-        <h2 className="mx-8 my-2 md:mx-32">Upcoming Meets</h2>
+        <h2 className="mx-8 my-4 md:mx-32">Upcoming Meets</h2>
         <div className="flex flex-col w-full justify-center items-center gap-4">
           <div className={styles.list_box}>
             {meets.map((data: DocumentData) => (

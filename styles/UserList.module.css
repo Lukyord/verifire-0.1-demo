@@ -7,11 +7,11 @@
 }
 
 .list {
-  @apply bg-slate-200 rounded-2xl mx-4 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
+  @apply bg-slate-100 rounded-2xl mx-4 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
 }
 
 .list_overlay {
-  @apply bg-slate-200 rounded-2xl mx-2 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
+  @apply bg-slate-100 rounded-2xl mx-2 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
 }
 
 .circular_pic {

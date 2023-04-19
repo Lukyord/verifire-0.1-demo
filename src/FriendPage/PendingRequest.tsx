@@ -40,7 +40,7 @@ export default function PendingRequest() {
     <div className="flex flex-col w-full items-center justify-center">
       {/* <button onClick={() => console.log(pendingRequests.length)}>o</button> */}
       {pendingRequests.length === 0 ? (
-        <p>No pending request</p>
+        <p className="my-8">No pending request</p>
       ) : (
         <div className={styles.list_box}>
           {pendingRequests.map((data: DocumentData) => (

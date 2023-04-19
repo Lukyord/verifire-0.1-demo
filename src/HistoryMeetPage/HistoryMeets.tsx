@@ -37,7 +37,7 @@ export default function HistoryMeets() {
   return (
     <>
       {historyMeets.length === 0 ? (
-        <p className="text-center">No history meet :(</p>
+        <p className="text-center mt-8">No history meet :(</p>
       ) : (
         <div className={styles.list_box}>
           {historyMeets.map((data: DocumentData) => (

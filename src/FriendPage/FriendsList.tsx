@@ -12,7 +12,6 @@ import { db } from "../../firebase";
 import useAuthStore from "../../store/authStore";
 import UserList from "./components/UserList";
 import styles from "../../styles/UserList.module.css";
-import stylesForm from "../../styles/Form.module.css";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 export default function FriendsList() {

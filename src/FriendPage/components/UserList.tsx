@@ -41,9 +41,9 @@ export default function UserList({
   }
 
   return (
-    <Link href={`/profile/${data.id}`}>
-      <div className={`${styles.list}`}>
-        <div className="flex flex-row gap-1 items-center">
+    <div className={`${styles.list}`}>
+      <Link href={`/profile/${data.id}`}>
+        <div className="flex flex-row gap-1 items-center grow">
           <Image
             className={`${styles.circular_pic}`}
             src={
@@ -59,31 +59,34 @@ export default function UserList({
           <h2>{data.displayName}, </h2>
           <p>{calculateAge(data.dob)}</p>
         </div>
-        {type === "request" && (
-          <div className="flex flex-row gap-1 p-2">
-            <XCircleIcon
-              className="w-8 h-8 cursor-pointer"
-              color="gray"
-              onClick={handleReject}
-            />
-            <CheckCircleIcon
-              className="w-8 h-8 cursor-pointer"
-              color="purple"
-              onClick={handleAdd}
-            />
-          </div>
-        )}
-        {type === "friends" && (
-          <Link
-            href={{
-              pathname: `/lets_meet/form`,
-              query: { id: data.id, displayName: data.displayName },
-            }}
-          >
-            <button className={`${styles.lets_meet_button}`}>Let's meet</button>
-          </Link>
-        )}
-      </div>
-    </Link>
+      </Link>
+      <Link href={`/profile/${data.id}`} className="grow">
+        <div className="text-xs">.</div>
+      </Link>
+      {type === "request" && (
+        <div className="flex flex-row gap-1 p-2">
+          <XCircleIcon
+            className="w-8 h-8 cursor-pointer"
+            color="gray"
+            onClick={handleReject}
+          />
+          <CheckCircleIcon
+            className="w-8 h-8 cursor-pointer"
+            color="purple"
+            onClick={handleAdd}
+          />
+        </div>
+      )}
+      {type === "friends" && (
+        <Link
+          href={{
+            pathname: `/lets_meet/form`,
+            query: { id: data.id, displayName: data.displayName },
+          }}
+        >
+          <button className={`${styles.lets_meet_button}`}>Let's meet</button>
+        </Link>
+      )}
+    </div>
   );
 }

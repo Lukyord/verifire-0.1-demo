@@ -36,7 +36,8 @@ export default function UserProfiles({ params }: { params: { id: string } }) {
   }
   return (
     <ProtectedRoute>
-      <div className="relative flex flex-col mx-auto my-auto w-4/5 h-1/2 md:w-3/5 bg-purple-100 rounded-3xl">
+      <div className="mt-20 md:mt-10">.</div>
+      <div className="mt-20 md:mt-20 relative flex flex-col mx-auto my-auto w-4/5 h-1/2 md:w-3/5 bg-purple-100 rounded-3xl">
         <Image
           className={`${stylesImage.circular_pic} absolute -top-24 md:-top-20 left-1/2 transform -translate-x-1/2`}
           src={
@@ -44,7 +45,7 @@ export default function UserProfiles({ params }: { params: { id: string } }) {
               ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
               : userData.photoURL
           }
-          unoptimized
+          priority
           alt="user profile image"
           width={1080}
           height={1080}

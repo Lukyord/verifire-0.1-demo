@@ -7,7 +7,7 @@
 }
 
 .list {
-  @apply bg-purple-100 rounded-2xl mx-4 h-20 flex flex-row gap-3 items-center justify-between cursor-pointer;
+  @apply bg-purple-100 rounded-2xl mx-4 h-20 flex flex-row justify-between items-center cursor-pointer;
   @apply border border-gray-300 shadow-xl;
 }
 
@@ -21,8 +21,8 @@
 }
 
 .lets_meet_button {
-  @apply bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl border;
-  @apply py-2 px-3 mx-3 text-white;
+  @apply bg-purple-700 rounded-2xl border;
+  @apply py-1 px-4 md:px-8 mx-3 text-gray-50;
 }
 
 .lets_meet_button:hover {

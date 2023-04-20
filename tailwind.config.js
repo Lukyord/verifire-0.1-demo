@@ -6,6 +6,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+
   theme: {
     extend: {
       animation: {
@@ -35,5 +36,5 @@ module.exports = {
       helvetica_outline: ["var(--font-my)"],
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animation-delay")],
 };

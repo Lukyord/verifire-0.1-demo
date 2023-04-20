@@ -62,7 +62,7 @@ export default function Profile() {
         <>
           {/* <button onClick={() => router.push("/profile/edit")}>edit</button> */}
           <div>
-            <p className="text-center text-2xl md:text-3xl font-bold">
+            <p className="text-center text-2xl md:text-3xl font-bold mt-8 md:mt-4">
               {displayName}, {calculateAge(dob)}
             </p>
             <p className="text-center text-sm my-2">

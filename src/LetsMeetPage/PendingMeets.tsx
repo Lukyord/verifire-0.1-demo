@@ -36,7 +36,7 @@ export default function PendingMeets() {
     return <div>loading...</div>;
   }
   return (
-    <>
+    <div className="z-0">
       <h2 className="mx-8 my-4 md:mx-32">PendingMeets</h2>
       {pendingLetsMeetRequests.length === 0 ? (
         <p className="text-center my-4">No pending request :(</p>
@@ -47,6 +47,6 @@ export default function PendingMeets() {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }

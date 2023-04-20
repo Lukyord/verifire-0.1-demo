@@ -1,21 +1,21 @@
 .popup {
-  @apply fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-20 flex  justify-center items-center;
+  @apply fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-20 flex  justify-center items-center z-10;
 }
 
 .popup_inner {
-  @apply relative p-8 w-full h-40 max-w-xs md:max-w-xl bg-white rounded-2xl;
+  @apply relative p-8 w-full h-40 max-w-xs md:max-w-xl bg-white bg-opacity-100 rounded-2xl my-4;
 }
 
 .popup_inner_large {
-  @apply relative p-8 w-full h-60 max-w-xs md:max-w-xl bg-white rounded-2xl;
+  @apply relative p-8 w-full h-60 max-w-xs md:max-w-xl bg-white bg-opacity-100 rounded-2xl my-4;
 }
 
 .popup_inner_lets_meet {
-  @apply relative p-1 w-full h-96 mx-4 md:max-w-xl bg-white rounded-2xl overflow-y-auto;
+  @apply relative p-1 w-full h-96 mx-4 md:max-w-xl bg-white bg-opacity-100 rounded-2xl overflow-y-auto my-4;
 }
 
 .popup_inner_lets_meet_confirm {
-  @apply relative p-1 w-full h-60 mx-4 md:max-w-xl bg-white rounded-2xl overflow-y-auto;
+  @apply relative p-1 w-full h-60 mx-4 md:max-w-xl bg-white bg-opacity-100 rounded-2xl overflow-y-auto my-4;
 }
 
 .popup h1 {
@@ -27,8 +27,8 @@
 }
 
 .popup_ok_button {
-  @apply absolute bottom-4 right-4 w-32 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-md border;
-  @apply py-3 text-gray-50 text-lg;
+  @apply absolute bottom-4 right-4 w-32 bg-purple-700 rounded-md border;
+  @apply py-1 text-gray-50 text-lg;
 }
 
 .popup_ok_button:hover {
@@ -37,8 +37,8 @@
 }
 
 .popup_confirm_button {
-  @apply w-32 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-3xl border;
-  @apply py-3 text-gray-50 text-lg;
+  @apply w-32 bg-purple-700 rounded-3xl border;
+  @apply py-1 text-gray-50 text-lg;
 }
 
 .popup_confirm_button:hover {
@@ -48,7 +48,7 @@
 
 .popup_cancel_button {
   @apply w-32 bg-white rounded-3xl border border-purple-700;
-  @apply py-3 text-purple-700 text-lg;
+  @apply py-1 text-purple-700 text-lg;
 }
 
 .popup_cancel_button:hover {

@@ -43,7 +43,7 @@ export default function LetsMeetList({
   }, []);
 
   return (
-    <div className={styles.list}>
+    <div className={`${styles.list}`}>
       <div
         className={`flex flex-row items-center gap-2 ${
           type === "history" ? "w-full" : "justify-between"
@@ -100,7 +100,7 @@ export default function LetsMeetList({
         <div className="flex flex-col h-5/6 justify-between items-center">
           <Countdown targetDate={data.timeStamp} />
           <button
-            className={`${styles.confirm_button}`}
+            className={`${styles.end_meet_button}`}
             onClick={() => setTriggerPopup(true)}
           >
             End meet

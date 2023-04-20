@@ -13,7 +13,8 @@
 }
 
 .list {
-  @apply bg-slate-200 rounded-2xl mx-2 h-32 md:h-36 flex flex-row gap-1 items-center justify-between cursor-pointer w-5/6 md:w-[80%];
+  @apply bg-purple-100 bg-opacity-80 rounded-2xl mx-2 h-32 md:h-36 flex flex-row gap-1 items-center justify-between;
+  @apply cursor-pointer w-5/6 md:w-[80%];
 }
 
 .circular_pic {
@@ -21,11 +22,21 @@
 }
 
 .confirm_button {
-  @apply bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl border;
-  @apply py-1 px-2 mr-2 md:mx-2 text-white text-sm md:text-lg md:py-2 md:px-3;
+  @apply bg-purple-700 rounded-2xl;
+  @apply py-1 px-4 md:px-8 mx-3 text-gray-50;
 }
 
 .confirm_button:hover {
+  @apply bg-gradient-to-r from-gray-50 to-gray-100 border-blue-500 cursor-pointer;
+  @apply text-gray-700 border;
+}
+
+.end_meet_button {
+  @apply bg-purple-700 rounded-2xl text-xs md:text-base;
+  @apply py-1 px-2 md:px-8 mx-1 md:mx-3 text-gray-50;
+}
+
+.end_meet_button:hover {
   @apply bg-gradient-to-r from-gray-50 to-gray-100 border-blue-500 cursor-pointer;
   @apply text-gray-700 border;
 }

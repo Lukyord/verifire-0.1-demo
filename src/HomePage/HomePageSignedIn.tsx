@@ -25,7 +25,7 @@ export default function HomePageSignedIn() {
           }
           width={1080}
           height={1080}
-          className={`${stylesImage.circular_pic_custom} w-20 h-20 mt-4 mr-4`}
+          className={`${stylesImage.circular_pic_custom} w-20 h-20 md:w-24 md:h-24 mt-4 md:mt-8 mr-4 md:mr-8`}
         />
       </div>
       <Widget />

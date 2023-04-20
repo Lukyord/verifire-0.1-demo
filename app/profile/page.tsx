@@ -21,11 +21,15 @@ export default function Profile() {
   }
   return (
     <ProtectedRoute>
-      <div className="m-8 md:text-6xl md:mx-32 text-2xl font-bold">
-        <h1>{displayName}'s</h1>
-        <h1>Profile</h1>
+      <div className="m-10 mb-2">
+        <div className="text-start text-[2.75rem] md:text-[5rem] leading-[2.75rem] md:leading-[5rem] flex flex-col gap-2">
+          <h1 className="font-helvetica_outline tracking-tight">
+            {displayName}'s
+          </h1>
+          <h1 className="tracking-tight">Profile</h1>
+        </div>
       </div>
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center mt-8 md:mt-4">
         <div
           onClick={() => router.push("/profile/edit")}
           className="ml-16 p-2 absolute bg-slate-200 rounded-full top-0 left-1/2 transform -translate-x-1/2 cursor-pointer"

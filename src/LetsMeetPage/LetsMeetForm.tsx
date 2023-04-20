@@ -61,65 +61,80 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
       >
         {({ isSubmitting, isValidating, errors, touched }) => (
           <Form className="flex flex-col gap-4">
-            <div
-              className={`${styles.input_group} group relative ${
-                errors.place && touched.place ? "border-rose-600" : ""
-              }`}
-            >
-              <Field
-                name="place"
-                type="text"
-                className={`${styles.input_text}`}
-                placeholder="Place"
-              />
-            </div>
-            <div
-              className={`${styles.input_group} group relative ${
-                errors.date && touched.date ? "border-rose-600" : ""
-              }`}
-            >
-              <Field name="date" type="date" className={styles.input_text} />
-            </div>
-            <div className="flex flex-row w-full gap-2">
+            <div>
+              <p className="ml-2 mb-1 text-sm">Place</p>
               <div
-                className={`${styles.input_group} group relative w-1/2 ${
-                  errors.timeFrom && touched.timeFrom ? "border-rose-600" : ""
+                className={`${styles.input_group} group relative ${
+                  errors.place && touched.place ? "border-rose-600" : ""
                 }`}
               >
                 <Field
-                  type="time"
-                  id="timeFrom"
-                  name="timeFrom"
-                  className={styles.input_text}
-                  step={1800}
+                  name="place"
+                  type="text"
+                  className={`${styles.input_text}`}
+                  placeholder="Place"
                 />
               </div>
+            </div>
+            <div>
+              <p className="ml-2 mb-1 text-sm">Date</p>
               <div
-                className={`${styles.input_group} group relative w-1/2 ${
-                  errors.timeTo && touched.timeTo ? "border-rose-600" : ""
+                className={`${styles.input_group} group relative ${
+                  errors.date && touched.date ? "border-rose-600" : ""
+                }`}
+              >
+                <Field name="date" type="date" className={styles.input_text} />
+              </div>
+            </div>
+            <div>
+              <div className="flex flex-row">
+                <p className="ml-2 mb-1 text-sm w-1/2">From</p>
+                <p className="ml-4 mb-1 text-sm w-1/2">To</p>
+              </div>
+              <div className="flex flex-row w-full gap-2">
+                <div
+                  className={`${styles.input_group} group relative w-1/2 ${
+                    errors.timeFrom && touched.timeFrom ? "border-rose-600" : ""
+                  }`}
+                >
+                  <Field
+                    type="time"
+                    id="timeFrom"
+                    name="timeFrom"
+                    className={styles.input_text}
+                    step={1800}
+                  />
+                </div>
+                <div
+                  className={`${styles.input_group} group relative w-1/2 ${
+                    errors.timeTo && touched.timeTo ? "border-rose-600" : ""
+                  }`}
+                >
+                  <Field
+                    type="time"
+                    id="timeTo"
+                    name="timeTo"
+                    className={styles.input_text}
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p className="ml-2 mb-1 text-sm">About the meet</p>
+              <div
+                className={`${styles.input_group} group relative h-20 ${
+                  errors.about && touched.about ? "border-rose-600" : ""
                 }`}
               >
                 <Field
-                  type="time"
-                  id="timeTo"
-                  name="timeTo"
+                  name="about"
+                  as="textarea"
                   className={styles.input_text}
+                  placeholder="About the meet"
                 />
               </div>
             </div>
-            <div
-              className={`${styles.input_group} group relative h-20 ${
-                errors.about && touched.about ? "border-rose-600" : ""
-              }`}
-            >
-              <Field
-                name="about"
-                as="textarea"
-                className={styles.input_text}
-                placeholder="About the meet"
-              />
-            </div>
-            <div className="button">
+            <div className="button flex justify-center items-center mt-2">
               <button
                 type="submit"
                 className={`${styles.button}`}

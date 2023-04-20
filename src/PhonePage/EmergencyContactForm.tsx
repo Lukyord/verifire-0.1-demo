@@ -71,64 +71,76 @@ export default function EmergencyContactForm() {
     >
       {({ isSubmitting, errors, touched }) => (
         <Form className="flex flex-col gap-5">
-          <div className="flex flex-row w-full gap-2">
-            <div
-              className={`${styles.input_group} w-3/5 group relative${
-                errors.emergencyContact1 && touched.emergencyContact1
-                  ? "border-rose-600"
-                  : ""
-              }`}
-            >
-              <Field
-                name="emergencyContact1"
-                type="text"
-                className={styles.input_text}
-                placeholder="Emergency Contact 1"
-              />
+          <div>
+            <div className="flex flex-row">
+              <p className="ml-2 mb-1 text-sm w-3/5">Emergency Contact 1</p>
+              <p className="ml-4 mb-1 text-sm w-2/5">Relationship</p>
             </div>
-            <div
-              className={`${styles.input_group} w-2/5 group relative ${
-                errors.relationship1 && touched.relationship1
-                  ? "border-rose-600"
-                  : ""
-              } `}
-            >
-              <Field
-                name="relationship1"
-                type="text"
-                className={styles.input_text}
-                placeholder="Relationship 1"
-              />
+            <div className="flex flex-row w-full gap-2">
+              <div
+                className={`${styles.input_group} w-3/5 group relative${
+                  errors.emergencyContact1 && touched.emergencyContact1
+                    ? "border-rose-600"
+                    : ""
+                }`}
+              >
+                <Field
+                  name="emergencyContact1"
+                  type="text"
+                  className={styles.input_text}
+                  placeholder="Emergency Contact 1"
+                />
+              </div>
+              <div
+                className={`${styles.input_group} w-2/5 group relative ${
+                  errors.relationship1 && touched.relationship1
+                    ? "border-rose-600"
+                    : ""
+                } `}
+              >
+                <Field
+                  name="relationship1"
+                  type="text"
+                  className={styles.input_text}
+                  placeholder="Relationship 1"
+                />
+              </div>
             </div>
           </div>
-          <div className="flex flex-row w-full gap-2">
-            <div
-              className={`${styles.input_group} w-3/5 group relative${
-                errors.emergencyContact2 && touched.emergencyContact2
-                  ? "border-rose-600"
-                  : ""
-              }`}
-            >
-              <Field
-                name="emergencyContact2"
-                type="text"
-                className={styles.input_text}
-                placeholder="Emergency Contact 2"
-              />
+          <div>
+            <div className="flex flex-row">
+              <p className="ml-2 mb-1 text-sm w-3/5">Emergency Contact 2</p>
+              <p className="ml-4 mb-1 text-sm w-2/5">Relationship</p>
             </div>
-            <div
-              className={`${styles.input_group} w-2/5 group relative ${
-                errors.relationship2 && touched.relationship2
-                  ? "border-rose-600"
-                  : ""
-              } `}
-            >
-              <Field
-                name="relationship2"
-                type="text"
-                className={styles.input_text}
-                placeholder="Relationship 2"
-              />
+            <div className="flex flex-row w-full gap-2">
+              <div
+                className={`${styles.input_group} w-3/5 group relative${
+                  errors.emergencyContact2 && touched.emergencyContact2
+                    ? "border-rose-600"
+                    : ""
+                }`}
+              >
+                <Field
+                  name="emergencyContact2"
+                  type="text"
+                  className={styles.input_text}
+                  placeholder="Emergency Contact 2"
+                />
+              </div>
+              <div
+                className={`${styles.input_group} w-2/5 group relative ${
+                  errors.relationship2 && touched.relationship2
+                    ? "border-rose-600"
+                    : ""
+                } `}
+              >
+                <Field
+                  name="relationship2"
+                  type="text"
+                  className={styles.input_text}
+                  placeholder="Relationship 2"
+                />
+              </div>
             </div>
           </div>
           <div className="button flex justify-center items-center mt-10">

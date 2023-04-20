@@ -21,7 +21,7 @@
 }
 
 .lets_meet_button {
-  @apply bg-purple-700 rounded-2xl border;
+  @apply bg-purple-700 rounded-2xl;
   @apply py-1 px-4 md:px-8 mx-3 text-gray-50;
 }
 

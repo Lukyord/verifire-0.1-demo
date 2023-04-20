@@ -27,27 +27,28 @@ export default function page({
 
   return (
     <ProtectedRoute>
-      <div className="m-8 md:text-6xl md:mx-32 text-2xl font-bold flex flex-row items-center justify-between">
+      <div className="m-8 md:mx-32 font-bold flex flex-row items-center justify-between">
         <div>
-          <h1>Meet with</h1>
-          <h1>{searchParams.displayName}</h1>
+          <div className="text-[2.75rem] md:text-[5rem] leading-[2.75rem] md:leading-[5rem]">
+            <h1 className="font-helvetica_outline tracking-tight">Meet with</h1>
+            <h1 className="tracking-tight">{searchParams.displayName}</h1>
+          </div>
           {/* <p className="text-sm font-normal">{searchParams.id}</p> */}
+          <p className="font-normal text-md md:text-lg">Set up Meet</p>
         </div>
         <Image
-          className={`${stylesImage.circular_pic_small}`}
+          className={`${stylesImage.circular_pic_custom} w-28 h-28 md:w-40 md:h-40`}
           src={
             friendPhotoURL ??
-            '"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"'
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
           }
-          unoptimized
           priority
           alt="user profile image"
           width={1080}
           height={1080}
         />
       </div>
-      <section className="w-[90%] mx-auto flex flex-col h-full">
-        <p>Set up Meet</p>
+      <section className="w-[90%] mx-auto flex flex-col mb-8">
         <LetsMeetForm friendId={searchParams.id} />
       </section>
     </ProtectedRoute>

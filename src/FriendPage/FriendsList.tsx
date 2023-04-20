@@ -74,7 +74,7 @@ export default function FriendsList() {
   }
 
   return (
-    <div className="flex flex-col w-full items-center justify-center">
+    <div className="flex flex-col w-full items-center justify-center mb-8">
       {friendslist.length === 0 ? (
         <p className="text-center my-4">No one is in your friend list yet</p>
       ) : (

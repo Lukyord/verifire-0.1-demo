@@ -90,18 +90,22 @@ export default function PhoneForm() {
   return (
     <>
       <div className="flex flex-col gap-5">
-        <div
-          className={`${styles.input_group} 
+        <div>
+          <p className="ml-2 mb-1 text-sm">Country code & Phone number</p>
+
+          <div
+            className={`${styles.input_group} 
         `}
-        >
-          {/* <label htmlFor="phoneInput">Phone</label> */}
-          <PhoneInput
-            placeholder="Enter phone number"
-            id="phoneInput"
-            value={value}
-            onChange={setValue}
-            className={styles.input_text}
-          />
+          >
+            {/* <label htmlFor="phoneInput">Phone</label> */}
+            <PhoneInput
+              placeholder="Enter phone number"
+              id="phoneInput"
+              value={value}
+              onChange={setValue}
+              className={styles.input_text}
+            />
+          </div>
         </div>
       </div>
       {expandForm && (
@@ -134,6 +138,7 @@ export default function PhoneForm() {
       )}
 
       <div id="recaptcha-container"></div>
+
       {expandForm && (
         <div className="button flex justify-center items-center">
           <button

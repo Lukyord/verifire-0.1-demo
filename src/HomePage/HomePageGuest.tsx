@@ -1,6 +1,11 @@
 import React from "react";
 import AboutCarousel from "../AboutPage/AboutCarousel";
+import HomepageFooter from "./components/HomepageFooter";
 
 export default function HomePageGuest() {
-  return <AboutCarousel />;
+  return (
+    <div>
+      <AboutCarousel />
+    </div>
+  );
 }

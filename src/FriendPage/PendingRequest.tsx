@@ -37,7 +37,7 @@ export default function PendingRequest() {
   }
 
   return (
-    <div className="flex flex-col w-full items-center justify-center">
+    <div className="mt-10 flex flex-col w-full items-center justify-center">
       {/* <button onClick={() => console.log(pendingRequests.length)}>o</button> */}
       {pendingRequests.length === 0 ? (
         <p className="my-8">No pending request</p>

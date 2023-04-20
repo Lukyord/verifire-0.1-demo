@@ -44,29 +44,35 @@ export default function FeedbackForm() {
       >
         {({ isSubmitting, errors, touched }) => (
           <Form className="flex flex-col gap-5">
-            <div
-              className={`${styles.input_group} ${
-                errors.topic && touched.topic ? "border-rose-600" : ""
-              }`}
-            >
-              <Field
-                name="topic"
-                type="text"
-                className={styles.input_text}
-                placeholder="Topic"
-              />
+            <div>
+              <p className="ml-4 mb-1 text-sm">Topic</p>
+              <div
+                className={`${styles.input_group} ${
+                  errors.topic && touched.topic ? "border-rose-600" : ""
+                }`}
+              >
+                <Field
+                  name="topic"
+                  type="text"
+                  className={styles.input_text}
+                  placeholder="Topic"
+                />
+              </div>
             </div>
-            <div
-              className={`${styles.input_group} group relative h-64 ${
-                errors.comment && touched.comment ? "border-rose-600" : ""
-              } `}
-            >
-              <Field
-                name="comment"
-                as="textarea"
-                className={styles.input_text}
-                placeholder="Comment"
-              />
+            <div>
+              <p className="ml-4 mb-1 text-sm">Comment</p>
+              <div
+                className={`${styles.input_group} group relative h-64 ${
+                  errors.comment && touched.comment ? "border-rose-600" : ""
+                } `}
+              >
+                <Field
+                  name="comment"
+                  as="textarea"
+                  className={styles.input_text}
+                  placeholder="Comment"
+                />
+              </div>
             </div>
             <div className="button flex justify-center items-center mt-2">
               <button

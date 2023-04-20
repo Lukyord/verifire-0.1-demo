@@ -122,71 +122,88 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
       >
         {({ isSubmitting, errors, touched }) => (
           <Form className="flex flex-col gap-4">
-            <div
-              className={`${styles.input_group} group relative ${
-                errors.verifireId && touched.verifireId ? "border-rose-600" : ""
-              }`}
-            >
-              <Field
-                name="verifireId"
-                type="text"
-                className={`${styles.input_text}`}
-                placeholder="VeriFire ID"
-              />
-            </div>
-            <div
-              className={`${styles.input_group} group relative ${
-                errors.displayName && touched.displayName
-                  ? "border-rose-600"
-                  : ""
-              } `}
-            >
-              <Field
-                name="displayName"
-                type="text"
-                className={styles.input_text}
-                placeholder="Display Name"
-              />
-            </div>
-            <div className="flex flex-row w-full gap-2">
+            <div>
+              <p className="ml-2 mb-1 text-sm">VeriFire ID</p>
               <div
-                className={`${styles.input_group} group relative w-1/2 ${
-                  errors.dob && touched.dob ? "border-rose-600" : ""
-                }`}
-              >
-                <Field name="dob" type="date" className={styles.input_text} />
-              </div>
-              <div
-                className={`${styles.input_group} group relative w-1/2 ${
-                  errors.gender && touched.gender ? "border-rose-600" : ""
+                className={`${styles.input_group} group relative ${
+                  errors.verifireId && touched.verifireId
+                    ? "border-rose-600"
+                    : ""
                 }`}
               >
                 <Field
-                  name="gender"
-                  as="select"
-                  className={styles.input_text}
-                  placeholder="Please select your Gender"
-                >
-                  <option value="">Select an option</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="LGBTQ+">LGBTQ+</option>
-                </Field>
+                  name="verifireId"
+                  type="text"
+                  className={`${styles.input_text}`}
+                  placeholder="VeriFire ID"
+                />
               </div>
-              {/* <ErrorMessage name="gender" component="div" /> */}
             </div>
+            <div>
+              <p className="ml-2 mb-1 text-sm">Display Name</p>
+              <div
+                className={`${styles.input_group} group relative ${
+                  errors.displayName && touched.displayName
+                    ? "border-rose-600"
+                    : ""
+                } `}
+              >
+                <Field
+                  name="displayName"
+                  type="text"
+                  className={styles.input_text}
+                  placeholder="Display Name"
+                />
+              </div>
+            </div>
+            <div>
+              <div className="flex flex-row">
+                <p className="ml-2 mb-1 text-sm w-1/2">Date of Birth</p>
+                <p className="ml-4 mb-1 text-sm w-1/2">Gender</p>
+              </div>
+              <div className="flex flex-row w-full gap-2">
+                <div
+                  className={`${styles.input_group} group relative w-1/2 ${
+                    errors.dob && touched.dob ? "border-rose-600" : ""
+                  }`}
+                >
+                  <Field name="dob" type="date" className={styles.input_text} />
+                </div>
 
-            <div
-              className={`${styles.input_group} group relative h-20 ${
-                errors.bio && touched.bio ? "border-rose-600" : ""
-              }`}
-            >
-              <Field
-                name="bio"
-                as="textarea"
-                className={styles.input_text}
-                placeholder="About you"
-              />
+                <div
+                  className={`${styles.input_group} group relative w-1/2 ${
+                    errors.gender && touched.gender ? "border-rose-600" : ""
+                  }`}
+                >
+                  <Field
+                    name="gender"
+                    as="select"
+                    className={styles.input_text}
+                    placeholder="Please select your Gender"
+                  >
+                    <option value="">Select an option</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="LGBTQ+">LGBTQ+</option>
+                  </Field>
+                </div>
+                {/* <ErrorMessage name="gender" component="div" /> */}
+              </div>
+            </div>
+            <div>
+              <p className="ml-2 mb-1 text-sm">Bio</p>
+              <div
+                className={`${styles.input_group} group relative h-20 ${
+                  errors.bio && touched.bio ? "border-rose-600" : ""
+                }`}
+              >
+                <Field
+                  name="bio"
+                  as="textarea"
+                  className={styles.input_text}
+                  placeholder="About you"
+                />
+              </div>
             </div>
             <div className="button flex justify-center items-center my-10">
               <button

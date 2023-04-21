@@ -74,7 +74,7 @@ const Page: PageComponent<Props> = ({ searchParams }) => {
         />
       </div>
       <section className="w-[90%] mx-auto flex flex-col mb-8">
-        <LetsMeetForm friendId={searchParams.id} />
+        <LetsMeetForm friendId={id} />
       </section>
     </ProtectedRoute>
   );

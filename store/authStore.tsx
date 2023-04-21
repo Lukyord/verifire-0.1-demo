@@ -16,7 +16,7 @@ interface AuthState {
   email: string;
   id: string;
   phone: string;
-  phoneVerifying: boolean;
+  phoneVerifying: boolean | null;
   emergencyContacts: EmergencyContact;
   bio: string;
   displayName: string;
@@ -45,7 +45,7 @@ const useAuthStore = create<AuthState>((set, get) => ({
   email: "",
   id: "",
   phone: "",
-  phoneVerifying: false,
+  phoneVerifying: null,
   emergencyContacts: {
     emergencyContact1: "",
     relationship1: "",

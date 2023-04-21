@@ -10,7 +10,6 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import Background1 from "../src/Background/Background1";
 import localFont from "@next/font/local";
-import Background2 from "../src/Background/Background2";
 
 const myFont = localFont({
   src: "../public/fonts/Helvetica-Outline.woff2",
@@ -72,7 +71,7 @@ export default function RootLayout({
 
   useEffect(() => {
     init();
-    if (user && !phoneVerifying) {
+    if (user && phoneVerifying === false) {
       checkVeriFireIdExists(user.uid).then((idNotExists) => {
         if (idNotExists) {
           router.push("/profile/create");

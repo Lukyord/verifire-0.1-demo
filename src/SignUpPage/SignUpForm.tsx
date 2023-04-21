@@ -7,15 +7,41 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signUpValidationSchema } from "../../lib/ValidationSchema";
 import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function SignUpForm() {
+  const auth = getAuth();
+  const user = auth.currentUser;
   const { signup } = useAuthStore();
   const [show, setShow] = useState({ password: false, cpassword: false });
+  const [id, setId] = useState("");
   const router = useRouter();
 
   async function onSubmit(values: { email: string; password: string }) {
     const { email, password } = values;
+
     await signup(email, password);
+
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        setId(user.uid);
+        await setDoc(doc(db, "users", user.uid), {
+          email: user.email,
+          phone: "",
+          id: user.uid,
+          emergencyContacts: null,
+          timestamp: serverTimestamp(),
+          photoURL: "",
+          verifireId: "",
+          displayName: "",
+          dob: "",
+          gender: "",
+          bio: "",
+        });
+      }
+    });
   }
 
   return (

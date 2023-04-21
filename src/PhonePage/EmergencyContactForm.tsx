@@ -6,8 +6,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { EmergencyContactValidationSchema } from "../../lib/ValidationSchema";
 import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { getAuth } from "firebase/auth";
 
 export default function EmergencyContactForm() {
   const router = useRouter();
@@ -25,6 +26,8 @@ export default function EmergencyContactForm() {
   useEffect(() => {
     setPhoneVerifying(true);
     if (!user) return;
+    console.log(id, phone, email);
+    console.log(user);
     setIsLoading(false);
   }, [user]);
 
@@ -48,19 +51,17 @@ export default function EmergencyContactForm() {
       relationship2: relationship2,
     });
 
-    await setDoc(doc(db, "users", id), {
-      email: email,
-      phone: phone,
-      id: id,
-      emergencyContacts: useAuthStore.getState().emergencyContacts,
-      timestamp: serverTimestamp(),
-      photoURL: "",
-      verifireId: "",
-      displayName: "",
-      dob: "",
-      gender: "",
-      bio: "",
-    });
+    if (user) {
+      await updateDoc(doc(db, "users", user.uid), {
+        emergencyContacts: useAuthStore.getState().emergencyContacts,
+        photoURL: "",
+        verifireId: "",
+        displayName: "",
+        dob: "",
+        gender: "",
+        bio: "",
+      });
+    }
 
     setPhoneVerifying(false);
 

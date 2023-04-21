@@ -11,6 +11,8 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 interface PhoneForm {
   phone: string;
@@ -19,16 +21,18 @@ interface PhoneForm {
 export default function PhoneForm() {
   const router = useRouter();
   const auth = getAuth();
+  const currentUser = auth.currentUser;
   const [expandForm, setExpandForm] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const { setPhone, user, setEmail, setId } = useAuthStore();
+  const { setPhone, setPhoneVerifying, user, setEmail, setId } = useAuthStore();
   const [value, setValue] = useState<string | undefined>();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const uid = user?.uid;
     const email = user?.email;
+    setPhoneVerifying(true);
 
     if (uid) {
       setId(uid);
@@ -70,14 +74,22 @@ export default function PhoneForm() {
     setOtp(OTP);
   }
 
+  async function updatePhone() {
+    if (currentUser) {
+      await updateDoc(doc(db, "users", currentUser.uid), {
+        phone: phoneNumber,
+      });
+    }
+  }
   async function verifyOtp() {
     setIsSubmitting(true);
     let confirmationResult = window.confirmationResult;
     confirmationResult
       .confirm(otp)
-      .then(() => {
+      .then(async () => {
         console.log("verified");
         setPhone(phoneNumber);
+        updatePhone();
         router.replace("sign_up/emergency_contact");
         setIsSubmitting(false);
       })

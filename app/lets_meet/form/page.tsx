@@ -36,7 +36,7 @@ const Page: PageComponent<Props> = ({ searchParams }) => {
     console.log(id, displayName);
 
     const getFriendProfile = async () => {
-      const friendRef = doc(db, "users", searchParams.id);
+      const friendRef = doc(db, "users", id);
       const friendDoc = await getDoc(friendRef);
       const friendData = friendDoc.data() as DocumentData;
       return friendData.photoURL;
@@ -56,7 +56,7 @@ const Page: PageComponent<Props> = ({ searchParams }) => {
         <div>
           <div className="text-[2.75rem] md:text-[5rem] leading-[2.75rem] md:leading-[5rem]">
             <h1 className="font-helvetica_outline tracking-tight">Meet with</h1>
-            <h1 className="tracking-tight">{searchParams.displayName}</h1>
+            <h1 className="tracking-tight">{displayName}</h1>
           </div>
           {/* <p className="text-sm font-normal">{searchParams.id}</p> */}
           <p className="font-normal text-md md:text-lg">Set up Meet</p>

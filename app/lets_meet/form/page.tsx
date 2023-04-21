@@ -21,11 +21,19 @@ interface Props {
 const Page: PageComponent<Props> = ({ searchParams }) => {
   const [friendPhotoURL, setFriendPhotoURL] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const displayName = params.get("displayName");
 
   useEffect(() => {
-    if (searchParams.id === "") {
+    if (id === "" || displayName === "") {
       return;
     }
+
+    console.log(window.location.search);
+    // console.log(searchParams);
+    console.log(params);
+    console.log(id, displayName);
 
     const getFriendProfile = async () => {
       const friendRef = doc(db, "users", searchParams.id);
@@ -36,7 +44,7 @@ const Page: PageComponent<Props> = ({ searchParams }) => {
     getFriendProfile().then((url) => setFriendPhotoURL(url));
 
     setIsLoading(false);
-  }, [searchParams]);
+  }, [params]);
 
   if (isLoading) {
     return <div className="text-center">loading...</div>;

@@ -31,6 +31,7 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
       return;
     }
     uploadFile();
+    setUploadedImageURL(photoURL);
     setIsLoading(false);
   }, [imageUpload, id]);
 

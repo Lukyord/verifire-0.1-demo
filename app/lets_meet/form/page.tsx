@@ -20,8 +20,13 @@ interface Props {
 
 const Page: PageComponent<Props> = ({ searchParams }) => {
   const [friendPhotoURL, setFriendPhotoURL] = useState<string>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (searchParams.id === "") {
+      return;
+    }
+
     const getFriendProfile = async () => {
       const friendRef = doc(db, "users", searchParams.id);
       const friendDoc = await getDoc(friendRef);
@@ -29,7 +34,13 @@ const Page: PageComponent<Props> = ({ searchParams }) => {
       return friendData.photoURL;
     };
     getFriendProfile().then((url) => setFriendPhotoURL(url));
-  }, []);
+
+    setIsLoading(false);
+  }, [searchParams]);
+
+  if (isLoading) {
+    return <div className="text-center">loading...</div>;
+  }
 
   return (
     <ProtectedRoute>

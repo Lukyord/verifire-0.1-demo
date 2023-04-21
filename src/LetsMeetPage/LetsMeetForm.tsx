@@ -7,11 +7,19 @@ import styles from "../../styles/Form.module.css";
 import sendLetsMeetRequest from "../../lib/LetsMeet/sendLetsMeetRequest";
 import { useRouter } from "next/navigation";
 import { GetTimeInString } from "../../lib/Miscellaneous/GetDateInString";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function LetsMeetForm({ friendId }: { friendId: string }) {
   const { id } = useAuthStore();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (id === "") {
+      return;
+    }
+    setIsLoading(false);
+  }, [id]);
 
   async function onSubmit(values: {
     place: string;
@@ -41,6 +49,11 @@ export default function LetsMeetForm({ friendId }: { friendId: string }) {
     const letsMeetId = GetTimeInString() + id;
     await sendLetsMeetRequest(friendId, letsMeetId, LetsMeetData);
   }
+
+  if (isLoading) {
+    return <div className="text-center">loading...</div>;
+  }
+
   return (
     <div className="h-full">
       <Formik

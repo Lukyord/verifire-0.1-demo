@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Form.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { EmergencyContactValidationSchema } from "../../lib/ValidationSchema";
@@ -13,6 +13,12 @@ export default function EmergencyContactForm() {
   const router = useRouter();
   const { id, phone, email, setEmergencyContacts, setPhoneVerifying, signout } =
     useAuthStore();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (id === "") return;
+    setIsLoading(false);
+  }, [id]);
 
   async function onSubmit(values: {
     emergencyContact1: string;
@@ -51,6 +57,10 @@ export default function EmergencyContactForm() {
     setPhoneVerifying(false);
 
     await signout();
+  }
+
+  if (isLoading) {
+    return <div className="text-center">loading...</div>;
   }
 
   return (

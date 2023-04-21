@@ -9,12 +9,16 @@ import { db } from "../../../firebase";
 import ProtectedRoute from "../../../middleware/ProtectedRoute";
 import LetsMeetForm from "../../../src/LetsMeetPage/LetsMeetForm";
 import stylesImage from "../../../styles/Image.module.css";
+import type { PageComponent } from "types";
 
-export default function page({
-  searchParams,
-}: {
-  searchParams: { id: string; displayName: string };
-}) {
+interface Props {
+  searchParams: {
+    id: string;
+    displayName: string;
+  };
+}
+
+const Page: PageComponent<Props> = ({ searchParams }) => {
   const [friendPhotoURL, setFriendPhotoURL] = useState<string>();
 
   useEffect(() => {
@@ -55,4 +59,6 @@ export default function page({
       </section>
     </ProtectedRoute>
   );
-}
+};
+
+export default Page;

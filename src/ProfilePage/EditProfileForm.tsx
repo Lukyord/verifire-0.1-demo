@@ -24,10 +24,15 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
     useAuthStore();
   const [uploadedImageURL, setUploadedImageURL] = useState(photoURL);
   const [finishUploading, setFinishUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (id === "") {
+      return;
+    }
     uploadFile();
-  }, [imageUpload]);
+    setIsLoading(false);
+  }, [imageUpload, id]);
 
   async function uploadFile() {
     if (imageUpload == null) return;
@@ -81,6 +86,10 @@ export default function EditProfileForm({ onUpload }: FileInputProps) {
         photoURL: uploadedImageURL,
       });
     }
+  }
+
+  if (isLoading) {
+    return <div className="text-center">loading...</div>;
   }
 
   return (

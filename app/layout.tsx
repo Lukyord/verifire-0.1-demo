@@ -42,7 +42,18 @@ export default function RootLayout({
     if (user) {
       const docRef = doc(db, "users", user.uid);
       const docSnapshot = await getDoc(docRef);
-      if (docSnapshot.exists() && docSnapshot.data()?.verifireId === "") {
+
+      if (docSnapshot.exists() && docSnapshot.data()?.phone === "") {
+        return false;
+      } else if (
+        docSnapshot.exists() &&
+        docSnapshot.data()?.emergencyContacts === null
+      ) {
+        return false;
+      } else if (
+        docSnapshot.exists() &&
+        docSnapshot.data()?.verifireId === ""
+      ) {
         setLoading(false);
         return true;
       } else {
@@ -71,7 +82,7 @@ export default function RootLayout({
 
   useEffect(() => {
     init();
-    if (user && phoneVerifying === false) {
+    if (user && !phoneVerifying) {
       checkVeriFireIdExists(user.uid).then((idNotExists) => {
         if (idNotExists) {
           router.push("/profile/create");

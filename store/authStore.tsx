@@ -45,7 +45,7 @@ const useAuthStore = create<AuthState>((set, get) => ({
   email: "",
   id: "",
   phone: "",
-  phoneVerifying: null,
+  phoneVerifying: false,
   emergencyContacts: {
     emergencyContact1: "",
     relationship1: "",

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ProtectedRoute from "../../../middleware/ProtectedRoute";
 import styles from "../../../styles/Form.module.css";
@@ -19,18 +20,11 @@ export default function CreateProfile() {
         </div>
 
         <div className="button w-full flex justify-center items-center">
-          <button
-            onClick={() => router.push("/profile/edit")}
-            className={`${styles.button}`}
-          >
-            Next
-          </button>
+          <Link href="/profile/edit">
+            <button className={`${styles.button}`}>Next</button>
+          </Link>
         </div>
       </div>
-      {/* <div className="w-full h-full flex flex-col justify-center items-center">
-        <p>hi</p>
-        <p>o</p>
-      </div> */}
     </ProtectedRoute>
   );
 }

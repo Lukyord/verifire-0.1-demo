@@ -15,6 +15,8 @@ const myFont = localFont({
   src: "../public/fonts/Helvetica-Outline.woff2",
   variable: "--font-my",
 });
+const params = window.location.href.split("/");
+const lastpath = params[params.length - 1];
 
 export default function RootLayout({
   children,
@@ -49,6 +51,10 @@ export default function RootLayout({
         docSnapshot.exists() &&
         docSnapshot.data()?.emergencyContacts === null
       ) {
+        return false;
+      } else if (lastpath === "edit" && docSnapshot.data()?.verifireId === "") {
+        const data = await docSnapshot.data();
+        if (data) setId(data.id);
         return false;
       } else if (
         docSnapshot.exists() &&
@@ -91,7 +97,7 @@ export default function RootLayout({
         }
       });
     }
-  }, [db, user]);
+  }, [db, user, params]);
 
   return (
     <html>

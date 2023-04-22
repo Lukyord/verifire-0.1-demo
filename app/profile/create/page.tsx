@@ -18,7 +18,6 @@ export default function CreateProfile() {
           </h1>
           <h1 className="tracking-tight">your profile</h1>
         </div>
-
         <div className="button w-full flex justify-center items-center">
           <Link href="/profile/edit">
             <button className={`${styles.button}`}>Next</button>

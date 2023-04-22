@@ -3,7 +3,7 @@ import Header from "../src/Header/Header";
 import Overlay from "../src/MobileNavBar/components/Overlay";
 import MobileNavBar from "../src/MobileNavBar/MobileNavBar";
 import "../styles/globals.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useAuthStore from "../store/authStore";
 import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
@@ -15,8 +15,6 @@ const myFont = localFont({
   src: "../public/fonts/Helvetica-Outline.woff2",
   variable: "--font-my",
 });
-const params = window.location.href.split("/");
-const lastpath = params[params.length - 1];
 
 export default function RootLayout({
   children,
@@ -37,6 +35,7 @@ export default function RootLayout({
     setEmergencyContacts,
   } = useAuthStore();
   const router = useRouter();
+  const [lastpath, setLastpath] = useState("");
 
   async function checkVeriFireIdExists(
     uid: string
@@ -87,6 +86,8 @@ export default function RootLayout({
   }
 
   useEffect(() => {
+    const params = window.location.href.split("/");
+    setLastpath(params[params.length - 1]);
     init();
     if (user && !phoneVerifying) {
       checkVeriFireIdExists(user.uid).then((idNotExists) => {
@@ -97,7 +98,7 @@ export default function RootLayout({
         }
       });
     }
-  }, [db, user, params]);
+  }, [db, user, lastpath]);
 
   return (
     <html>

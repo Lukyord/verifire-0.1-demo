@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 interface PhoneForm {
@@ -74,6 +74,16 @@ export default function PhoneForm({ userId }: { userId: string }) {
     setOtp(OTP);
   }
 
+  async function handlePhone() {
+    const docRef = doc(db, "users", userId);
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists() && docSnapshot.data()?.phone === "") {
+      await updateDoc(doc(db, "users", userId), {
+        phone: phoneNumber,
+      });
+    }
+  }
+
   async function verifyOtp() {
     setIsSubmitting(true);
     let confirmationResult = window.confirmationResult;
@@ -82,10 +92,7 @@ export default function PhoneForm({ userId }: { userId: string }) {
       .then(async () => {
         console.log("verified");
         setPhone(phoneNumber);
-
-        await updateDoc(doc(db, "users", userId), {
-          phone: phoneNumber,
-        });
+        handlePhone();
         console.log(userId);
         router.replace(`sign_up/emergency_contact/${userId}`);
         setIsSubmitting(false);

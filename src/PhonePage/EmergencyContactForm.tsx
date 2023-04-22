@@ -8,9 +8,8 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import { getAuth } from "firebase/auth";
 
-export default function EmergencyContactForm() {
+export default function EmergencyContactForm({ userId }: { userId: string }) {
   const router = useRouter();
   const {
     user,
@@ -52,14 +51,8 @@ export default function EmergencyContactForm() {
     });
 
     if (user) {
-      await updateDoc(doc(db, "users", user.uid), {
+      await updateDoc(doc(db, "users", userId), {
         emergencyContacts: useAuthStore.getState().emergencyContacts,
-        photoURL: "",
-        verifireId: "",
-        displayName: "",
-        dob: "",
-        gender: "",
-        bio: "",
       });
     }
 

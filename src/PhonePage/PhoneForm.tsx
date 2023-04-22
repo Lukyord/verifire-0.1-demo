@@ -18,14 +18,14 @@ interface PhoneForm {
   phone: string;
 }
 
-export default function PhoneForm() {
+export default function PhoneForm({ userId }: { userId: string }) {
   const router = useRouter();
   const auth = getAuth();
-  const currentUser = auth.currentUser;
   const [expandForm, setExpandForm] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const { setPhone, setPhoneVerifying, user, setEmail, setId } = useAuthStore();
+  const { setPhone, setPhoneVerifying, user, setEmail, setId, signout } =
+    useAuthStore();
   const [value, setValue] = useState<string | undefined>();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -74,13 +74,6 @@ export default function PhoneForm() {
     setOtp(OTP);
   }
 
-  async function updatePhone() {
-    if (currentUser) {
-      await updateDoc(doc(db, "users", currentUser.uid), {
-        phone: phoneNumber,
-      });
-    }
-  }
   async function verifyOtp() {
     setIsSubmitting(true);
     let confirmationResult = window.confirmationResult;
@@ -89,8 +82,12 @@ export default function PhoneForm() {
       .then(async () => {
         console.log("verified");
         setPhone(phoneNumber);
-        updatePhone();
-        router.replace("sign_up/emergency_contact");
+
+        await updateDoc(doc(db, "users", userId), {
+          phone: phoneNumber,
+        });
+        console.log(userId);
+        router.replace(`sign_up/emergency_contact/${userId}`);
         setIsSubmitting(false);
       })
       .catch((error: string) => {

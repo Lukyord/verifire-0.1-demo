@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import useAuthStore from "../../store/authStore";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 export default function SignUpForm() {
   const auth = getAuth();
@@ -40,6 +40,7 @@ export default function SignUpForm() {
           gender: "",
           bio: "",
         });
+        router.replace(`sign_up/phone/${user.uid}`);
       }
     });
   }
@@ -51,7 +52,7 @@ export default function SignUpForm() {
       onSubmit={(values, { setSubmitting }) => {
         onSubmit(values).then(() => {
           setSubmitting(false);
-          router.replace("sign_up/phone");
+          // router.replace(`sign_up/phone/${id}`);
         });
       }}
     >

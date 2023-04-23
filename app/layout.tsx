@@ -107,8 +107,6 @@ export default function RootLayout({
         {loading && <div>loading</div>}
         {!loading && !phoneVerifying && (
           <div className="relative h-screen w-screen flex flex-col bg-slate-100">
-            {/* ==================== Navigation Bar ==================== */}
-            {/* ======================================================== */}
             <div className="z-0">
               <Background1 />
               {/* <Background2 /> */}

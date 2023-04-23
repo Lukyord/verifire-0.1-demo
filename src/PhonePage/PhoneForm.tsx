@@ -32,7 +32,6 @@ export default function PhoneForm({ userId }: { userId: string }) {
   useEffect(() => {
     const uid = user?.uid;
     const email = user?.email;
-    setPhoneVerifying(true);
 
     if (uid) {
       setId(uid);
@@ -96,6 +95,7 @@ export default function PhoneForm({ userId }: { userId: string }) {
         console.log(userId);
         router.replace(`sign_up/emergency_contact/${userId}`);
         setIsSubmitting(false);
+        window.recaptchaVerifier = null;
       })
       .catch((error: string) => {
         console.log(error);

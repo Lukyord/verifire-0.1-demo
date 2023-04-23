@@ -23,7 +23,6 @@ export default function EmergencyContactForm({ userId }: { userId: string }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setPhoneVerifying(true);
     if (!user) return;
     console.log(id, phone, email);
     console.log(user);

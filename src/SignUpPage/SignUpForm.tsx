@@ -13,7 +13,6 @@ import { getAuth } from "firebase/auth";
 
 export default function SignUpForm() {
   const auth = getAuth();
-  const user = auth.currentUser;
   const { signup } = useAuthStore();
   const [show, setShow] = useState({ password: false, cpassword: false });
   const [id, setId] = useState("");
@@ -24,25 +23,25 @@ export default function SignUpForm() {
 
     await signup(email, password);
 
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        setId(user.uid);
-        await setDoc(doc(db, "users", user.uid), {
-          email: user.email,
-          phone: "",
-          id: user.uid,
-          emergencyContacts: null,
-          timestamp: serverTimestamp(),
-          photoURL: "",
-          verifireId: "",
-          displayName: "",
-          dob: "",
-          gender: "",
-          bio: "",
-        });
-        router.replace(`sign_up/phone/${user.uid}`);
-      }
-    });
+    const user = auth.currentUser;
+
+    if (user) {
+      setId(user.uid);
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        phone: "",
+        id: user.uid,
+        emergencyContacts: null,
+        timestamp: serverTimestamp(),
+        photoURL: "",
+        verifireId: "",
+        displayName: "",
+        dob: "",
+        gender: "",
+        bio: "",
+      });
+      router.replace(`sign_up/phone/${user.uid}`);
+    }
   }
 
   return (
@@ -52,7 +51,6 @@ export default function SignUpForm() {
       onSubmit={(values, { setSubmitting }) => {
         onSubmit(values).then(() => {
           setSubmitting(false);
-          // router.replace(`sign_up/phone/${id}`);
         });
       }}
     >

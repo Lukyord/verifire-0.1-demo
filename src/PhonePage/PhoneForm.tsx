@@ -93,7 +93,6 @@ export default function PhoneForm({ userId }: { userId: string }) {
         setPhone(phoneNumber);
         handlePhone();
         console.log(userId);
-        router.replace(`sign_up/emergency_contact/${userId}`);
         setIsSubmitting(false);
         window.recaptchaVerifier = null;
       })
@@ -141,7 +140,6 @@ export default function PhoneForm({ userId }: { userId: string }) {
       {!expandForm && (
         <div className="button flex justify-center items-center">
           <button
-            type="submit"
             className={`${styles.button}`}
             onClick={() => {
               setExpandForm(true);
@@ -158,7 +156,10 @@ export default function PhoneForm({ userId }: { userId: string }) {
       {expandForm && (
         <div className="button flex justify-center items-center">
           <button
-            onClick={verifyOtp}
+            onClick={async () => {
+              verifyOtp();
+              router.replace(`sign_up/emergency_contact/${userId}`);
+            }}
             disabled={otp.length != 6 || isSubmitting}
             className={`${styles.button}`}
           >

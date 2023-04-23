@@ -11,23 +11,12 @@ import { db } from "../../firebase";
 
 export default function EmergencyContactForm({ userId }: { userId: string }) {
   const router = useRouter();
-  const {
-    user,
-    id,
-    phone,
-    email,
-    setEmergencyContacts,
-    setPhoneVerifying,
-    signout,
-  } = useAuthStore();
+  const { setEmergencyContacts, setPhoneVerifying, signout } = useAuthStore();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) return;
-    console.log(id, phone, email);
-    console.log(user);
-    setIsLoading(false);
-  }, [user]);
+    setPhoneVerifying(true);
+  }, []);
 
   async function onSubmit(values: {
     emergencyContact1: string;
@@ -49,19 +38,13 @@ export default function EmergencyContactForm({ userId }: { userId: string }) {
       relationship2: relationship2,
     });
 
-    if (user) {
-      await updateDoc(doc(db, "users", userId), {
-        emergencyContacts: useAuthStore.getState().emergencyContacts,
-      });
-    }
+    await updateDoc(doc(db, "users", userId), {
+      emergencyContacts: useAuthStore.getState().emergencyContacts,
+    });
 
     setPhoneVerifying(false);
 
     await signout();
-  }
-
-  if (!user) {
-    return <div className="text-center">loading...</div>;
   }
 
   return (

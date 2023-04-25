@@ -17,7 +17,7 @@ export default function HistoryMeets() {
       return;
     }
 
-    const ref = collection(db, "users", id, "pendingMeet");
+    const ref = collection(db, "users", id, "historyMeet");
 
     const unsubscribe = onSnapshot(ref, async (snapshot) => {
       const docs: DocumentData[] = [];
